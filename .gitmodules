@@ -1,0 +1,3 @@
+[submodule "raphael-free-transform"]
+	path = raphael-free-transform
+	url = https://github.com/ElbertF/Raphael.FreeTransform.git
