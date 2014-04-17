@@ -2,7 +2,7 @@
 
 $(document).ready(function () {
 
-	$("#farmlist").selectable();
+	//$("#farmlist").selectable();
 	$("#areas").accordion();
 
 	$("#Greenhouse1Table").hide();
