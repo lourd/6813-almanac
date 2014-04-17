@@ -1,7 +1,3 @@
-svg {
-    /*display: block;*/
-}
-
 body {
 	background-color: #cdcdcd;
 	color: #444444;
@@ -17,17 +13,6 @@ A:link {
 }
 A:visited {
 	color: black;
-}
-
-nav {
-	width: 200px;
-    height: 100%;
-	float: left;
-	display: block;
-	margin: 0;
-	padding: 0 10px;
-	font-size: 18px;
-    background-color: #FF6600;
 }
 
 #logo {
@@ -58,35 +43,53 @@ h1 {
 	font-size: 14px;
 }
 
+/* Nav styling */
+nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    float: left;
+    display: block;
+    margin: 0;
+    font-size: 18px;
+    background-color: #FF6600;
+}
+
+section#nav-controls {
+    padding: 0 10px;
+}
 
 /* Drawing pages styling */
 section#drawing-main {
-    min-width: 600px;
     margin: 0;
     padding: 0;
     margin-left: 220px;
 }
 section#title-bar {
-    width: 100%;
+    min-width: 650px;
     text-align: left;
-    padding-top: 30px;
+    padding-top: 25px;
+    height: 75px;
     padding-left: 60px;
-    padding-bottom: 30px;
-}
-
-section#drawing-area {
-}
-
-#drawing-container {
     position: absolute;
-    height: 550px;
-    width: 100%;
+    top: 0;
+    left: 220;
+    right: 0;
+}
+div#drawing-container {
+    min-width: 650px;
+    position: absolute;
+    top: 100;
+    left: 220;
     bottom: 0;
+    right: 0;
     background-color: #efefef;
     border-top: black solid 1px;
     margin-left: auto;
     margin-right: auto;
 }
+
 
 h1.area-name {
     margin: 5px 0;
@@ -100,3 +103,29 @@ h4.farm-name {
     vertical-align: top;
     padding-top: 12px;
 }
+
+section#drawing-controls {
+    height: 200px;
+}
+
+ul#controls-list {
+    margin: 0;
+}
+
+.draw-btn {
+    width: 100%;
+    border-top: black solid 1px;
+    font-size: 24px;
+    color: #fff;
+    padding: 15px 0px;
+    text-align: center;
+    
+}
+.draw-btn:hover {
+    background-color: #dd4400;
+    cursor: pointer;
+}
+.draw-btn:last-child {
+    border-bottom: black solid 1px;
+}
+
