@@ -26,7 +26,6 @@ nav {
 	display: block;
 	margin: 0;
 	padding: 0 10px;
-	margin-right: 10px;
 	font-size: 18px;
     background-color: #FF6600;
 }
@@ -38,14 +37,6 @@ nav {
 ul {
     list-style: none;
     padding-left: 0px;
-}
-
-section#main{
-	width: 700px;
-	float: left;
-	margin: 0;
-	padding: 0;
-	display: inline;     
 }
 
 table, th, td {
@@ -63,15 +54,49 @@ h1 {
 	font-size: 40px;
 }
 
+.status-font {
+	font-size: 14px;
+}
+
+
+/* Drawing pages styling */
+section#drawing-main {
+    min-width: 600px;
+    margin: 0;
+    padding: 0;
+    margin-left: 220px;
+}
+section#title-bar {
+    width: 100%;
+    text-align: left;
+    padding-top: 30px;
+    padding-left: 60px;
+    padding-bottom: 30px;
+}
+
+section#drawing-area {
+}
+
 #drawing-container {
-    width: 600px;
-    height: 200px;
+    position: absolute;
+    height: 550px;
+    width: 100%;
+    bottom: 0;
     background-color: #efefef;
-    border: black solid 1px;
+    border-top: black solid 1px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.status-font {
-	font-size: 14px;
+h1.area-name {
+    margin: 5px 0;
+    display: inline;
+    padding-right: 0.3em;
+}
+h4.farm-name {
+    display: inline-block;
+    margin: 0px;
+    font-size: 24px;
+    vertical-align: top;
+    padding-top: 12px;
 }
