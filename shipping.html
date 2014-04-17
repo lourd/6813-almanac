@@ -1,0 +1,62 @@
+
+    <head>
+        <title>Greenhouse X, Example Farms - Farm Creation</title>
+        <link rel="stylesheet" type="text/css" href="drawing.css">
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
+        <script type="text/javascript" src="raphael.js"></script>
+        <script type="text/javascript" src="raphael-free-transform/raphael.free_transform.js"></script>
+        <script type="text/javascript" src="raphael-json/raphael.json.js"></script>
+        <script type="text/javascript" src="drawing.js"></script>
+    </head>
+    <body>
+        <nav role="main">
+            <section id="nav-controls">
+                <h1 id="logo">The Almanac</h1>
+                <a href="FarmOverview.html"> Schrute Farm</a> <br>
+                    <span class="status-font"> 
+                        &nbsp; <a href="drawing.html"> Greenhouse 1</a> <br>
+                        &nbsp; <a href="drawing.html"> Shipping Container A</a> 
+                    </span> <br> <br>
+                <a href="FarmOverview.html"> Colorado Farm</a> <br>
+                    <span class="status-font">
+                        &nbsp; <a href="drawing.html"> Shipping Container A</a> <br>
+                        &nbsp; <a href="drawing.html"> Shipping Container B</a> <br>
+                        &nbsp; <a href="drawing.html"> Shipping Container C</a> 
+                    </span> <br> <br>
+                <a href="FarmOverview.html"> Urban Research Center</a> <br>
+                    <span class="status-font"> 
+                        &nbsp; <a href="drawing.html"> Greenhouse 1</a> <br>
+                        &nbsp; <a href="drawing.html"> Greenhouse 2</a> <br>
+                        &nbsp; <a href="drawing.html"> Greenhouse 3</a>
+                    </span> <br> <br>
+            </section>
+
+            <section id="drawing-controls">
+                <ul id="controls-list">
+                    <li id="add-plot" class="draw-btn">Add Plot</li>
+                    <li id="add-sensor" class="draw-btn">Add Sensor</li>
+                    <li id="clear-layout" class="draw-btn">Clear Layout</li>
+                </ul>
+            </section>
+        </nav>
+        <section id="drawing-main">
+            
+            <section id="title-bar">
+                <h1 class="area-name">Shipping Container</h1>
+                <h4 class="farm-name">Schrute Farms</h4>
+            </section>
+            <div id="drawing-container"></div>
+                <!-- <table> <tr>
+                    <td>
+                        
+                        <button id="save">Save</button>
+                        <button id="load">Load</button>
+                        <button id="add-square">Add Plot</button>
+                        <button id="add-circle">Add Sensor</button>
+                        <button id="clear">Clear</button>
+                    </td>
+                </tr></table> -->
+
+        </section>
+    </body>
+
