@@ -8,13 +8,6 @@ body {
     font-family: sans-serif;
 }
 
-A:link {
-	color: black;
-}
-A:visited {
-	color: black;
-}
-
 #logo {
     font-size: 30px;
     color: #fff;
@@ -78,10 +71,6 @@ section#nav-controls {
     color: #d4c8c9;
 }
 
-ul#farm_list {
-    padding: 0 10px;
-}
-
 /* Drawing pages styling */
 section.title-bar {
     background-color: #2e2b2c;
@@ -120,10 +109,16 @@ section.lower-main {
 }
 
 .farm_names {
-	padding-left:0px;
-	padding-bottom: 5px;
-	padding-top: 5px;
 	font-size: 24px;
+}
+
+.farm_names li {
+    padding: 5px 10px;
+    text-align: right;
+}
+
+.farm_names li a:hover {
+    color: #fff;
 }
 
 h1.page-title {
@@ -146,20 +141,19 @@ section#drawing-controls {
 }
 
 ul#controls-list {
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .draw-btn {
-    width: 100%;
     border-top: black solid 1px;
     font-size: 24px;
     color: #fff;
-    padding: 15px 0px;
-    text-align: center;
+    padding: 15px 10px;
+    text-align: right;
     
 }
 .draw-btn:hover {
-    background-color: #f8931a;
+    background-color: #5e5b5c;
     cursor: pointer;
 }
 .draw-btn:last-child {
