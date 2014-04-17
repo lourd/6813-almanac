@@ -2,7 +2,8 @@
 
 $(document).ready(function () {
 
-	$("farm_list").selectable();
+	$("#farmlist").selectable();
+	$("#areas").accordion();
 
 	$("#Greenhouse1Table").hide();
 	$("#ShippingContainerATable").hide();

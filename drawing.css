@@ -151,3 +151,16 @@ ul#controls-list {
 .draw-btn:last-child {
     border-bottom: black solid 1px;
 }
+
+#farmlist .ui-selected {
+	background: #00FFFF;
+}
+
+.area_selection {
+	padding-left: 40px;
+	font-size: 40;
+}
+
+
+
+

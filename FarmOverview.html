@@ -10,7 +10,7 @@
    	<nav role="main">
    		<section id="nav-controls">
    			<h1 id="logo">The Almanac</h1>
-   				<ul id="farm_list">
+   				<ul id="farmlist">
    					<li class="ui-widget-content farm_names">Schrute Farm</li>
    					<li class="ui-widget-content farm_names">Colorado Farm</li>
    				</ul>
@@ -19,41 +19,25 @@
 	
 	<section id="main">
 		<h1 align="center"> Schrute Farm </h1>
-		<table id = "FarmTable">
-			<tr>
-				<td><button id="Greenhouse1Button">+</button></td>
-				<td> <a href="drawing.html"> Greenhouse 1 </a></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<table id="Greenhouse1Table">
-						<tr>
-							<td title="Temperature" class="reading temperature">72 F</td>
-							<td title="Humidity" class="reading humidity">62% humidity</td>
-							<td title="CO2" class=" reading humidity">400 ppm </td>
-							<td class="reading"><a href="greenhouse.html">See Layout!</a></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr id = "ShippingContainerA">
-				<td><button id="ShippingContainerAButton">+</button></td>
-				<td> <a href="drawing.html"> Shipping Container A </a></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<table id="ShippingContainerATable">
-						<tr id="readings">
-							<td title="Temperature" class="reading temperature">72 F</td>
-							<td title="Humidity" class="reading humidity">62% humidity</td>
-							<td title="CO2" class=" reading humidity">400 ppm </td>
-							<td class="reading"><a href="shipping.html">See Layout!</a></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-		</table>
+		<div id="areas">
+			<h3 class="area_selection">Greenhouse 1</h3>
+				<table id="Greenhouse1Table">
+					<tr>
+						<td title="Temperature" class="reading temperature">72 F</td>
+						<td title="Humidity" class="reading humidity">62% humidity</td>
+						<td title="CO2" class=" reading humidity">400 ppm </td>
+						<td class="reading"><a href="greenhouse.html">See Layout!</a></td>
+					</tr>
+				</table>
+			<h3 class="area_selection">Shipping Container A</h3>
+				<table id="ShippingContainerATable">
+					<tr id="readings">
+						<td title="Temperature" class="reading temperature">72 F</td>
+						<td title="Humidity" class="reading humidity">62% humidity</td>
+						<td title="CO2" class=" reading humidity">400 ppm </td>
+						<td class="reading"><a href="shipping.html">See Layout!</a></td>
+					</tr>
+				</table>
+		</div>
 	</section>
 </body>
