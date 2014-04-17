@@ -29,11 +29,19 @@ var addRect = function(paper, x, y, width, height, fill) {
     ft.hideHandles({undrag: false});
 }
 
-var addCircle = function(paper, x, y, radius, fill) {
+var addCircle = function(paper, x, y, radius, fill, sensor) {
     var circle = paper.circle(x, y, radius)
                 .attr('cursor', 'move')
                 // Need to fill to make it draggable!
                 .attr('fill', fill);
+    circle.hover(
+        function(evt) {
+            console.log(evt);
+            // alert("in");
+        }
+        , function(evt) {
+            // alert("out");
+        });
     var ft = paper.freeTransform(circle, {
         scale: false
         , rotate: false
@@ -45,6 +53,7 @@ var addCircle = function(paper, x, y, radius, fill) {
             , height: 500
         }
     });
+
     ft.hideHandles({undrag: false});
 }
 

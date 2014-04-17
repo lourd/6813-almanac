@@ -103,9 +103,12 @@ section.lower-main {
 }
 
 .reading {
-	padding: 20px;
+	padding: 30px;
 	border: 2px solid;
 	text-align: center;
+	float: left;
+	font-size: 28;
+	font-weight: bold;
 }
 
 .farm_names {
@@ -115,6 +118,12 @@ section.lower-main {
 .farm_names li {
     padding: 5px 10px;
     text-align: right;
+}
+
+
+.farm_names li a, .farm_names li a:visited {
+    color: #d4c8c9;
+    text-decoration: none;
 }
 
 .farm_names li a:hover {
@@ -161,7 +170,7 @@ ul#controls-list {
 }
 
 #farmlist .ui-selected {
-	background: #00FFFF;
+	background: orange;
 }
 
 .area_selection {
