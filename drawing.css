@@ -13,7 +13,7 @@ nav {
 }
 
 section#main{
-	width: 500px;
+	width: 700px;
 	float: left;
 	margin: 0;
 	padding: 0;
@@ -23,6 +23,10 @@ section#main{
 table, th, td {
 	font-size: 26px;
 	text-align: left;
+}
+
+td {
+	padding-left: 30px;
 }
 
 h1 {

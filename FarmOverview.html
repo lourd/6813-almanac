@@ -2,41 +2,81 @@
     <title>Greenhouse X, Example Farms - Farm Creation</title>
     <link rel="stylesheet" type="text/css" href="drawing.css">
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js'></script>
-    <script type="text/javascript" src="FarmOverview
-    .js"></script>
+    <script type="text/javascript" src="FarmOverview.js"></script>
 </head>
 <body>
    	<nav role="main">
    		<h3> <br> </h3>
-		<a href="link.com"> Schrute Farm</a> <br>
+		<a href="FarmOverview.html"> Schrute Farm</a> <br>
 			<span class="status-font"> 
-				&nbsp; <a href="link.com"> Greenhouse 1</a> <br>
-				&nbsp; <a href="link.com"> Shipping Container A</a> 
+				&nbsp; <a href="drawing.html"> Greenhouse 1</a> <br>
+				&nbsp; <a href="drawing.html"> Shipping Container A</a> 
 			</span> <br> <br>
-		<a href="link.com"> Colorado Farm</a> <br>
+		<a href="FarmOverview.html"> Colorado Farm</a> <br>
 			<span class="status-font">
-				&nbsp; <a href="link.com"> Shipping Container A</a> <br>
-				&nbsp; <a href="link.com"> Shipping Container B</a> <br>
-				&nbsp; <a href="link.com"> Shipping Container C</a> 
+				&nbsp; <a href="drawing.html"> Shipping Container A</a> <br>
+				&nbsp; <a href="drawing.html"> Shipping Container B</a> <br>
+				&nbsp; <a href="drawing.html"> Shipping Container C</a> 
 			</span> <br> <br>
-		<a href="link.com"> Urban Research Center</a> <br>
+		<a href="FarmOverview.html"> Urban Research Center</a> <br>
 			<span class="status-font"> 
-				&nbsp; <a href="link.com"> Greenhouse 1</a> <br>
-				&nbsp; <a href="link.com"> Greenhouse 2</a> <br>
-				&nbsp; <a href="link.com"> Greenhouse 3</a>
+				&nbsp; <a href="drawing.html"> Greenhouse 1</a> <br>
+				&nbsp; <a href="drawing.html"> Greenhouse 2</a> <br>
+				&nbsp; <a href="drawing.html"> Greenhouse 3</a>
 			</span> <br> <br>
-		<a href="link.com"> View All Farms </a>
 	</nav>
 	<section id="main">
 		<h1 align="center"> Schrute Farm </h1>
-		<table>
+		<table id = "FarmTable">
 			<tr>
-				<td><button id="Greenhouse1MoreInfo">+</button></td>
-				<td> <a href="link.com"> Greenhouse 1 </a></td>
+				<td><button id="Greenhouse1Button">+</button></td>
+				<td> <a href="drawing.html"> Greenhouse 1 </a></td>
 			</tr>
 			<tr>
-				<td><button id="ShippingContainerAMoreInfo">+</button></td>
-				<td> <a href="link.com"> Shipping Container A </a></td>
+				<td></td>
+				<td>
+					<table id="Greenhouse1Table">
+						<tr>
+							<td></td>
+							<td></td>
+							<td>Temperature</td>
+							<td>Humidity</td>
+							<td>CO2 Levels</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>72 degrees F</td>
+							<td>62% humidity</td>
+							<td>400 ppm </td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr id = "ShippingContainerA">
+				<td><button id="ShippingContainerAButton">+</button></td>
+				<td> <a href="drawing.html"> Shipping Container A </a></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<table id="ShippingContainerATable">
+						<tr>
+							<td></td>
+							<td></td>
+							<td>Temperature</td>
+							<td>Humidity</td>
+							<td>CO2 Levels</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td>72 degrees F</td>
+							<td>62% humidity</td>
+							<td>400 ppm </td>
+						</tr>
+					</table>
+				</td>
 			</tr>
 		</table>
 	</section>
