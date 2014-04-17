@@ -40,6 +40,11 @@ ul {
     padding-left: 0px;
 }
 
+ol {
+	list-style: none;
+	padding-left: 0px;
+}
+
 section#main{
 	width: 700px;
 	float: left;
@@ -74,4 +79,18 @@ h1 {
 
 .status-font {
 	font-size: 14px;
+}
+
+.reading {
+	padding: 20px;
+	border: 2px solid;
+	text-align: center;
+}
+
+.farm_names {
+	padding-left:0px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	font-size: 24px;
+	background-color: #FF6600;
 }

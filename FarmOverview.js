@@ -1,4 +1,9 @@
-$(function () {
+
+
+$(document).ready(function () {
+
+	$("farm_list").selectable();
+
 	$("#Greenhouse1Table").hide();
 	$("#ShippingContainerATable").hide();
 
