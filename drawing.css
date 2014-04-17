@@ -20,8 +20,8 @@ A:visited {
     color: #fff;
     margin: 0px;
     text-align: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    line-height: 100px;
+    height: 100px;
     background-color: #f8931a;
 }
 
@@ -84,6 +84,8 @@ ul#farm_list {
 
 /* Drawing pages styling */
 section.title-bar {
+    background-color: #2e2b2c;
+    color: #d4c8c9;
     min-width: 650px;
     text-align: left;
     padding-top: 25px;
@@ -101,7 +103,7 @@ section.lower-main {
     left: 220;
     bottom: 0;
     right: 0;
-    background-color: #efefef;
+    background-color: #fff;
     border-top: black solid 1px;
     margin-left: auto;
     margin-right: auto;
@@ -126,15 +128,17 @@ section.lower-main {
 
 h1.page-title {
     margin: 5px 0;
+    color: #d4c8c9;
     display: inline;
     padding-right: 0.3em;
 }
-h4.farm-name {
+h4.page-subtitle {
     display: inline-block;
     margin: 0px;
     font-size: 24px;
     vertical-align: top;
     padding-top: 12px;
+    color: white;
 }
 
 section#drawing-controls {
@@ -155,7 +159,7 @@ ul#controls-list {
     
 }
 .draw-btn:hover {
-    background-color: #dd4400;
+    background-color: #f8931a;
     cursor: pointer;
 }
 .draw-btn:last-child {
