@@ -17,6 +17,12 @@ A:visited {
 
 #logo {
     font-size: 30px;
+    color: #fff;
+    margin: 0px;
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+    background-color: #f8931a;
 }
 
 ul {
@@ -64,15 +70,22 @@ nav {
     display: block;
     margin: 0;
     font-size: 18px;
-    background-color: #FF6600;
+    background-color: #2e2b2c;
 }
 
 section#nav-controls {
+    padding: 0;
+    color: #d4c8c9;
+}
+
+ul#farm_list {
     padding: 0 10px;
 }
 
 /* Drawing pages styling */
-section#title-bar {
+section.title-bar {
+    background-color: #2e2b2c;
+    color: #d4c8c9;
     min-width: 650px;
     text-align: left;
     padding-top: 25px;
@@ -83,14 +96,14 @@ section#title-bar {
     left: 220;
     right: 0;
 }
-div#drawing-container {
+section.lower-main {
     min-width: 650px;
     position: absolute;
     top: 100;
     left: 220;
     bottom: 0;
     right: 0;
-    background-color: #efefef;
+    background-color: #fff;
     border-top: black solid 1px;
     margin-left: auto;
     margin-right: auto;
@@ -111,20 +124,21 @@ div#drawing-container {
 	padding-bottom: 5px;
 	padding-top: 5px;
 	font-size: 24px;
-	background-color: #FF6600;
 }
 
-h1.area-name {
+h1.page-title {
     margin: 5px 0;
+    color: #d4c8c9;
     display: inline;
     padding-right: 0.3em;
 }
-h4.farm-name {
+h4.page-subtitle {
     display: inline-block;
     margin: 0px;
     font-size: 24px;
     vertical-align: top;
     padding-top: 12px;
+    color: white;
 }
 
 section#drawing-controls {
@@ -145,7 +159,7 @@ ul#controls-list {
     
 }
 .draw-btn:hover {
-    background-color: #dd4400;
+    background-color: #f8931a;
     cursor: pointer;
 }
 .draw-btn:last-child {
