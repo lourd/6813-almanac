@@ -4,7 +4,9 @@ var DRAWING_WIDTH = 500;
 var addRect = function(paper, x, y, width, height, fill) {
     var rect = paper.rect(x, y, width, height)
         .attr('fill', fill)
-        .attr('cursor', 'move');
+        .attr('cursor', 'move')
+        // Always want plots at the back
+        .toBack();
 
     var ft = paper.freeTransform(rect, {
         scale: ['bboxCorners']
@@ -29,18 +31,23 @@ var addRect = function(paper, x, y, width, height, fill) {
     ft.hideHandles({undrag: false});
 }
 
-var addCircle = function(paper, x, y, radius, fill, sensor) {
+var addCircle = function(paper, x, y, radius, fill, obj) {
     var circle = paper.circle(x, y, radius)
                 .attr('cursor', 'move')
                 // Need to fill to make it draggable!
-                .attr('fill', fill);
+                .attr('fill', fill)
+                // Always want sensors at the front
+                .toFront();
     circle.hover(
         function(evt) {
-            console.log(evt);
-            // alert("in");
+            console.log(this);
+            $("#popup").css({
+                left: this.getBBox().x + 220 + this.getBBox().height/2
+                , top: this.getBBox().y + 100 + this.getBBox().height/2
+            }).show();
         }
         , function(evt) {
-            // alert("out");
+            $("#popup").hide();
         });
     var ft = paper.freeTransform(circle, {
         scale: false
@@ -114,9 +121,9 @@ $(function () {
         addRect(paper, 50, 50, 50, 50, 'green');
     });
 
-    $('#add-sensor').click( function () {
-        addCircle(paper, 250, 250, 10, 'gray');
-    });
+    // $('#add-sensor').click( function () {
+    //     addCircle(paper, 250, 250, 10, 'gray');
+    // });
 
     // Background click handler
     $('svg').click( function(evt) {
@@ -133,5 +140,16 @@ $(function () {
         // });
     });
 
+    drop = new Drop({
+        target: document.querySelector('#add-sensor')
+        , content: "You added a sensor!"
+        , position: "right middle"
+        , openOn: 'click'
+    });
+
+    console.log(drop);
+
 
 });
+
+

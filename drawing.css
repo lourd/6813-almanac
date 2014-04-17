@@ -178,6 +178,14 @@ ul#controls-list {
 	font-size: 40;
 }
 
-
+/* Popup div*/
+div#popup {
+    width: 100px;
+    height: 80px;
+    position: absolute;
+    background-color: #ddd;
+    display: none;
+    pointer-events: none;
+}
 
 
