@@ -1,3 +1,6 @@
+var DRAWING_HEIGHT = 1000;
+var DRAWING_WIDTH = 500;
+
 var addRect = function(paper, x, y, width, height, fill) {
     var rect = paper.rect(x, y, width, height)
         .attr('fill', fill)
@@ -9,10 +12,10 @@ var addRect = function(paper, x, y, width, height, fill) {
         , drag: 'self'
         , draw: ['bbox']
         , boundary: {
-            x: 50
-            , y: 50
-            , width: 500
-            , height: 500
+            x: 25
+            , y: 25
+            , width: DRAWING_WIDTH
+            , height: DRAWING_HEIGHT
         }
     });
     ft.subject.mouseup( function(evt) {
@@ -80,7 +83,7 @@ var saveLayout = function(paper) {
 
 $(function () {
 
-    var paper = Raphael("drawing-container", 600, 200);
+    var paper = Raphael("drawing-container", DRAWING_HEIGHT, DRAWING_WIDTH);
     var json;
     var selectedElement;
 
@@ -94,15 +97,15 @@ $(function () {
         }
     });
 
-    $('#clear').click( function () {
+    $('#clear-layout').click( function () {
         paper.clear();
     });
 
-    $('#add-square').click( function () {
+    $('#add-plot').click( function () {
         addRect(paper, 50, 50, 50, 50, 'green');
     });
 
-    $('#add-circle').click( function () {
+    $('#add-sensor').click( function () {
         addCircle(paper, 250, 250, 10, 'gray');
     });
 

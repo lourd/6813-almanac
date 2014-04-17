@@ -29,12 +29,10 @@ ol {
 	padding-left: 0px;
 }
 
-section#main{
-	width: 700px;
-	float: left;
-	margin: 0;
-	padding: 0;
-	display: inline;     
+section#main{  
+    margin: 0;
+    padding: 0;
+    margin-left: 220px;
 }
 
 table, th, td {
@@ -74,11 +72,6 @@ section#nav-controls {
 }
 
 /* Drawing pages styling */
-section#drawing-main {
-    margin: 0;
-    padding: 0;
-    margin-left: 220px;
-}
 section#title-bar {
     min-width: 650px;
     text-align: left;
