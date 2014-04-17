@@ -5,6 +5,11 @@ svg {
 body {
 	background-color: #cdcdcd;
 	color: #444444;
+    margin: 0px;
+}
+
+* {
+    font-family: sans-serif;
 }
 
 A:link {
@@ -15,13 +20,24 @@ A:visited {
 }
 
 nav {
-	width: 150px;
+	width: 200px;
+    height: 100%;
 	float: left;
-	display: inline;
+	display: block;
 	margin: 0;
-	padding: 0;
+	padding: 0 10px;
 	margin-right: 10px;
 	font-size: 18px;
+    background-color: #FF6600;
+}
+
+#logo {
+    font-size: 30px;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
 }
 
 section#main{
