@@ -198,4 +198,15 @@ div#popup {
     clear: left;
 }
 
+svg {
+    background: url('http://i.imgur.com/GySvQ.png');
+    border: 2px solid black;
+    display: block;
+    margin: 20px auto;
+} 
 
+#drawing-container {
+    width: 100%;
+    height: 700px;
+    padding: 10px;
+}

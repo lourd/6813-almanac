@@ -1,5 +1,5 @@
-var DRAWING_HEIGHT = 1000;
-var DRAWING_WIDTH = 500;
+var DRAWING_HEIGHT = 500;
+var DRAWING_WIDTH = 800;
 
 var addRect = function(paper, x, y, width, height, fill) {
     var rect = paper.rect(x, y, width, height)
@@ -99,7 +99,7 @@ var saveLayout = function(paper) {
 
 $(function () {
 
-    var paper = Raphael("drawing-container", DRAWING_HEIGHT, DRAWING_WIDTH);
+    var paper = Raphael("drawing-container", DRAWING_WIDTH, DRAWING_HEIGHT);
     var json;
     var selectedElement;
 
