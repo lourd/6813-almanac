@@ -180,12 +180,22 @@ ul#controls-list {
 
 /* Popup div*/
 div#popup {
-    width: 100px;
-    height: 80px;
+    width: 180px;
+    height: 120px;
     position: absolute;
     background-color: #ddd;
     display: none;
     pointer-events: none;
+    border: black solid 1px;
+}
+
+#popup h4 {
+    text-align: center;
+}
+
+#popup .label {
+    font-weight: bold;
+    clear: left;
 }
 
 

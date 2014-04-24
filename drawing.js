@@ -121,9 +121,9 @@ $(function () {
         addRect(paper, 50, 50, 50, 50, 'green');
     });
 
-    // $('#add-sensor').click( function () {
-    //     addCircle(paper, 250, 250, 10, 'gray');
-    // });
+    $('#add-sensor').click( function () {
+        addCircle(paper, 250, 250, 10, 'gray');
+    });
 
     // Background click handler
     $('svg').click( function(evt) {
