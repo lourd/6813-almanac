@@ -1,0 +1,212 @@
+body {
+	background-color: #cdcdcd;
+	color: #444444;
+    margin: 0px;
+}
+
+* {
+    font-family: sans-serif;
+}
+
+#logo {
+    font-size: 30px;
+    color: #fff;
+    margin: 0px;
+    text-align: center;
+    line-height: 100px;
+    height: 100px;
+    background-color: #f8931a;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+ol {
+	list-style: none;
+	padding-left: 0px;
+}
+
+section#main{  
+    margin: 0;
+    padding: 0;
+    margin-left: 220px;
+}
+
+table, th, td {
+	font-size: 26px;
+	text-align: left;
+}
+
+td {
+	padding-left: 30px;
+}
+
+h1 {
+	color: black;
+	font-weight: bold;
+	font-size: 40px;
+}
+
+.status-font {
+	font-size: 14px;
+}
+
+/* Nav styling */
+nav {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 220px;
+    float: left;
+    display: block;
+    margin: 0;
+    font-size: 18px;
+    background-color: #2e2b2c;
+}
+
+section#nav-controls {
+    padding: 0;
+    color: #d4c8c9;
+}
+
+/* Drawing pages styling */
+section.title-bar {
+    background-color: #2e2b2c;
+    color: #d4c8c9;
+    min-width: 650px;
+    text-align: left;
+    padding-top: 25px;
+    height: 75px;
+    padding-left: 60px;
+    position: absolute;
+    top: 0;
+    left: 220;
+    right: 0;
+}
+section.lower-main {
+    min-width: 650px;
+    position: absolute;
+    top: 100;
+    left: 220;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: black solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.status-font {
+	font-size: 14px;
+}
+
+.reading {
+	padding: 30px;
+	border: 2px solid;
+	text-align: center;
+	float: left;
+	font-size: 28;
+	font-weight: bold;
+}
+
+.farm_names {
+	font-size: 24px;
+}
+
+.farm_names li {
+    padding: 5px 10px;
+    text-align: right;
+}
+
+
+.farm_names li a, .farm_names li a:visited {
+    color: #d4c8c9;
+    text-decoration: none;
+}
+
+.farm_names li a:hover {
+    color: #fff;
+}
+
+h1.page-title {
+    margin: 5px 0;
+    color: #d4c8c9;
+    display: inline;
+    padding-right: 0.3em;
+}
+h4.page-subtitle {
+    display: inline-block;
+    margin: 0px;
+    font-size: 24px;
+    vertical-align: top;
+    padding-top: 12px;
+    color: white;
+}
+
+section#drawing-controls {
+    height: 200px;
+}
+
+ul#controls-list {
+    /*margin: 0;*/
+}
+
+.draw-btn {
+    border-top: black solid 1px;
+    font-size: 24px;
+    color: #fff;
+    padding: 15px 10px;
+    text-align: right;
+    
+}
+.draw-btn:hover {
+    background-color: #5e5b5c;
+    cursor: pointer;
+}
+.draw-btn:last-child {
+    border-bottom: black solid 1px;
+}
+
+#farmlist .ui-selected {
+	background: orange;
+}
+
+.area_selection {
+	padding-left: 40px;
+	font-size: 40;
+}
+
+/* Popup div*/
+div#popup {
+    width: 180px;
+    height: 120px;
+    position: absolute;
+    background-color: #ddd;
+    display: none;
+    pointer-events: none;
+    border: black solid 1px;
+}
+
+#popup h4 {
+    text-align: center;
+}
+
+#popup .label {
+    font-weight: bold;
+    clear: left;
+}
+
+svg {
+    background: url('http://i.imgur.com/GySvQ.png');
+    border: 2px solid black;
+    display: block;
+    margin: 20px auto;
+} 
+
+#drawing-container {
+    width: 100%;
+    height: 700px;
+    padding: 10px;
+}
