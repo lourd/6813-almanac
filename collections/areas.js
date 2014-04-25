@@ -1,0 +1,1 @@
+Areas = new Meteor.Collection('areas');

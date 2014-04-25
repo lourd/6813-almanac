@@ -1,0 +1,19 @@
+<template name="layout">
+
+{{> topBar}}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-2 sidebar">
+            {{> leftSidebar}}
+                
+        </div>
+        <div class="right-section col-xs-10 col-xs-offset-2">
+            {{> yield}}
+        </div>
+    </div>
+</div>
+    
+
+
+</template>

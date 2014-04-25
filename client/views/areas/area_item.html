@@ -1,0 +1,32 @@
+<template name="areaItem">
+
+    <div class="area panel panel-default">
+
+        <div class="area-content panel-body">
+            <h3 class="area-name">
+                {{name}}
+                <small class="area-location">
+                    {{location}}
+                </small>
+            </h3>
+            
+            <div class="area-icons pull-right">
+                <span class="area-stats">
+                {{#each stats}}
+                    <span class="area-stat">{{value}}</span>
+                {{/each}}
+                </span>
+
+                <a href="{{pathFor 'areaLayoutPage' slug}}">
+                    <button class="btn btn-primary">
+                        <span class="glyphicon glyphicon-th"></span>
+                        See layout
+                    </button>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+</template>
