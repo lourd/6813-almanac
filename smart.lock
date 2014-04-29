@@ -6,8 +6,7 @@
       "bootstrap3-sass": {},
       "iron-router": {},
       "spin": {},
-      "raphaeljs-package": {},
-      "Slick": {}
+      "slick": {}
     },
     "packages": {
       "scss": {
@@ -30,15 +29,10 @@
         "tag": "v0.2.2",
         "commit": "3f655f0016228e4195acc784c45d3e3a247dc39f"
       },
-      "raphaeljs-package": {
-        "git": "https://github.com/doubledare/raphaeljs-package.git",
-        "tag": "v0.1.0",
-        "commit": "3945af98a318e189d45e9118db4040ea8cbb9596"
-      },
-      "Slick": {
+      "slick": {
         "git": "https://github.com/lourd/slick.git",
-        "tag": "v0.1.1",
-        "commit": "e65f338f0d24b58c15ebc6187928c9654a55fa23"
+        "tag": "v0.1.2",
+        "commit": "843cc571e18f655bfa3aba5e1061a84598df4013"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

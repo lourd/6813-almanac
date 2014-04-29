@@ -4,7 +4,6 @@
     "bootstrap3-sass": {},
     "iron-router": {},
     "spin": {},
-    "raphaeljs-package": {},
-    "Slick": {}
+    "slick": {}
   }
 }

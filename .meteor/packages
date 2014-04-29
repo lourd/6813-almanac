@@ -9,6 +9,5 @@ bootstrap3-sass
 iron-router
 spin
 insecure
-raphaeljs-package
 jquery
-Slick
+slick
