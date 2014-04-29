@@ -3,6 +3,8 @@
     "scss": {},
     "bootstrap3-sass": {},
     "iron-router": {},
-    "spin": {}
+    "spin": {},
+    "raphaeljs-package": {},
+    "Slick": {}
   }
 }
