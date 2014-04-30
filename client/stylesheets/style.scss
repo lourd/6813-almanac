@@ -62,10 +62,37 @@ body {
     }
 }
 
+////////////////////////////////////////////////////
+// Graph paper styling background generator
+////////////////////////////////////////////////////
+$trans: transparent;
+$block: #fff;
+$line: steelblue;
+$gridSize: 100px;
+$subdivisions: 10;
 
-.app-container {
-    @extend .container;
-    // margin: 0px;
+.graph-paper {
+  background-color: $block;
+  background-image:
+    linear-gradient(rgba($line,.25) 1px, $trans 1px), /*sub horiz*/
+    linear-gradient(rgba($line,.25) 1px, $trans 1px), /*main horiz*/
+    linear-gradient(90deg, rgba($line,.25) 1px, $trans 1px), /*sub vert*/
+    linear-gradient(90deg, rgba($line,.5) 1px, $trans 1px) /*main vert*/
+    // linear-gradient($trans 3px, $block 3px, $block $gridSize - 2, $trans $gridSize - 2), /*nub horiz*/
+    // linear-gradient(90deg, $line 3px, $trans 3px, $trans $gridSize - 2, $line $gridSize - 2) /*nub vert*/
+    ;
+  background-size:
+    $gridSize / $subdivisions $gridSize / $subdivisions,
+    $gridSize $gridSize,
+    $gridSize / $subdivisions $gridSize / $subdivisions,
+    $gridSize $gridSize,
+    $gridSize $gridSize,
+    $gridSize $gridSize;
+}
+
+#drawing-container {
+    @extend .graph-paper;
+    border: 1px solid rgba($line,.25);
 }
 
 // .left-sidebar {
