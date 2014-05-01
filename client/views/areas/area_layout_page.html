@@ -1,7 +1,11 @@
 <template name="areaLayoutPage">
 
 
-    <h1 class="page-header">{{name}} Layout Page</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{pathFor 'areasList'}}">Schrute Farms</a></li>
+        <li class="active">{{name}}</li>
+    </ul>
+    <!-- <h1 class="page-header">{{name}} Layout Page</h1> -->
     <div id="drawing-container"></div>
 
 

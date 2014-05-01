@@ -4,7 +4,9 @@
 
         <div class="area-content panel-body">
             <h3 class="area-name">
-                {{name}}
+                <a href="{{pathFor 'areaLayoutPage'}}">
+                    {{name}}
+                </a>
                 <small class="area-location">
                     {{location}}
                 </small>
@@ -17,12 +19,12 @@
                 {{/each}}
                 </span>
 
-                <a href="{{pathFor 'areaLayoutPage'}}">
+                <!-- <a href="{{pathFor 'areaLayoutPage'}}">
                     <button class="btn btn-primary">
                         <span class="glyphicon glyphicon-th"></span>
                         See layout
                     </button>
-                </a>
+                </a> -->
             </div>
 
         </div>
