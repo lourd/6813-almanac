@@ -10,6 +10,8 @@ Template.carousel.rendered = function() {
 		draggable: false
 	});
 
+	$(".slick-track").selectable();
+
 	//Add some functionality to change the bottom template based on the buttons pressed
 	$(".plot-display").click( function () {
 		var text = $(this).children()[0].innerHTML;

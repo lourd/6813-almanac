@@ -1,5 +1,5 @@
 Template.quickStats.rendered = function() {
-	$("#quickStats").selectable();
+	$("#stats-container").selectable();
 }
 
 

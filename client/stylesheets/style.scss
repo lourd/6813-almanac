@@ -314,7 +314,7 @@ div#popup {
             text-align: center;
             height: 100%;
             background-color: cyan;
-            color: orange;
+            color: #f8931a;
             vertical-align: center;
             padding: 15%;
             width: 90%;
@@ -325,5 +325,23 @@ div#popup {
 
 #stats-container {
     padding-top: 30px;
-    padding-left: 10px;
+    padding-left: 5%;
+    text-align: center;
+
+    .stat {
+        border-style: solid;
+        padding: 4%;
+        width: 30%;
+        margin: 5px;
+    }
+
+    .ui-selected {
+        background: #f8931a;
+    }
+}
+
+.slick-track {
+    .ui-selected {
+        background-color: black;
+    }
 }
