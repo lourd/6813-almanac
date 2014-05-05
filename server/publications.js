@@ -9,3 +9,7 @@ Meteor.publish('singleArea', function(id) {
 Meteor.publish('racks', function(id) {
 	return Racks.find({areaId: id});
 });
+
+Meteor.publish('singleRack', function(id) {
+    return id && Racks.find(id);
+});

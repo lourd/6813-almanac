@@ -1,5 +1,17 @@
 <template name="rackPage">
 
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{pathFor 'areasPage'}}">Schrute Farms</a>
+        </li>
+        <li>
+            <a href="{{pathFor 'areaPage' _id=this.areaId }}">Shipping Container 1</a>
+        </li>
+        <li class="active">
+            {{name}}
+        </li>
+    </ul>
+
     
     {{> carousel}}
     {{> quickStats}}
