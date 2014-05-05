@@ -1,0 +1,1 @@
+Session.set('currentPlot', 'Plot 3');

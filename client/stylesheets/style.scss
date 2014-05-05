@@ -300,3 +300,30 @@ div#popup {
         clear: left;
     }
 }
+
+#carousel-container {
+    background-color: gray;
+    width:750px;
+    margin:0 auto;
+    height: 175px;
+}
+
+#plot-carousel {
+    .plot-display {
+        h3 {
+            text-align: center;
+            height: 100%;
+            background-color: cyan;
+            color: orange;
+            vertical-align: center;
+            padding: 15%;
+            width: 90%;
+            margin: 5%;
+        }
+    }
+}
+
+#stats-container {
+    padding-top: 30px;
+    padding-left: 10px;
+}
