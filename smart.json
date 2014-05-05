@@ -4,6 +4,7 @@
     "bootstrap3-sass": {},
     "iron-router": {},
     "spin": {},
-    "slick": {}
+    "slick": {},
+    "jqueryui": {}
   }
 }

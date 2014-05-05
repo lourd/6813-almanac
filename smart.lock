@@ -6,7 +6,8 @@
       "bootstrap3-sass": {},
       "iron-router": {},
       "spin": {},
-      "slick": {}
+      "slick": {},
+      "jqueryui": {}
     },
     "packages": {
       "scss": {
@@ -34,10 +35,20 @@
         "tag": "v0.1.2",
         "commit": "843cc571e18f655bfa3aba5e1061a84598df4013"
       },
+      "jqueryui": {
+        "git": "https://github.com/mizzao/meteor-jqueryui.git",
+        "tag": "v1.10.4",
+        "commit": "c75906fc9e1e19abf1ad5b2963925122ff8a0336"
+      },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
         "tag": "v0.2.4",
         "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
+      },
+      "build-fetcher": {
+        "git": "https://github.com/mizzao/meteor-build-fetcher.git",
+        "tag": "v0.1.0",
+        "commit": "e3813b1fc7f5c576e8e1fa4c51ae6f4687780a35"
       }
     }
   }
