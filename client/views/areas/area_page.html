@@ -12,6 +12,15 @@
             <a href="#" title="Clear layout"><span class="drawing-action remove glyphicon glyphicon-minus"></span></a>
         </div>
     </div>
+    <ul class="racks">
+        {{#each racks}}
+            <li>
+                <a href="{{pathFor 'rackPage'}}">
+                    {{name}}
+                </a>
+            </li>
+        {{/each}}
+    </ul>
 
 
 </template>

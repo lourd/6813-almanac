@@ -2,6 +2,11 @@ var DRAWING_HEIGHT = 500;
 var DRAWING_WIDTH = 770;
 
 Template.areaPage.helpers({
+
+    racks: function() {
+        return Racks.find({areaId: this._id});
+    },
+    
     // Add a rectangle to the raphael Paper canvas
     addRect: function(paper, x, y, width, height, fill) {
         var rect = paper.rect(x, y, width, height)
@@ -137,7 +142,7 @@ Template.areaPage.events({
     'click .drawing-action.add': function (e) {
         e.preventDefault();
         // console.log("add plot");
-        var plot = Template.areaLayoutPage.addRect(paper, 50, 50, 50, 50, 'green');
+        var plot = Template.areaPage.addRect(paper, 50, 50, 50, 50, 'green');
         
     },
 

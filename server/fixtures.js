@@ -1,5 +1,8 @@
+////////////////////////
+// Dummy area data
+////////////////////////
 if (Areas.find().count() === 0) {
-    Areas.insert({
+    var shipContId = Areas.insert({
         name: 'Shipping Container 1',
         location: 'Hopkinton, MA',
         stats: [
@@ -9,7 +12,7 @@ if (Areas.find().count() === 0) {
         ]
     });
 
-    Areas.insert({
+    var vtGreenhouseId = Areas.insert({
         name: 'Vermont Greenhouse',
         location: 'Burlington, VT',
         stats: [
@@ -19,7 +22,7 @@ if (Areas.find().count() === 0) {
         ]
     });
 
-    Areas.insert({
+    var coGrowId = Areas.insert({
         name: 'Colorado Grow Op',
         location: 'Boulder, CO',
         stats: [
@@ -30,49 +33,48 @@ if (Areas.find().count() === 0) {
     });
 }
 
+////////////////////////
+// Dummy Rack data
+////////////////////////
 if (Racks.find().count() == 0) {
     Racks.insert({
-        area: 'Shopping Container 1',
-        name: 'id1234',
+        areaId: shipContId,
+        name: 'Rack 1',
         plots: [
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
             {plot: 'Plot 3'}
         ]
     });
+
+    Racks.insert({
+        areaId: vtGreenhouseId,
+        name: 'Rack 2',
+        plots: [
+            {plot: 'Plot 4'},
+            {plot: 'Plot 5'},
+            {plot: 'Plot 6'}
+        ]
+    })
 }
 
-if (Plots.find().count() == 0) {
-    Plots.insert({
-        area: 'Shopping Container 1',
-        rack: 'id1234',
-        name: 'Plot 1',
-        stats: [
-            {value: '74F'},
-            {value: '500ppm'},
-            {value: '35%'}
-        ]
-    });
+// Ideally sensors should support belonging to plots, racks, or areas
+// We're starting out with just belonging to areas
+// if (Sensors.find().count() == 0) {
+//     Sensors.insert({
+//         scopeId: /*areaId*/, // this is just area for now, support more later
+//         name: 'Air Sensor 1',
+//         type: /*air water*/,
+//         updated_at: /*time*/,
+//         last_value: /*a sensor reading*/
+//     })
+// }
 
-    Plots.insert({
-        area: 'Shopping Container 1',
-        rack: 'id1234',
-        name: 'Plot 2',
-        stats: [
-            {value: '75F'},
-            {value: '501ppm'},
-            {value: '36%'}
-        ]
-    });
-
-    Plots.insert({
-        area: 'Shopping Container 1',
-        rack: 'id1234',
-        name: 'Plot 3',
-        stats: [
-            {value: '71F'},
-            {value: '503ppm'},
-            {value: '40%'}
-        ]
-    });
-}
+// if (Readings.find().count() == 0) {
+//     Readings.insert({
+//         sensorId: /*id*/,
+//         type: /*humidity, temperature, co2*/,
+//         value: /*float*/
+//         created_at: /*time*/
+//     });
+// }
