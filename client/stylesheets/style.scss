@@ -97,6 +97,21 @@ $subdivisions: 10;
 #drawing-container {
     @extend .graph-paper;
     border: 1px solid rgba($line,.25);
+    position: relative;
+
+    .drawing-actions {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.3);
+        height: 30px;
+        line-height: 20px;
+        padding: 5px 10px;
+        .drawing-action {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
 }
 
 // .left-sidebar {

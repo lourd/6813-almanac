@@ -1,15 +1,19 @@
-Template.areaLayoutPage.rendered = function () {
-    
+var DRAWING_HEIGHT = 500;
+var DRAWING_WIDTH = 770;
 
-    var DRAWING_HEIGHT = 500;
-    var DRAWING_WIDTH = 770;
-
-    var addRect = function(paper, x, y, width, height, fill) {
+Template.areaPage.helpers({
+    // Add a rectangle to the raphael Paper canvas
+    addRect: function(paper, x, y, width, height, fill) {
         var rect = paper.rect(x, y, width, height)
             .attr('fill', fill)
             .attr('cursor', 'move')
+            .attr('href', '/')
+            .attr('text', 'Plot 1')
+            // .attr('text-anchor', 'middle')
             // Always want plots at the back
             .toBack();
+        console.log("rect");
+        console.log(rect);
 
         var ft = paper.freeTransform(rect, {
             scale: ['bboxCorners']
@@ -23,7 +27,7 @@ Template.areaLayoutPage.rendered = function () {
                 , height: DRAWING_HEIGHT
             }
         });
-        ft.subject.mouseup( function(evt) {
+        ft.subject.mouseover( function(evt) {
             ft.showHandles();
         });
 
@@ -32,9 +36,11 @@ Template.areaLayoutPage.rendered = function () {
         ft.handles.bbox[2].element.attr("cursor","pointer");
         ft.handles.bbox[3].element.attr("cursor","pointer");
         ft.hideHandles({undrag: false});
-    }
+        return ft;
+    },
 
-    var addCircle = function(paper, x, y, radius, fill, obj) {
+    // Add a circle to the raphael paper
+    addCircle: function(paper, x, y, radius, fill, obj) {
         var circle = paper.circle(x, y, radius)
                     .attr('cursor', 'move')
                     // Need to fill to make it draggable!
@@ -65,9 +71,27 @@ Template.areaLayoutPage.rendered = function () {
         });
 
         ft.hideHandles({undrag: false});
-    }
+        return ft;
+    },
 
-    var loadLayout = function(layoutJSON, paper) {
+    // Save the contents of the raphael Paper
+    saveLayout: function(paper) {
+        json = paper.toJSON(function(el, data) {
+            // ALL items need to have freeTransform added in order
+            // to save correctly
+            if ( el.freeTransform != null) {
+                data.ft = {};
+                data.ft.attrs = el.freeTransform.attrs;
+                data.ft.opts = el.freeTransform.opts;
+            }
+            return data;
+        });
+        return json;
+    },
+
+
+    // Load the contents of the layoutJSON object to the paper
+    loadLayout: function(layoutJSON, paper) {
         paper.clear();
         paper.fromJSON(layoutJSON, function(el, data) {
             if ( data.ft && data.ft.attrs) {
@@ -86,72 +110,48 @@ Template.areaLayoutPage.rendered = function () {
         });
     }
 
-    var saveLayout = function(paper) {
-        json = paper.toJSON(function(el, data) {
-            // ALL items need to have freeTransform added in order
-            // to save correctly
-            if ( el.freeTransform != null) {
-                data.ft = {};
-                data.ft.attrs = el.freeTransform.attrs;
-                data.ft.opts = el.freeTransform.opts;
-            }
-            return data;
-        });
-        return json;
-    }
+});
 
-    $(function () {
+Template.areaPage.rendered = function () {
+    
+    paper = Raphael("drawing-container", DRAWING_WIDTH, DRAWING_HEIGHT);
 
-        var paper = Raphael("drawing-container", DRAWING_WIDTH, DRAWING_HEIGHT);
-        var json;
-        var selectedElement;
-
-        $('#save').click( function () {
-            json = saveLayout(paper);
-        });
-
-        $('#load').click( function () {
-            if (json) { // Make sure save data exists
-                loadLayout(json, paper);
-            }
-        });
-
-        $('#clear-layout').click( function () {
-            paper.clear();
-        });
-
-        $('#add-plot').click( function () {
-            addRect(paper, 50, 50, 50, 50, 'green');
-        });
-
-        $('#add-sensor').click( function () {
-            addCircle(paper, 250, 250, 10, 'gray');
-        });
-
-        // Background click handler
-        $('svg').click( function(evt) {
-            var clickedElement = paper.getElementByPoint(evt.clientX, evt.clientY);
-            if (! clickedElement) {
-                console.log("null event");
-                evt.stopPropagation();
-            }
-            // paper.forEach( function(el) {
-            //     if ( el.freeTransform != null) {
-            //         el.freeTransform.hideHandles();
-            //         el.attr('cursor','pointer');
-            //     }
-            // });
-        });
-
-        // drop = new Drop({
-        //     target: document.querySelector('#add-sensor')
-        //     , content: "You added a sensor!"
-        //     , position: "right middle"
-        //     , openOn: 'click'
-        // });
-
-        // console.log(drop);
-
-
+    $('#save').click( function () {
+        json = saveLayout(paper);
     });
+
+    $('#load').click( function () {
+        if (json) { // Make sure save data exists
+            loadLayout(json, paper);
+        }
+    });
+
+    $('#add-sensor').click( function () {
+        addCircle(paper, 250, 250, 10, 'gray');
+    });
+
+
 };
+
+Template.areaPage.events({
+    'click .drawing-action.add': function (e) {
+        e.preventDefault();
+        // console.log("add plot");
+        var plot = Template.areaLayoutPage.addRect(paper, 50, 50, 50, 50, 'green');
+        
+    },
+
+    'click .drawing-action.remove': function (e) {
+        e.preventDefault();
+
+        paper.clear();
+    },
+
+    'click svg': function (e) {
+        var clickedElement = paper.getElementByPoint(e.clientX, e.clientY);
+        if (! clickedElement) {
+            // console.log("svg!");
+            e.preventDefault();
+        }
+    }
+});
