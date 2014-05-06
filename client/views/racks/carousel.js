@@ -1,3 +1,16 @@
+Template.carousel.helpers ({
+	plots: function() {
+		return this.plots;
+	},
+
+	isGraph: function(name) {
+		if (Session.equals('graphType', undefined))
+			return false;
+		return Session.equals('graphPlot', name);
+	}
+});
+
+
 Template.carousel.rendered = function() {
 
 	Session.set('currentPlot', 'Plot 3');
@@ -10,11 +23,20 @@ Template.carousel.rendered = function() {
 		draggable: false
 	});
 
-	$(".slick-track").selectable();
+	//Clicking on plot changes the bottom stats
+	$(".slick-track").selectable({
+		selected: function(event, ui) {
+			var header = $(ui.selected).children()[0];
+			var text = header.innerHTML;
+			Session.set('currentPlot', text);
 
-	//Add some functionality to change the bottom template based on the buttons pressed
-	$(".plot-display").click( function () {
-		var text = $(this).children()[0].innerHTML;
-		Session.set('currentPlot', text);
+			$(header).css('background', 'white');
+		},
+
+		unselected: function(event, ui) {
+			var header = $(ui.unselected).children()[0];
+			$(header).css('background', 'green');
+			Session.set('graphPlot', Session.get('currentPlot'));
+		}
 	});
 };

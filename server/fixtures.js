@@ -37,18 +37,19 @@ if (Areas.find().count() === 0) {
 // Dummy Rack data
 ////////////////////////
 if (Racks.find().count() == 0) {
-    Racks.insert({
+    var rck1id = Racks.insert({
         areaId: shipContId,
         name: 'Rack 1',
         attributes: {position: "absolute", top: "35px", left: "57px", width: "367px", height: "148px"},
         plots: [
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
-            {plot: 'Plot 3'}
+            {plot: 'Plot 3'},
+            {plot: 'Plot 7'}
         ]
     });
 
-    Racks.insert({
+    var rck2id = Racks.insert({
         areaId: vtGreenhouseId,
         name: 'Rack 2',
         plots: [
@@ -57,6 +58,41 @@ if (Racks.find().count() == 0) {
             {plot: 'Plot 6'}
         ]
     })
+}
+
+if (Plots.find().count() === 0) {
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 1',
+        stats: [
+            {value: '71F'},
+            {value: '550ppm'},
+            {value: '40%'}
+        ]
+    });
+
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 2',
+        stats: [
+            {value: '75F'},
+            {value: '500ppm'},
+            {value: '35%'}
+        ]       
+    });
+
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 3',
+        stats: [
+            {value: '80F'},
+            {value: '600ppm'},
+            {value: '25%'}
+        ]       
+    });
 }
 
 // Ideally sensors should support belonging to plots, racks, or areas

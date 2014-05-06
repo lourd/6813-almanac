@@ -13,3 +13,9 @@ Meteor.publish('racks', function(id) {
 Meteor.publish('singleRack', function(id) {
     return id && Racks.find(id);
 });
+
+
+//Plots collection
+Meteor.publish('plots', function() {
+	return Plots.find();
+});
