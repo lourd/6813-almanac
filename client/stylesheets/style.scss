@@ -320,15 +320,16 @@ div#popup {
     background-color: gray;
     width:750px;
     margin:0 auto;
-    height: 175px;
+    height: 50%;
 }
 
 #plot-carousel {
+
     .plot-display {
         h3 {
             text-align: center;
             height: 100%;
-            background-color: cyan;
+            background-color: green;
             color: #f8931a;
             vertical-align: center;
             padding: 15%;
@@ -352,11 +353,5 @@ div#popup {
 
     .ui-selected {
         background: #f8931a;
-    }
-}
-
-.slick-track {
-    .ui-selected {
-        background-color: black;
     }
 }
