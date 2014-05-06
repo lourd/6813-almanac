@@ -8,17 +8,16 @@ Template.areaPage.helpers({
     },
     
     // Add a rectangle to the raphael Paper canvas
-    addRect: function(paper, x, y, width, height, fill) {
+    addRect: function(paper, x, y, width, height, fill, newRack) {
+        console.log("new rack id: " + newRack);
         var rect = paper.rect(x, y, width, height)
             .attr('fill', fill)
             .attr('cursor', 'move')
-            .attr('href', '/')
-            .attr('text', 'Plot 1')
+            // .attr('href', Router.path('rackPage', {_id: newRack}))
+            .attr('text', 'hard set in addRect function')
             // .attr('text-anchor', 'middle')
             // Always want plots at the back
             .toBack();
-        console.log("rect");
-        console.log(rect);
 
         var ft = paper.freeTransform(rect, {
             scale: ['bboxCorners']
@@ -34,7 +33,24 @@ Template.areaPage.helpers({
         });
         ft.subject.mouseover( function(evt) {
             ft.showHandles();
+            console.log("mouse over");
         });
+        console.log("ft subject drag");
+        var move = function() { console.log("fuckkkk"); }
+        var start = function() { console.log("start");}
+        var end = function() { console.log("end"); }
+        // ft.subject.drag(
+        //     function(evt) {// on move
+        //         console.log("on move");
+        //     },
+        //     function(evt) { //on start
+        //         console.log("on start");
+        //     },
+        //     function(evt) { // on end
+        //         console.log("on end");
+        //     }
+        // );
+        ft.subject.drag(move,start,end);
 
         ft.handles.bbox[0].element.attr("cursor","pointer");
         ft.handles.bbox[1].element.attr("cursor","pointer");
@@ -142,7 +158,14 @@ Template.areaPage.events({
     'click .drawing-action.add': function (e) {
         e.preventDefault();
         // console.log("add plot");
-        var plot = Template.areaPage.addRect(paper, 50, 50, 50, 50, 'green');
+        var newRack = Racks.insert({
+            areaId: this._id,
+            name: 'change this RACK NAME',
+            plots: [
+                {plot: 'change this PLOT NAME'}
+            ]
+        })
+        var plot = Template.areaPage.addRect(paper, 50, 50, 50, 50, 'green', newRack);
         
     },
 
