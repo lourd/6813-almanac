@@ -7,6 +7,14 @@ $nav-height: 100px;
 $brand-font-size: 30px;
 $navbar-size: 50px;
 
+@mixin hover-ease($ms) {
+    -webkit-transition: background-color $ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: background-color $ms 0ms ease-in;
+    -o-transition: background-color $ms 0ms ease-in;
+    transition: background-color $ms 0ms ease-in;
+}
+
 //////////////////////////////////////////
 
 body {
@@ -97,8 +105,20 @@ $subdivisions: 10;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Drawing container styling
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-$canvas-width: 770px;
+ul.racks {
+    max-height: 50px;
+    overflow-y: scroll;
+    border: solid black 1px;
+}
 $canvas-height: 500px;
+$canvas-width: 770px;
+
+$handle-length: 16px;
+$handle-width: 4px;
+$plot-handle-color: green;
+$sensor-handle-color: blue;
+$plot-text-color: green;
+$sensor-text-color: blue;
 
 #drawing-container {
     @extend .graph-paper;
@@ -109,37 +129,147 @@ $canvas-height: 500px;
 
     .drawing-actions {
         position: absolute;
+        z-index: 100;   // on top of all the shapes
         top: 0;
         left: 0;
         background-color: rgba(0,0,0,0.3);
         height: 30px;
         line-height: 20px;
         padding: 5px 10px;
+        cursor: default;
         .drawing-action {
             padding-left: 5px;
             padding-right: 5px;
+            color: #444;
+            @include hover-ease(70ms);
+            text-decoration: none;
+            &:hover {
+                color: #000;
+            }
+            .caret {
+                padding-left: 0px;
+                padding-right: 0px;
+                margin-left: -2px;
+            }
         }
     }
 
     .shape {
-        color: green;
+        display: table;
+        text-align: center;
+        @include hover-ease(70ms);
+        box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.6);
+        .shape-text {
+            display: table-cell;
+            vertical-align: middle;
+            a {
+                font-size: 1.2em;
+            }
+        }
+
+        &.plot {
+            height: 100px;
+            width: 20px;
+            background-color: #B0D279;
+            &:hover {
+                background-color: #96C757;
+            }
+            .shape-text a{
+                color: $plot-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $plot-handle-color;
+            }
+        }
+        &.sensor {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            background-color: #ABCFE3;
+            &:hover {
+                background-color: #88B7D7;
+            }
+            .shape-text a {
+                color: $sensor-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $sensor-handle-color;
+            }
+        }
+        &:hover {
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                opacity: 1.0;
+            }
+        }
     }
-    .plot {
-        height: 100px;
-        width: 20px;
-        background-color: red;
-    }
-    .sensor {
-        color: gray;
-        height: 50px;
-        width: 50px;
-        border-radius: 50px 50px 50px 50px;
+    .add-menu {
+        border-radius: 0px;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        background-color: rgba(0,0,0,0.3);
+        min-width: 0px;
+        li a {
+            padding: 2px 5px;
+            @include hover-ease(70ms);
+            color: #444;
+            &:hover {
+                color: #000;
+                background-color: rgba(0,0,0,0.2);
+            }
+        }
     }
 }
 
-//////////////////////////////
+.ui-resizable-n, 
+.ui-resizable-s,
+.ui-resizable-e,
+.ui-resizable-w {
+    // important because this is set by the
+    // resizable widget on the actual element style
+    border-radius: 3px;
+    z-index: inherit !important;
+    opacity: 0;     // only show on plot/sensor hover
+    &.ui-resizable-n, &.ui-resizable-s{
+        height: $handle-width;
+        width: $handle-length;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        cursor: ns-resize;
+    }
+    &.ui-resizable-n {
+        top: 5px;
+    }
+    &.ui-resizable-s {
+        bottom: 5px;
+    }
+    &.ui-resizable-e, &.ui-resizable-w {
+        height: $handle-length;
+        width: $handle-width;
+        top: calc(50% - #{$handle-length} / 2);
+        cursor: ew-resize;
+    }
+    &.ui-resizable-e {
+        right: 5px;
+    }
+    &.ui-resizable-w {
+        left: 5px;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
 // Slick styling
-//////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 $slick-arrow-color: #aaa;
 $slick-dot-color: black;    // default
 $slick-prev-character: '\2190'; // default
@@ -161,6 +291,7 @@ $slick-next-character: '\2192'; // default
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
 
 /* Popup div*/
 div#popup {

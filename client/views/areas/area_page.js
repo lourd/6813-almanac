@@ -1,77 +1,54 @@
 Template.areaPage.helpers({
 
     racks: function() {
-        return Racks.find({areaId: this._id});
-    },
-
-    addRect: function() {
-        
-    },
-
-    // Add a circle to the raphael paper
-    addCircle: function() {
-        var circle = paper.circle(x, y, radius)
-                    .attr('cursor', 'move')
-                    // Need to fill to make it draggable!
-                    .attr('fill', fill)
-                    // Always want sensors at the front
-                    .toFront();
-        circle.hover(
-            function(evt) {
-                console.log(this);
-                $("#popup").css({
-                    left: this.getBBox().x + 220 + this.getBBox().height/2
-                    , top: this.getBBox().y + 100 + this.getBBox().height/2
-                }).show();
-            }
-            , function(evt) {
-                $("#popup").hide();
-            });
-        var ft = paper.freeTransform(circle, {
-            scale: false
-            , rotate: false
-            , drag: 'self'
-            , boundary: {
-                x: 50
-                , y: 50
-                , width: 500
-                , height: 500
-            }
-        });
-
-        ft.hideHandles({undrag: false});
-        return ft;
-    },
-
-    // Save the contents of the raphael Paper
-    saveLayout: function() {
-
-    },
-
-    // Load the contents of the layoutJSON object to the paper
-    loadLayout: function() {
-
+        return Racks.find(); // automatically matched to this id in the router
     }
 
 });
 
 Template.areaPage.events({
-    'click .drawing-action.add': function (e) {
+    'click #add-plot': function (e) {
+        // Give the router a number-based name by default
+        var numPlot = Racks.find().count() + 1;
+        console.log(numPlot);
         console.log("plot created");
-        var newRack = Racks.insert({
+        var newRack = {
             areaId: this._id,
-            name: 'change this RACK NAME',
+            name: 'Plot ' + numPlot,
+            attributes: {position: "absolute", top: "35px", left: "57px", width: "367px", height: "148px"},
             plots: [
-                {plot: 'change this PLOT NAME'}
+                {plot: 'Plot 1'}
             ]
-        });
-        rackView = $(document.createElement("div"));
-        rackView.addClass('shape plot');
-        $('#drawing-container').append(rackView);
-        rackView.freetrans();
+        };
+        Racks.insert(newRack);
     },
 
-    'click .drawing-action.remove': function (e) {
-        console.log("remove clicked");
+    'click #add-sensor': function(e) {
+        console.log("add sensor clicked");
+    },
+
+    'click #clear': function (e) {
+        console.log("clear clicked");
+    },
+
+    'click #save': function(e) {
+        console.log("save clicked");
+    },
+    'click #load': function(e) {
+        console.log("load clicked");
     }
 });
+
+
+Template.rackShape.helpers({
+
+});
+
+Template.rackShape.rendered = function () {
+    // Get the div element from the template object
+    var shape = this.$('.shape');
+    shape.resizable({
+            handles: "n, e, s, w"
+        });
+    shape.draggable({ containment: "#drawing-container" });
+};
