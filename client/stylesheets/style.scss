@@ -7,6 +7,14 @@ $nav-height: 100px;
 $brand-font-size: 30px;
 $navbar-size: 50px;
 
+@mixin hover-ease($ms) {
+    -webkit-transition: background-color $ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: background-color $ms 0ms ease-in;
+    -o-transition: background-color $ms 0ms ease-in;
+    transition: background-color $ms 0ms ease-in;
+}
+
 //////////////////////////////////////////
 
 body {
@@ -66,9 +74,9 @@ body {
     }
 }
 
-////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Graph paper styling background generator
-////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 $trans: transparent;
 $block: #fff;
 $line: steelblue;
@@ -94,29 +102,174 @@ $subdivisions: 10;
     $gridSize $gridSize;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Drawing container styling
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+ul.racks {
+    max-height: 50px;
+    overflow-y: scroll;
+    border: solid black 1px;
+}
+$canvas-height: 500px;
+$canvas-width: 770px;
+
+$handle-length: 16px;
+$handle-width: 4px;
+$plot-handle-color: green;
+$sensor-handle-color: blue;
+$plot-text-color: green;
+$sensor-text-color: blue;
+
 #drawing-container {
     @extend .graph-paper;
+    height: $canvas-height;
+    width: $canvas-width;
     border: 1px solid rgba($line,.25);
     position: relative;
 
     .drawing-actions {
         position: absolute;
+        z-index: 100;   // on top of all the shapes
         top: 0;
         left: 0;
         background-color: rgba(0,0,0,0.3);
         height: 30px;
         line-height: 20px;
         padding: 5px 10px;
+        cursor: default;
         .drawing-action {
             padding-left: 5px;
             padding-right: 5px;
+            color: #444;
+            @include hover-ease(70ms);
+            text-decoration: none;
+            &:hover {
+                color: #000;
+            }
+            .caret {
+                padding-left: 0px;
+                padding-right: 0px;
+                margin-left: -2px;
+            }
+        }
+    }
+
+    .shape {
+        display: table;
+        text-align: center;
+        @include hover-ease(70ms);
+        box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.6);
+        .shape-text {
+            display: table-cell;
+            vertical-align: middle;
+            a {
+                font-size: 1.2em;
+            }
+        }
+
+        &.plot {
+            height: 100px;
+            width: 20px;
+            background-color: #B0D279;
+            &:hover {
+                background-color: #96C757;
+            }
+            .shape-text a{
+                color: $plot-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $plot-handle-color;
+            }
+        }
+        &.sensor {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            background-color: #ABCFE3;
+            &:hover {
+                background-color: #88B7D7;
+            }
+            .shape-text a {
+                color: $sensor-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $sensor-handle-color;
+            }
+        }
+        &:hover {
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                opacity: 1.0;
+            }
+        }
+    }
+    .add-menu {
+        border-radius: 0px;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        background-color: rgba(0,0,0,0.3);
+        min-width: 0px;
+        li a {
+            padding: 2px 5px;
+            @include hover-ease(70ms);
+            color: #444;
+            &:hover {
+                color: #000;
+                background-color: rgba(0,0,0,0.2);
+            }
         }
     }
 }
 
-//////////////////////////////
+.ui-resizable-n, 
+.ui-resizable-s,
+.ui-resizable-e,
+.ui-resizable-w {
+    // important because this is set by the
+    // resizable widget on the actual element style
+    border-radius: 3px;
+    z-index: inherit !important;
+    opacity: 0;     // only show on plot/sensor hover
+    &.ui-resizable-n, &.ui-resizable-s{
+        height: $handle-width;
+        width: $handle-length;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        cursor: ns-resize;
+    }
+    &.ui-resizable-n {
+        top: 5px;
+    }
+    &.ui-resizable-s {
+        bottom: 5px;
+    }
+    &.ui-resizable-e, &.ui-resizable-w {
+        height: $handle-length;
+        width: $handle-width;
+        top: calc(50% - #{$handle-length} / 2);
+        cursor: ew-resize;
+    }
+    &.ui-resizable-e {
+        right: 5px;
+    }
+    &.ui-resizable-w {
+        left: 5px;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
 // Slick styling
-//////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////
 $slick-arrow-color: #aaa;
 $slick-dot-color: black;    // default
 $slick-prev-character: '\2190'; // default
@@ -138,186 +291,7 @@ $slick-next-character: '\2192'; // default
     }
 }
 
-// .left-sidebar {
-//     @extend .col-md-2;
-//     background-color: #2e2b2c;
-
-//     .farm-names {
-//         font-size: 24px;
-//         li {
-//             padding: 5px 10px;
-//             text-align: right;
-//             a, a:visited {
-//                 color: #d4c8c9;
-//                 text-decoration: none;
-//             }
-//             a:hover {
-//                 color: #fff;
-//             }
-//         }
-//         @extend .nav; 
-//         @extend .nav-pills;
-//         @extend .nav-stacked;
-//     }
-// }
-
-// .content-wrapper {
-//     @extend .col-md-10;
-// }
-
-// /* Nav styling */
-// nav.navbar {
-//     @extend .navbar-default;
-//     width: 100%;
-//     // background-color: #2e2b2c;
-//     border: none;
-//     .navbar-brand, .navbar-nav li a {
-//         height: $nav-height;
-//         line-height: $nav-height - $brand-font-size;
-//     }
-//     .navbar-brand {
-//         @extend .navbar-brand;
-//         font-size: $brand-font-size;
-//         color: #fff;
-//         text-align: center;
-//         // background-color: #f8931a;
-//         width: 
-//     }
-// }
-// nav {
-//     position: absolute;
-//     top: 0;
-//     bottom: 0;
-//     width: 220px;
-//     float: left;
-//     display: block;
-//     margin: 0;
-//     font-size: 18px;
-    
-// }
-
-
-// svg {
-//     background: url('http://i.imgur.com/GySvQ.png');
-//     border: 2px solid black;
-//     display: block;
-//     margin: 20px auto;
-// } 
-
-// #drawing-container {
-//     width: 100%;
-//     height: 700px;
-//     padding: 10px;
-// }
-
-// section#main{  
-//     margin: 0;
-//     padding: 0;
-//     margin-left: 220px;
-// }
-
-// table, th, td {
-// 	font-size: 26px;
-// 	text-align: left;
-// }
-
-// td {
-// 	padding-left: 30px;
-// }
-
-// .status-font {
-// 	font-size: 14px;
-// }
-
-
-// /* Drawing pages styling */
-// section.title-bar {
-//     background-color: #2e2b2c;
-//     color: #d4c8c9;
-//     min-width: 650px;
-//     text-align: left;
-//     padding-top: 25px;
-//     height: 75px;
-//     padding-left: 60px;
-//     position: absolute;
-//     top: 0;
-//     left: 220;
-//     right: 0;
-// }
-// section.lower-main {
-//     min-width: 650px;
-//     position: absolute;
-//     top: 100;
-//     left: 220;
-//     bottom: 0;
-//     right: 0;
-//     background-color: #fff;
-//     border-top: black solid 1px;
-//     margin-left: auto;
-//     margin-right: auto;
-// }
-
-// .status-font {
-// 	font-size: 14px;
-// }
-
-// .reading {
-// 	padding: 30px;
-// 	border: 2px solid;
-// 	text-align: center;
-// 	float: left;
-// 	font-size: 28;
-// 	font-weight: bold;
-// }
-
-
-
-// h1.page-title {
-//     margin: 5px 0;
-//     color: #d4c8c9;
-//     display: inline;
-//     padding-right: 0.3em;
-// }
-// h4.page-subtitle {
-//     display: inline-block;
-//     margin: 0px;
-//     font-size: 24px;
-//     vertical-align: top;
-//     padding-top: 12px;
-//     color: white;
-// }
-
-// section#drawing-controls {
-//     height: 200px;
-// }
-
-// ul#controls-list {
-//     /*margin: 0;*/
-// }
-
-// .draw-btn {
-//     border-top: black solid 1px;
-//     font-size: 24px;
-//     color: #fff;
-//     padding: 15px 10px;
-//     text-align: right;
-//     &:hover {
-//         background-color: #5e5b5c;
-//         cursor: pointer;
-//     }
-//     &:last-child {
-//         border-bottom: black solid 1px;
-//     }   
-// }
-
-// #farmlist .ui-selected {
-// 	background: orange;
-// }
-
-// .area_selection {
-// 	padding-left: 40px;
-// 	font-size: 40;
-// }
+//////////////////////////////////////////////////////////////////////////////////////////
 
 /* Popup div*/
 div#popup {
