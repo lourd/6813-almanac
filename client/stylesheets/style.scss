@@ -114,6 +114,30 @@ $subdivisions: 10;
     }
 }
 
+//////////////////////////////
+// Slick styling
+//////////////////////////////
+$slick-arrow-color: #aaa;
+$slick-dot-color: black;    // default
+$slick-prev-character: '\2190'; // default
+$slick-next-character: '\2192'; // default
+
+.slick-prev:before, .slick-next:before {
+    color: $slick-arrow-color;
+}
+
+.slick-prev {
+    &:before {
+        content: $slick-prev-character;
+    }
+}
+
+.slick-next {
+    &:before {
+        content: $slick-next-character;
+    }
+}
+
 // .left-sidebar {
 //     @extend .col-md-2;
 //     background-color: #2e2b2c;
