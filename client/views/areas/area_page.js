@@ -50,5 +50,8 @@ Template.rackShape.rendered = function () {
     shape.resizable({
             handles: "n, e, s, w"
         });
-    shape.draggable({ containment: "#drawing-container" });
+    shape.draggable({ 
+        containment: "#drawing-container",
+        stack: ".shape"
+    });
 };
