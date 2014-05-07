@@ -316,7 +316,7 @@ div#popup {
 
 #carousel-container {
     background-color: gray;
-    width:750px;
+    width: 100%;
     margin:0 auto;
     height: 50%;
 }
@@ -338,18 +338,21 @@ div#popup {
 }
 
 #stats-container {
-    padding-top: 30px;
-    padding-left: 5%;
+    padding-top: 10px;
     text-align: center;
 
     .stat {
         border-style: solid;
         padding: 4%;
-        width: 30%;
+        width: 32%;
         margin: 5px;
     }
 
     .ui-selected {
         background: #f8931a;
     }
+}
+
+.editing-buttons {
+    padding-top: 10px;
 }

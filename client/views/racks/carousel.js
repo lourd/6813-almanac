@@ -23,6 +23,7 @@ Template.carousel.rendered = function() {
 		draggable: false
 	});
 
+
 	//Clicking on plot changes the bottom stats
 	$(".slick-track").selectable({
 		selected: function(event, ui) {

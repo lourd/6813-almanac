@@ -11,6 +11,16 @@ Template.quickStats.rendered = function() {
 
 		}
 	});
+
+	$(".ui-selectee").mouseover(function() {
+		var child = $(this).children()[0];
+		if (child != undefined) {
+			//Add some color changing function so there is
+			//affordance (so we know buttons can be clicked)
+			var text = child.innerHTML;
+		}
+		
+	});
 }
 
 
