@@ -18,7 +18,8 @@ Template.areaPage.events({
         var DEFAULT_PLOT_WIDTH = "400";
         var DEFAULT_PLOT_HEIGHT = "100";
 
-        var rackName = "Plot " + (Racks.find().count() + 1);
+        // Just giving it a random name
+        var rackName = "Plot " + _.random(1000);
 
         var newRack = {
             areaId: this._id,
@@ -29,7 +30,8 @@ Template.areaPage.events({
                             height: DEFAULT_PLOT_HEIGHT
                         },
             plots: [
-                {plot: 'PLOT NAME!'}
+                // Plots start out with the same rackname
+                {plot: rackName}
             ]
         };
         Racks.insert(newRack);
@@ -45,13 +47,6 @@ Template.areaPage.events({
         racks.forEach(function (rack) {
             Racks.remove({_id: rack._id});
         });
-    },
-
-    'click #save': function(e) {
-        console.log("save clicked");
-    },
-    'click #load': function(e) {
-        console.log("load clicked");
     }
 });
 

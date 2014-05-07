@@ -117,13 +117,18 @@ Template.rack.rendered = function () {
          *  @param ui: {draggable, helper, position, offset}
         */
         drop: function(evt, ui) {
+            console.log("dropped rack");
             var droppedRack = Racks.findOne({_id: ui.draggable.data('_id')});
-
+            console.log(droppedRack);
+            console.log("dropped on rack");
+            console.log(rackObj);
             // @bug This will delete duplicate plot names!!
             // Combine the rack plot names
             Racks.update({_id: rackObj._id},
-                        {$addToSet : { plots: droppedRack.plots} }
+                        {$addToSet : { plots: {$each : droppedRack.plots} } }
                         );
+            console.log("dropped on rack updated");
+            console.log(Racks.findOne({_id: rackObj._id}));
             // Get rid of the old rack
             Racks.remove({_id: droppedRack._id});
         },
