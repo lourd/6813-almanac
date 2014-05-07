@@ -2,13 +2,7 @@
 	<div id="carousel-container">
 		<div id="plot-carousel">
 		{{#each plots}}
-			<div class="plot-display">
-			{{#if isGraph plot}}
-				{{> graph}}
-			{{else}}
-				{{> plotPage}}
-			{{/if}}
-			</div>
+			{{> slidePage}}
 		{{/each}}
 		</div>
 	</div>

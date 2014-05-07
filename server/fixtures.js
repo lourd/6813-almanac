@@ -45,7 +45,6 @@ if (Racks.find().count() == 0) {
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
             {plot: 'Plot 3'},
-            {plot: 'Plot 7'}
         ]
     });
 

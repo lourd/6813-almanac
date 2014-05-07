@@ -1,4 +1,4 @@
-Session.set('currentPlot', 'Plot 3');
+Session.set('currentPlot', 'Plot 1');
 
 Template.rackPage.helpers({
 
@@ -8,6 +8,7 @@ Template.rackPage.rendered = function() {
 
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
+		
 	});
 
 	$("#remove-plot").click(function () {
@@ -18,48 +19,41 @@ Template.rackPage.rendered = function() {
 			$pull: {plots: {plot:plotName}}
 		});
 
-		Session.set('currentPlot', 'Plot 3');
 	});
 
 	$("#add-plot-popup").dialog({
 		autoOpen: false,
+		modal: true,
 		buttons: {
 			"Add plot!": function () {
 				var rack = Racks.findOne({name:'Rack 1'});
+				var named = plotName.value;
+
+				var area = rack.areaId;
 
 				Racks.update({_id: rack._id},{
-					$push: {plots: {plot: "Plot added"}}
+					$push: {plots: {plot: named}}
 				});
 
+				plotName.value = "";
 
-				// Plots.insert({
-				// 	name: 'Plot added',
-				// 	stats: [
-				// 		{value: '--F'},
-				// 		{value: '---ppm'},
-				// 		{value: '--%'}
-				// 	]
-				// })
+				Plots.insert({
+					areaId: area,
+					rackId: rack,
+					name: named,
+					stats: [
+						{value: '--F'},
+						{value: '---ppm'},
+						{value: '--%'}
+					]
+				})
+
 				$(this).dialog("close");
 
 			}, "Cancel": function () {
-				console.log("canceled");
 				$(this).dialog("close");
 			}
 		}
 	});
 
-	//attempt number one at add plots well
-	function addPlot() {
-		var elements = document.getElementsByClassName("plot-display");
-
-		for (var i=0; i<elements.length;i++) {
-			if ($(elements[i].parentNode).hasClass("slick-track")) {
-
-			} else {
-				console.log("no parent node");
-			}
-		}
-	}
 }
-

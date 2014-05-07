@@ -1,0 +1,9 @@
+<template name="slidePage">
+	<div class="slide">
+		{{#if isGraph plot}}
+			{{> graph}}
+		{{else}}
+			{{> plotPage}}
+		{{/if}}
+	</div>
+</template>

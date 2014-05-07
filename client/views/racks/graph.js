@@ -3,3 +3,7 @@ Template.graph.helpers({
 		return Session.get('graphType');
 	}
 });
+
+Template.graph.rendered = function() {
+	console.log("graph rendered");
+}

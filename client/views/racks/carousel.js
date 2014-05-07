@@ -1,24 +1,18 @@
 Template.carousel.helpers ({
 	plots: function() {
 		return this.plots;
-	},
-
-	isGraph: function(name) {
-		if (Session.equals('graphType', undefined))
-			return false;
-		return Session.equals('graphPlot', name);
 	}
+	// }, isGraph: function(name) {
+	// 	console.log(Session.get('graphPlot'));
+	// 	if (Session.equals('graphType', undefined))
+	// 		return false;
+	// 	return Session.equals('graphPlot', name);
+	// }
 });
 
 
 Template.carousel.rendered = function() {
 
-	Session.set('currentPlot', 'Plot 3');
-
-	var plot_car = $("#plot-carousel");
-	if( plot_car.hasClass("slick-initialized") ) {
-		plot_car.unslick();
-	}
 	//Create the carousel
 	$("#plot-carousel").slick({
 		infinite: false,
