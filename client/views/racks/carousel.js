@@ -15,6 +15,10 @@ Template.carousel.rendered = function() {
 
 	Session.set('currentPlot', 'Plot 3');
 
+	var plot_car = $("#plot-carousel");
+	if( plot_car.hasClass("slick-initialized") ) {
+		plot_car.unslick();
+	}
 	//Create the carousel
 	$("#plot-carousel").slick({
 		infinite: false,
@@ -22,6 +26,7 @@ Template.carousel.rendered = function() {
 		slidesToShow: 2,
 		draggable: false
 	});
+
 
 
 	//Clicking on plot changes the bottom stats

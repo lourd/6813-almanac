@@ -1,3 +1,5 @@
+@import 'mixins';
+
 //////////////////////////////////////////////////
 // Variables
 //////////////////////////////////////////////////
@@ -18,7 +20,7 @@ $plot-text-color: green;
 $plot-handle-color: green;
 $plot-inactive-color: #B0D279;
 $plot-active-color: #96C757;
-$plot-hovered-color: #3D6722;
+$plot-hovered-color: #96C757;
 // sensor colors
 $sensor-handle-color: blue;
 $sensor-text-color: blue;
