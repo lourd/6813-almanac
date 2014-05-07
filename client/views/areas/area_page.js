@@ -7,17 +7,29 @@ Template.areaPage.helpers({
 });
 
 Template.areaPage.events({
+    /*
+     *  Add a plot div to the page
+     *  dependent on the icon having css of #add-plot 
+     *      Sets attributes to default positions and adds it to the collection
+    */
     'click #add-plot': function (e) {
-        // Give the router a number-based name by default
-        var numPlot = Racks.find().count() + 1;
-        console.log(numPlot);
-        console.log("plot created");
+        var DEFAULT_PLOT_X = "170";
+        var DEFAULT_PLOT_Y = "190";
+        var DEFAULT_PLOT_WIDTH = "400";
+        var DEFAULT_PLOT_HEIGHT = "100";
+
+        var rackName = "Plot " + (Racks.find().count() + 1);
+
         var newRack = {
             areaId: this._id,
-            name: 'Plot ' + numPlot,
-            attributes: {position: "absolute", top: "35px", left: "57px", width: "367px", height: "148px"},
+            name: rackName,
+            attributes: {   top: DEFAULT_PLOT_Y, 
+                            left: DEFAULT_PLOT_X, 
+                            width: DEFAULT_PLOT_WIDTH, 
+                            height: DEFAULT_PLOT_HEIGHT
+                        },
             plots: [
-                {plot: 'Plot 1'}
+                {plot: 'PLOT NAME!'}
             ]
         };
         Racks.insert(newRack);
@@ -27,7 +39,12 @@ Template.areaPage.events({
         console.log("add sensor clicked");
     },
     'click #clear': function (e) {
-        console.log("clear clicked");
+        // Racks.remove({areaId: this._id}); 
+        // too bad we have to use the document id
+        var racks = Racks.find();   // prefiltered by the router
+        racks.forEach(function (rack) {
+            Racks.remove({_id: rack._id});
+        });
     },
 
     'click #save': function(e) {
@@ -38,70 +55,3 @@ Template.areaPage.events({
     }
 });
 
-Template.rack.rendered = function () {
-    // Get the div element from the template object
-    var rackDiv = this.$('.shape');
-    rackDiv.resizable({
-            handles: "n, e, s, w", // only edges handles
-        })
-    .draggable({ 
-        containment: "#drawing-container",
-        stack: ".shape"
-    })
-    .droppable({
-        accept: ".plot",
-        activeClass: "plot-active",
-        greedy: true,
-        hoverClass: "plot-hovered"
-        },{
-        /* 
-         * triggered when an acceptable drag starts dragging
-         * @param event (Event)
-         * @param ui: {draggable, helper, position, offset} 
-        */
-        activate: function(event, ui) {
-
-        },
-        /* triggered when an accepted draggable stops dragging
-         * @param ui (Object)
-         *  - draggable: jquery obj repr the draggable el
-         *  - helper: jquery obj repr helper being dragged
-         *  - position: current css pos of helper as {top, left}
-         *  - offset: current offset pos of the helper as {top, left}
-        */
-        deactivate: function(event, ui) {
-
-        },
-        /*
-         *  trig when acceptable draggable is dropped on droppable
-         *  based on `tolerance` option
-         *  @param event (Event)
-         *  @param ui: {draggable, helper, position, offset}
-        */
-        drop: function(event, ui) {
-
-        },
-        /*
-         *  draggable dragged out of the droppable
-         *  @param ui is empty
-        */
-        out: function(event, ui) {
-
-        },
-        /*
-         *  accepted draggable is dragged over droppable
-         *  based on `tolerance` option
-         *  @param event (Event)
-         *  @param ui: {draggable, helper, position, offset}
-        */
-        over: function(event, ui) {
-
-        }
-
-    })
-
-};
-
-Template.rack.helpers({
-
-});
