@@ -1,60 +1,28 @@
-@import 'packages/bootstrap3-sass/bootstrap';
+//////////////////////////////////////////////////
+// Variables
+//////////////////////////////////////////////////
+/* graph paper lines*/
+$block: #fff;
+$line: steelblue;
+$gridSize: 100px;
+$subdivisions: 10;
 
-//////////////////////////////////////////
-//////////////          VARIABLES
-//////////////////////////////////////////
-$nav-height: 100px;
-$brand-font-size: 30px;
-$navbar-size: 50px;
-
-@mixin hover-ease($ms) {
-    -webkit-transition: background-color $ms 0ms;
-    -webkit-transition-delay: ease-in;
-    -moz-transition: background-color $ms 0ms ease-in;
-    -o-transition: background-color $ms 0ms ease-in;
-    transition: background-color $ms 0ms ease-in;
-}
-
-//////////////////////////////////////////
-
-body {
-    padding-top: $navbar-size + 10px;
-}
-
-.sidebar {
-    position: fixed;
-    top: $navbar-size + 1px;
-    bottom: 0;
-    left: 0;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
-}
-
-.nav-sidebar {
-    margin-right: -21px;
-    margin-bottom: 20px;
-    margin-left: -20px;
-
-    .active {
-        a {
-            color: #fff;
-            background-color: #f8931a;
-        }
-        a:hover {
-            color: #fff;
-            background-color: #f8931a;
-        }
-    }
-}
-
-.right-section {
-    padding: 20px;
-    .page-header {
-        margin-top: 0px;
-    }
-}
-
+/* editing section size */
+$canvas-height: 500px;
+$canvas-width: 770px;
+// editor affordances size
+$handle-length: 16px;
+$handle-width: 4px;
+// plot colors
+$plot-text-color: green;
+$plot-handle-color: green;
+$plot-inactive-color: #B0D279;
+$plot-active-color: #96C757;
+$plot-hovered-color: #3D6722;
+// sensor colors
+$sensor-handle-color: blue;
+$sensor-text-color: blue;
+//////////////////////////////////////////////////
 .area {
     .area-content {
         .area-name {
@@ -74,14 +42,11 @@ body {
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 // Graph paper styling background generator
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 $trans: transparent;
-$block: #fff;
-$line: steelblue;
-$gridSize: 100px;
-$subdivisions: 10;
+
 
 .graph-paper {
   background-color: $block;
@@ -102,23 +67,14 @@ $subdivisions: 10;
     $gridSize $gridSize;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 // Drawing container styling
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////
 ul.racks {
     max-height: 50px;
     overflow-y: scroll;
     border: solid black 1px;
 }
-$canvas-height: 500px;
-$canvas-width: 770px;
-
-$handle-length: 16px;
-$handle-width: 4px;
-$plot-handle-color: green;
-$sensor-handle-color: blue;
-$plot-text-color: green;
-$sensor-text-color: blue;
 
 #drawing-container {
     @extend .graph-paper;
@@ -170,9 +126,12 @@ $sensor-text-color: blue;
         &.plot {
             height: 100px;
             width: 20px;
-            background-color: #B0D279;
-            &:hover {
-                background-color: #96C757;
+            background-color: $plot-inactive-color;
+            &:hover, .plot-active {
+                background-color: $plot-active-color;
+            }
+            &.plot-hovered {
+                background-color: $plot-hovered-color;
             }
             .shape-text a{
                 color: $plot-text-color;
@@ -265,94 +224,4 @@ $sensor-text-color: blue;
     &.ui-resizable-w {
         left: 5px;
     }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-// Slick styling
-//////////////////////////////////////////////////////////////////////////////////////////
-$slick-arrow-color: #aaa;
-$slick-dot-color: black;    // default
-$slick-prev-character: '\2190'; // default
-$slick-next-character: '\2192'; // default
-
-.slick-prev:before, .slick-next:before {
-    color: $slick-arrow-color;
-}
-
-.slick-prev {
-    &:before {
-        content: $slick-prev-character;
-    }
-}
-
-.slick-next {
-    &:before {
-        content: $slick-next-character;
-    }
-}
-
-//////////////////////////////////////////////////////////////////////////////////////////
-
-/* Popup div*/
-div#popup {
-    width: 180px;
-    height: 120px;
-    position: absolute;
-    background-color: #ddd;
-    display: none;
-    pointer-events: none;
-    border: black solid 1px;
-}
-
-#popup {
-    h4 {
-        text-align: center;
-    }
-    .label {
-        font-weight: bold;
-        clear: left;
-    }
-}
-
-#carousel-container {
-    background-color: gray;
-    width: 100%;
-    margin:0 auto;
-    height: 50%;
-}
-
-#plot-carousel {
-
-    .plot-display {
-        h3 {
-            text-align: center;
-            height: 100%;
-            background-color: green;
-            color: #f8931a;
-            vertical-align: center;
-            padding: 15%;
-            width: 90%;
-            margin: 5%;
-        }
-    }
-}
-
-#stats-container {
-    padding-top: 10px;
-    text-align: center;
-
-    .stat {
-        border-style: solid;
-        padding: 4%;
-        width: 32%;
-        margin: 5px;
-    }
-
-    .ui-selected {
-        background: #f8931a;
-    }
-}
-
-.editing-buttons {
-    padding-top: 10px;
 }
