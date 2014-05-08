@@ -22,6 +22,7 @@ Template.slide.created = function() {
 
 Template.slide.destroyed = function () {
 	console.log("slide removed");
+	// //$('#plot-carousel').slickGoTo(0);
 };	
 
 //////////////////////////////////////////////////
@@ -58,16 +59,14 @@ Template.plotSlide.created = function() {
 
 Template.plotSlide.destroyed = function() {
 	var el = this.firstNode;
-	var currentSlide = $("#plot-carousel").slickCurrentSlide();
-	$('#plot-carousel').slickRemove(currentSlide);
-	$('#plot-carousel').slickGoTo(0);
+	// var currentSlide = $("#plot-carousel").slickCurrentSlide();
+	// $('#plot-carousel').slickRemove(currentSlide);
+	// //$('#plot-carousel').slickGoTo(0);
 
 }
 
 Template.plotSlide.helpers({
-	lastUpdated: function() {
-		return new Date();
-	}
+
 });
 
 //////////////////////////////////////////////////

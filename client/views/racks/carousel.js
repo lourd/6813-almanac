@@ -1,6 +1,12 @@
 Template.carousel.helpers ({
 	plots: function() {
-		return this.plots;
+		var plotsWanted = Plots.find({rackId: this._id});
+		var returnable = [];
+		plotsWanted.forEach(function(plot) {
+			returnable.push({plot:plot.name});
+		});
+
+		return returnable;
 	}
 	// }, isGraph: function(name) {
 	// 	console.log(Session.get('graphPlot'));

@@ -9,6 +9,7 @@ Template.rackPage.created = function() {
 Template.rackPage.rendered = function() {
 
 	var rackId = this.data._id;
+	var pageData = this.data;
 
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
@@ -19,6 +20,9 @@ Template.rackPage.rendered = function() {
 		var slideObject = $(".slick-active").children()[0];
 		var plotName = $(slideObject).children()[0].innerHTML;
 
+
+		var currentSlide = $("#plot-carousel").slickCurrentSlide();
+		$('#plot-carousel').slickRemove(currentSlide);
 
 		Racks.update({_id:rackId},{
 			$pull: {plots: {plot:plotName}}
@@ -31,10 +35,22 @@ Template.rackPage.rendered = function() {
 		modal: true,
 		buttons: {
 			"Add plot!": function () {
+
 				var rack = Racks.findOne({name:'Rack 1'});
 				var named = plotName.value;
 
-				var area = rack.areaId;
+				var plotInfo = {
+					data: pageData,
+					name: named
+				};
+
+				console.log(plotInfo.name);
+
+				Meteor.call('addPlot', plotInfo, function(error, id) {
+					if (error) {
+						throwError(error.reason);
+					} 
+				});
 
 				Racks.update({_id: rack._id},{
 					$push: {plots: {plot: named}}
@@ -42,16 +58,16 @@ Template.rackPage.rendered = function() {
 
 				plotName.value = "";
 
-				Plots.insert({
-					areaId: area,
-					rackId: rack,
-					name: named,
-					stats: [
-						{value: '--F'},
-						{value: '---ppm'},
-						{value: '--%'}
-					]
-				});
+				// Plots.insert({
+				// 	areaId: rack.areaId,
+				// 	rackId: rack._id,
+				// 	name: named,
+				// 	stats: [
+				// 		{value: '--F'},
+				// 		{value: '---ppm'},
+				// 		{value: '--%'}
+				// 	]
+				// });
 
 				$(this).dialog("close");
 
