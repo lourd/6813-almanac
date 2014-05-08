@@ -25,6 +25,7 @@ Template.carousel.rendered = function() {
 		arrows: true,
 		slidesToShow: 1,
 		draggable: false,
+		dots: true
 		// centerMode: true,
 		// centerPadding: '40px'
 	});

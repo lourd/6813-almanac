@@ -2,7 +2,11 @@
 	<div id="stats-container" class="row placeholders">
 		{{#each stats}}
 			<div class="col-xs-6 col-sm-3 placeholder stat">
-				<h4>{{value}}</h4>
+				<h4>{{name}}: {{value}}{{units}}
+				<input type="button" class="stat-details-button" value="+"></h4>
+				<div class="stat-details">
+					details
+				</div>
 			</div>
 		{{/each}}
 	</div>

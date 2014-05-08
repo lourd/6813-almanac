@@ -71,7 +71,7 @@ if (Racks.find().count() == 0) {
     var rck1id = Racks.insert({
         areaId: shipContId,
         name: 'Rack 1',
-        attributes: {top: "35", left: "57", width: "367", height: "148"},
+        attributes: {top: 35, left: 57, width: 367, height: 148},
         plots: [
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
@@ -96,9 +96,9 @@ if (Plots.find().count() === 0) {
         rackId: rck1id,
         name: 'Plot 1',
         stats: [
-            {value: '71F'},
-            {value: '550ppm'},
-            {value: '40%'}
+            {name: 'Temperature', value: 71, units: 'F'},
+            {name: 'CO2 Level', value: 550, units: 'ppm'},
+            {name: 'Humidity', value: 40, units: '%'}
         ]
     });
 
@@ -107,9 +107,9 @@ if (Plots.find().count() === 0) {
         rackId: rck1id,
         name: 'Plot 2',
         stats: [
-            {value: '75F'},
-            {value: '500ppm'},
-            {value: '35%'}
+            {name: 'Temperature', value: 75, units: 'F'},
+            {name: 'CO2 Level', value: 500, units: 'ppm'},
+            {name: 'Humidity', value: 35, units: '%'}
         ]       
     });
 
@@ -118,9 +118,9 @@ if (Plots.find().count() === 0) {
         rackId: rck1id,
         name: 'Plot 3',
         stats: [
-            {value: '80F'},
-            {value: '600ppm'},
-            {value: '25%'}
+            {name: 'Temperature', value: 80, units: 'F'},
+            {name: 'CO2 Level', value: 600, units: 'ppm'},
+            {name: 'Humidity', value: 25, units: '%'}
         ]       
     });
 }
