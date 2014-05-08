@@ -8,19 +8,29 @@ Meteor.methods({
 		var rack = plotAttributes.data._id;
 		var name = plotAttributes.name;
 
-		console.log(name);
-
 		var newPlotId = Plots.insert({
 			areaId: area,
 			rackId: rack,
 			name: name,
 			stats: [
-				{value: '--F'},
-				{value: '---ppm'},
-				{value: '--%'}
+            	{name: 'Temperature', value: 65, units: 'F'},
+            	{name: 'CO2 Level', value: 700, units: 'ppm'},
+            	{name: 'Humidity', value: 15, units: '%'}
 			]
 		});
+	}, deletePlot: function(plotAttributes) {
+		var areaId = plotAttributes.data.areaId;
+		var rack = plotAttributes.data._id;
+		var name = plotAttributes.name;
 
-		console.log(Plots.findOne({_id: newPlotId}));
+		var toBeDeletedId = Plots.findOne({
+			areaId: areaId,
+			rackId: rack,
+			name: name
+		})
+
+		Plots.remove({_id: toBeDeletedId});
 	}
-})
+});
+
+

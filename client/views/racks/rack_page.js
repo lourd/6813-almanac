@@ -20,9 +20,20 @@ Template.rackPage.rendered = function() {
 		var slideObject = $(".slick-active").children()[0];
 		var plotName = $(slideObject).children()[0].innerHTML;
 
+		var plotInfo = {
+			data: pageData,
+			name: plotName
+		}
 
 		var currentSlide = $("#plot-carousel").slickCurrentSlide();
 		$('#plot-carousel').slickRemove(currentSlide);
+
+		Meteor.call('deletePlot', plotInfo, function(error, id) {
+			if (error) {
+				throwError(error.reason);
+			}
+		});
+
 
 		Racks.update({_id:rackId},{
 			$pull: {plots: {plot:plotName}}
@@ -36,7 +47,7 @@ Template.rackPage.rendered = function() {
 		buttons: {
 			"Add plot!": function () {
 
-				var rack = Racks.findOne({name:'Rack 1'});
+				// var rack = Racks.findOne({name:'Rack 1'});
 				var named = plotName.value;
 
 				var plotInfo = {
@@ -44,17 +55,15 @@ Template.rackPage.rendered = function() {
 					name: named
 				};
 
-				console.log(plotInfo.name);
-
 				Meteor.call('addPlot', plotInfo, function(error, id) {
 					if (error) {
 						throwError(error.reason);
 					} 
 				});
 
-				Racks.update({_id: rack._id},{
-					$push: {plots: {plot: named}}
-				});
+				// Racks.update({_id: rack._id},{
+				// 	$push: {plots: {plot: named}}
+				// });
 
 				plotName.value = "";
 
