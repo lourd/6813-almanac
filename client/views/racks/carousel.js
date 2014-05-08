@@ -18,8 +18,10 @@ Template.carousel.rendered = function() {
 	$("#plot-carousel").slick({
 		infinite: false,
 		arrows: true,
-		slidesToShow: 2,
-		draggable: false
+		slidesToShow: 1,
+		draggable: false,
+		// centerMode: true,
+		// centerPadding: '40px'
 	});
 
 	//Clicking on plot changes the bottom stats
