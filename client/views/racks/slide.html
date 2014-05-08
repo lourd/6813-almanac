@@ -1,9 +1,30 @@
-<template name="slidePage">
+<template name="slide">
+
 	<div class="slide">
 		{{#if isGraph plot}}
-			{{> graph}}
+			{{> graphSlide}}
 		{{else}}
-			{{> plotPage}}
+			{{> plotSlide}}
 		{{/if}}
 	</div>
+
 </template>
+
+
+<template name="plotSlide">
+
+    <div class="plot-display">
+        <h3>{{plot}}</h3>
+    </div>
+
+</template>
+
+
+<template name="graphSlide">
+
+    <div class="plot-display">
+        <h3>Graph goes here: {{graphType}}</h3>
+    </div>
+    
+</template>
+

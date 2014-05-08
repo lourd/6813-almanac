@@ -22,8 +22,6 @@ Template.carousel.rendered = function() {
 		draggable: false
 	});
 
-
-
 	//Clicking on plot changes the bottom stats
 	$(".slick-track").selectable({
 		selected: function(event, ui) {
@@ -41,3 +39,11 @@ Template.carousel.rendered = function() {
 		}
 	});
 };
+
+Template.carousel.created = function() {
+	console.log("carousel created");
+}
+
+Template.carousel.destroy = function() {
+	console.log("carousel destroyed");
+}
