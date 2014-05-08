@@ -4,12 +4,20 @@ Template.slidePage.helpers({
 	}
 });
 
-Template.slickPage.rendered = function() {
-	var el = this.firstNode;
-	$('#plot-carousel').slickAdd(el);
+Template.slidePage.rendered = function() {
 	console.log("slide rendered");
+	var el = this.firstNode;
+	console.log(el);
+
+	$('#plot-carousel').slickAdd(el);	
+	// $(el).addClass("slick-slide ui-selectee");
+
+	// var car = document.getElementsByClassName("slick-track");
+	// car[0].appendChild(el);
+	// console.log(el);
+
 }
 
-Template.slickPage.created = function() {
-	console.log("created");
+Template.slidePage.created = function() {
+	console.log("slide created");
 }

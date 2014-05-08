@@ -12,6 +12,7 @@ Template.carousel.helpers ({
 
 
 Template.carousel.rendered = function() {
+	console.log("carousel rendered");
 
 	//Create the carousel
 	$("#plot-carousel").slick({

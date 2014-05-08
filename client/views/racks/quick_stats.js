@@ -1,8 +1,11 @@
 Template.quickStats.rendered = function() {
+
+	console.log("quickStats rendered");
+
 	$("#stats-container").selectable({
 		selected: function(event, ui) {
 			var text = $(ui.selected).children()[0].innerHTML;
-			
+
 			Session.set('graphPlot', Session.get('currentPlot'));
 			Session.set('graphType', text);
 		},

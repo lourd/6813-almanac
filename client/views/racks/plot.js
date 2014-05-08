@@ -1,7 +1,7 @@
 Template.plotPage.rendered = function() {
 	// var el = this.firstNode;
 	// $('#plot-carousel').slickAdd(el);
-	// console.log("plot rendered");
+	console.log("plot rendered");
 
 }
 
@@ -11,7 +11,9 @@ Template.plotPage.destroyed = function() {
 }
 
 Template.plotPage.helpers({
-
+	lastUpdated: function() {
+		return new Date();
+	}
 });
 
 

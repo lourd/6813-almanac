@@ -6,6 +6,8 @@ Template.rackPage.helpers({
 
 Template.rackPage.rendered = function() {
 
+	console.log("rack page rendered");
+
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
 		
