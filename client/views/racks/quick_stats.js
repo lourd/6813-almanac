@@ -1,5 +1,6 @@
 Template.quickStats.rendered = function() {
 
+
 	$("#stats-container").selectable({
 		selected: function(event, ui) {
 			var text = $(ui.selected).children()[0].innerHTML;

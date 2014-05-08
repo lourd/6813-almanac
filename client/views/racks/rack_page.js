@@ -1,3 +1,10 @@
+Template.rackPage.created = function() {
+
+	var plot = Plots.findOne({rackId:this.data._id});
+
+	Session.set('currentPlot', plot.name);
+}
+
 
 Template.rackPage.rendered = function() {
 
@@ -55,3 +62,5 @@ Template.rackPage.rendered = function() {
 	});
 
 }
+
+
