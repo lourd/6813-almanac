@@ -1,12 +1,7 @@
-Session.set('currentPlot', 'Plot 1');
-
-Template.rackPage.helpers({
-
-});
 
 Template.rackPage.rendered = function() {
 
-	console.log("rack page rendered");
+	var rackId = this.data._id;
 
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
@@ -14,10 +9,11 @@ Template.rackPage.rendered = function() {
 	});
 
 	$("#remove-plot").click(function () {
-		var plotName = Session.get('currentPlot');
-		var rack = Racks.findOne({name: 'Rack 1'});
+		var slideObject = $(".slick-active").children()[0];
+		var plotName = $(slideObject).children()[0].innerHTML;
 
-		Racks.update({_id:rack._id},{
+
+		Racks.update({_id:rackId},{
 			$pull: {plots: {plot:plotName}}
 		});
 
@@ -48,7 +44,7 @@ Template.rackPage.rendered = function() {
 						{value: '---ppm'},
 						{value: '--%'}
 					]
-				})
+				});
 
 				$(this).dialog("close");
 

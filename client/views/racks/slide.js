@@ -5,12 +5,10 @@ Template.slide.helpers({
 });
 
 Template.slide.rendered = function() {
-	console.log("slide rendered");
 	var el = this.firstNode;
 	// console.log(this);
 	// debugger
 	if ($('#plot-carousel').hasClass('slick-initialized')) {
-		console.log("new plot!");
 		$('#plot-carousel').slickAdd(el);		
 	}
 	// $(el).addClass("slick-slide ui-selectee");
@@ -22,11 +20,11 @@ Template.slide.rendered = function() {
 }
 
 Template.slide.created = function() {
-	console.log("slide created");
+
 }
 
 Template.slide.destroyed = function () {
-	console.log("slide destroyed");
+	console.log("slide removed");
 };	
 
 //////////////////////////////////////////////////
@@ -35,17 +33,18 @@ Template.slide.destroyed = function () {
 Template.plotSlide.rendered = function() {
 	// var el = this.firstNode;
 	// $('#plot-carousel').slickAdd(el);
-	console.log("plot slide rendered");
 
 }
 
 Template.plotSlide.created = function() {
-	console.log("plot slide created");
 }
 
 Template.plotSlide.destroyed = function() {
 	var el = this.firstNode;
-	console.log("plot slide destroyed");
+	var currentSlide = $("#plot-carousel").slickCurrentSlide();
+	$('#plot-carousel').slickRemove(currentSlide);
+	$('#plot-carousel').slickGoTo(0);
+
 }
 
 Template.plotSlide.helpers({
@@ -64,6 +63,6 @@ Template.graphSlide.helpers({
 });
 
 Template.graphSlide.rendered = function() {
-	console.log("graph rendered");
+
 }
 

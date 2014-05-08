@@ -12,7 +12,6 @@ Template.carousel.helpers ({
 
 
 Template.carousel.rendered = function() {
-	console.log("carousel rendered");
 
 	//Create the carousel
 	$("#plot-carousel").slick({
@@ -25,27 +24,27 @@ Template.carousel.rendered = function() {
 	});
 
 	//Clicking on plot changes the bottom stats
-	$(".slick-track").selectable({
-		selected: function(event, ui) {
-			var header = $(ui.selected).children()[0];
-			var text = header.innerHTML;
-			Session.set('currentPlot', text);
+	// $(".slick-track").selectable({
+	// 	selected: function(event, ui) {
+	// 		var header = $(ui.selected).children()[0];
+	// 		var text = header.innerHTML;
+	// 		Session.set('currentPlot', text);
 
-			$(header).css('background', 'white');
-		},
+	// 		$(header).css('background', 'white');
+	// 	},
 
-		unselected: function(event, ui) {
-			var header = $(ui.unselected).children()[0];
-			$(header).css('background', 'green');
-			Session.set('graphPlot', Session.get('currentPlot'));
-		}
-	});
+	// 	unselected: function(event, ui) {
+	// 		var header = $(ui.unselected).children()[0];
+	// 		$(header).css('background', 'green');
+	// 		Session.set('graphPlot', Session.get('currentPlot'));
+	// 	}
+	// });
 };
 
 Template.carousel.created = function() {
-	console.log("carousel created");
+
 }
 
 Template.carousel.destroy = function() {
-	console.log("carousel destroyed");
+
 }
