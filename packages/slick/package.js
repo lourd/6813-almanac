@@ -5,13 +5,13 @@ Package.describe({
 Package.on_use(function (api) {
     api.use(['jquery']);
     api.add_files([
-        'lib/slick/slick/slick.js',
-        'lib/slick/slick/slick.css',
-        'lib/slick/slick/fonts/slick.eot',
-        'lib/slick/slick/fonts/slick.svg',
-        'lib/slick/slick/fonts/slick.ttf',
-        'lib/slick/slick/fonts/slick.woff',
-        'lib/slick/slick/ajax-loader.gif'
+        'lib/slick.js',
+        'lib/slick.css',
+        'lib/fonts/slick.eot',
+        'lib/fonts/slick.svg',
+        'lib/fonts/slick.ttf',
+        'lib/fonts/slick.woff',
+        'lib/ajax-loader.gif'
         ], 'client');
 });
 
