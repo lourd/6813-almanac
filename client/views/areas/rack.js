@@ -8,7 +8,6 @@ Template.rack.helpers({
             plots[i].index = i;
             plots[i].parent = this;
         }
-        testp = plots[0];
         return plots
     },
     firstPlot: function() {

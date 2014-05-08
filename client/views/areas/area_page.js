@@ -13,10 +13,10 @@ Template.areaPage.events({
      *      Sets attributes to default positions and adds it to the collection
     */
     'click #add-plot': function (e) {
-        var DEFAULT_PLOT_X = "170";
-        var DEFAULT_PLOT_Y = "190";
-        var DEFAULT_PLOT_WIDTH = "400";
-        var DEFAULT_PLOT_HEIGHT = "100";
+        var DEFAULT_PLOT_X = 170;
+        var DEFAULT_PLOT_Y = 190;
+        var DEFAULT_PLOT_WIDTH = 400;
+        var DEFAULT_PLOT_HEIGHT = 100;
 
         // Just giving it a random name
         var rackName = "Plot " + _.random(1000);
