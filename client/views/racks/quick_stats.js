@@ -1,7 +1,5 @@
 Template.quickStats.rendered = function() {
 
-	console.log("quickStats rendered");
-
 	$("#stats-container").selectable({
 		selected: function(event, ui) {
 			var text = $(ui.selected).children()[0].innerHTML;
@@ -20,8 +18,7 @@ Template.quickStats.rendered = function() {
 			//$(this).css('background', 'red');
 		}, function() {
 			//$(this).css('background', 'white');
-		}
-		);
+		});
 }
 
 

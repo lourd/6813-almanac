@@ -990,11 +990,12 @@
 
         _.$slideTrack.children(this.options.slide).eq(index).remove();
 
-        _.$slides = _.$slideTrack.children(this.options.slide);
+        //That useless code that fucks shit up!
+        // _.$slides = _.$slideTrack.children(this.options.slide);
 
-        _.$slideTrack.children(this.options.slide).remove();
+        // _.$slideTrack.children(this.options.slide).remove();
 
-        _.$slideTrack.append(_.$slides);
+        // _.$slideTrack.append(_.$slides);
 
         _.$slidesCache = _.$slides;
 
