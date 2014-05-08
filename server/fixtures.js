@@ -71,7 +71,7 @@ if (Racks.find().count() == 0) {
     var rck1id = Racks.insert({
         areaId: shipContId,
         name: 'Rack 1',
-        attributes: {top: "35", left: "57", width: "367", height: "148"},
+        attributes: {top: 35, left: 57, width: 367, height: 148},
         plots: [
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
