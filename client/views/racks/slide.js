@@ -7,11 +7,11 @@ Template.slide.helpers({
 Template.slide.rendered = function() {
 	console.log("slide rendered");
 	var el = this.firstNode;
-	console.log(this);
+	// console.log(this);
 	// debugger
 	if ($('#plot-carousel').hasClass('slick-initialized')) {
 		console.log("new plot!");
-		// $('#plot-carousel').slickAdd(el);		
+		$('#plot-carousel').slickAdd(el);		
 	}
 	// $(el).addClass("slick-slide ui-selectee");
 
