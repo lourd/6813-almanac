@@ -1,0 +1,33 @@
+<template name="slide">
+
+	<div class="slide">
+		{{#if isGraph plot}}
+			{{> graphSlide}}
+		{{else}}
+			{{> plotSlide}}
+		{{/if}}
+	</div>
+
+</template>
+
+
+<template name="plotSlide">
+
+    <div class="plot-display"  style="
+        width: {{scaledWidth}}px;
+        height: {{scaledHeight}}px;
+    ">
+        <h3>{{plot}}</h3>
+    </div>
+
+</template>
+
+
+<template name="graphSlide">
+
+    <div class="plot-display">
+        <h3>Graph goes here: {{graphType}}</h3>
+    </div>
+    
+</template>
+

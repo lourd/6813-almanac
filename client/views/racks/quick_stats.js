@@ -35,6 +35,13 @@ Template.quickStats.rendered = function() {
 			var text = child.innerHTML;
 		}		
 	});
+
+	$(".ui-selectee").hover(
+		function() {
+			//$(this).css('background', 'red');
+		}, function() {
+			//$(this).css('background', 'white');
+	});
 }
 
 

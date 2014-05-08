@@ -37,15 +37,45 @@ if (Areas.find().count() === 0) {
 // Dummy Rack data
 ////////////////////////
 if (Racks.find().count() == 0) {
+
+    var co_rack1 = Racks.insert({
+        areaId: coGrowId,
+        name: 'Rack 1',
+        attributes: {top: 40, left: 53, width: 464, height: 80},
+        plots: [
+            {plot: 'Plot 1'},
+            {plot: 'Plot 2'},
+            {plot: 'Plot 3'}
+        ]
+    });
+
+    var co_rack2 = Racks.insert({
+        areaId: coGrowId,
+        name: 'Rack 2',
+        attributes: {top: 40, left: 531, height: 421, width: 173},
+        plots: [
+            {plot: 'Plot 4'},
+            {plot: 'Plot 5'}
+        ]
+    });
+
+    var co_rack3 = Racks.insert({
+        areaId: coGrowId,
+        name: 'Plot 3',
+        attributes: {top: 300, left: 53, width: 464, height: 80},
+        plots: [
+            {plot: 'Plot 6'}
+        ]
+    });
+
     var rck1id = Racks.insert({
         areaId: shipContId,
         name: 'Rack 1',
-        attributes: {position: "absolute", top: "35px", left: "57px", width: "367px", height: "148px"},
+        attributes: {top: 35, left: 57, width: 367, height: 148},
         plots: [
             {plot: 'Plot 1'},
             {plot: 'Plot 2'},
             {plot: 'Plot 3'},
-            {plot: 'Plot 7'}
         ]
     });
 

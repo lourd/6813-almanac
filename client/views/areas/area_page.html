@@ -19,8 +19,6 @@
                 </li>
             </ul>
             <a href="#" title="Clear layout" id="clear" class="drawing-action glyphicon glyphicon-trash"></a>
-            <a href="#" title="Save layout" id="save" class="drawing-action glyphicon glyphicon-floppy-disk"></a>
-            <a href="#" title="Load layout" id="load" class="drawing-action glyphicon glyphicon-folder-open"></a>
         </div>
         {{#each racks}}
             {{> rack}}
@@ -28,26 +26,6 @@
         <!-- {{#each sensors}}
             {{> sensor}}
         {{/each}} -->
-    </div>
-
-</template>
-
-
-<template name="rack">
-
-
-    <div class="shape plot" style="
-        position: {{attributes.position}};
-        left: {{attributes.left}};
-        top: {{attributes.top}};
-        width: {{attributes.width}};
-        height: {{attributes.height}};
-    ">
-        <h3 class="shape-text">
-            <a href="{{pathFor 'rackPage'}}">
-                {{name}}
-            </a>
-        </h3>
     </div>
 
 </template>

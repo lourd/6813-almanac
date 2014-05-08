@@ -14,7 +14,8 @@ $canvas-height: 500px;
 $canvas-width: 770px;
 // editor affordances size
 $handle-length: 16px;
-$handle-width: 4px;
+$handle-width: 2px;
+$handle-offset: 3px;
 // plot colors
 $plot-text-color: green;
 $plot-handle-color: green;
@@ -114,6 +115,7 @@ ul.racks {
 
     .shape {
         display: table;
+        position: absolute; // needed for draggable/resizable to work correctly
         text-align: center;
         @include hover-ease(70ms);
         box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.6);
@@ -128,6 +130,7 @@ ul.racks {
         &.plot {
             height: 100px;
             width: 20px;
+            // z-index set in rack.js
             background-color: $plot-inactive-color;
             &:hover, .plot-active {
                 background-color: $plot-active-color;
@@ -143,6 +146,16 @@ ul.racks {
             .ui-resizable-e,
             .ui-resizable-w {
                 background-color: $plot-handle-color;
+            }
+        }
+        &.subplot {
+            background-color: $plot-inactive-color;
+            // z-index set in rack.js
+            &.plot-active {
+                background-color: $plot-active-color;
+            }
+            &.plot-hovered {
+                background-color: $plot-hovered-color;
             }
         }
         &.sensor {
@@ -197,9 +210,8 @@ ul.racks {
 .ui-resizable-w {
     // important because this is set by the
     // resizable widget on the actual element style
-    border-radius: 3px;
+    border-radius: 2px;
     z-index: inherit !important;
-    opacity: 0;     // only show on plot/sensor hover
     &.ui-resizable-n, &.ui-resizable-s{
         height: $handle-width;
         width: $handle-length;
@@ -209,10 +221,10 @@ ul.racks {
         cursor: ns-resize;
     }
     &.ui-resizable-n {
-        top: 5px;
+        top: $handle-offset;
     }
     &.ui-resizable-s {
-        bottom: 5px;
+        bottom: $handle-offset;
     }
     &.ui-resizable-e, &.ui-resizable-w {
         height: $handle-length;
@@ -221,9 +233,9 @@ ul.racks {
         cursor: ew-resize;
     }
     &.ui-resizable-e {
-        right: 5px;
+        right: $handle-offset;
     }
     &.ui-resizable-w {
-        left: 5px;
+        left: $handle-offset;
     }
 }
