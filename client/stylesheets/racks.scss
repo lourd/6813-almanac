@@ -1,0 +1,69 @@
+//////////////////////////////////////////////////
+// Variables
+//////////////////////////////////////////////////
+$slick-arrow-color: #aaa;
+$slick-dot-color: black;    // default
+$slick-prev-character: '\2190'; // default
+$slick-next-character: '\2192'; // default
+
+//////////////////////////////////////////////////
+
+.slick-prev:before, .slick-next:before {
+    color: $slick-arrow-color;
+}
+
+.slick-prev {
+    &:before {
+        content: $slick-prev-character;
+    }
+}
+
+.slick-next {
+    &:before {
+        content: $slick-next-character;
+    }
+}
+
+
+#carousel-container {
+    background-color: gray;
+    width: 100%;
+    margin:0 auto;
+    height: 50%;
+}
+
+#plot-carousel {
+
+    .plot-display {
+        h3 {
+            text-align: center;
+            height: 100%;
+            background-color: green;
+            color: #f8931a;
+            vertical-align: center;
+            padding: 15%;
+            width: 90%;
+            margin: 5%;
+        }
+    }
+}
+
+#stats-container {
+    padding-top: 10px;
+    text-align: center;
+
+    .stat {
+        border-style: solid;
+        padding: 4%;
+        width: 32%;
+        margin: 5px;
+    }
+
+    .ui-selected {
+        background: #f8931a;
+    }
+}
+
+.editing-buttons {
+    padding-top: 10px;
+}

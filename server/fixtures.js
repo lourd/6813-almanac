@@ -1,5 +1,8 @@
+////////////////////////
+// Dummy area data
+////////////////////////
 if (Areas.find().count() === 0) {
-    Areas.insert({
+    var shipContId = Areas.insert({
         name: 'Shipping Container 1',
         location: 'Hopkinton, MA',
         stats: [
@@ -9,7 +12,7 @@ if (Areas.find().count() === 0) {
         ]
     });
 
-    Areas.insert({
+    var vtGreenhouseId = Areas.insert({
         name: 'Vermont Greenhouse',
         location: 'Burlington, VT',
         stats: [
@@ -19,7 +22,7 @@ if (Areas.find().count() === 0) {
         ]
     });
 
-    Areas.insert({
+    var coGrowId = Areas.insert({
         name: 'Colorado Grow Op',
         location: 'Boulder, CO',
         stats: [
@@ -29,3 +32,86 @@ if (Areas.find().count() === 0) {
         ]
     });
 }
+
+////////////////////////
+// Dummy Rack data
+////////////////////////
+if (Racks.find().count() == 0) {
+    var rck1id = Racks.insert({
+        areaId: shipContId,
+        name: 'Rack 1',
+        attributes: {position: "absolute", top: "35px", left: "57px", width: "367px", height: "148px"},
+        plots: [
+            {plot: 'Plot 1'},
+            {plot: 'Plot 2'},
+            {plot: 'Plot 3'},
+            {plot: 'Plot 7'}
+        ]
+    });
+
+    var rck2id = Racks.insert({
+        areaId: vtGreenhouseId,
+        name: 'Rack 2',
+        plots: [
+            {plot: 'Plot 4'},
+            {plot: 'Plot 5'},
+            {plot: 'Plot 6'}
+        ]
+    })
+}
+
+if (Plots.find().count() === 0) {
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 1',
+        stats: [
+            {name: 'Temperature', value: 71, units: 'F'},
+            {name: 'CO2 Level', value: 550, units: 'ppm'},
+            {name: 'Humidity', value: 40, units: '%'}
+        ]
+    });
+
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 2',
+        stats: [
+            {name: 'Temperature', value: 75, units: 'F'},
+            {name: 'CO2 Level', value: 500, units: 'ppm'},
+            {name: 'Humidity', value: 35, units: '%'}
+        ]       
+    });
+
+    Plots.insert({
+        areaId: shipContId,
+        rackId: rck1id,
+        name: 'Plot 3',
+        stats: [
+            {name: 'Temperature', value: 80, units: 'F'},
+            {name: 'CO2 Level', value: 600, units: 'ppm'},
+            {name: 'Humidity', value: 25, units: '%'}
+        ]       
+    });
+}
+
+// Ideally sensors should support belonging to plots, racks, or areas
+// We're starting out with just belonging to areas
+// if (Sensors.find().count() == 0) {
+//     Sensors.insert({
+//         scopeId: /*areaId*/, // this is just area for now, support more later
+//         name: 'Air Sensor 1',
+//         type: /*air water*/,
+//         updated_at: /*time*/,
+//         last_value: /*a sensor reading*/
+//     })
+// }
+
+// if (Readings.find().count() == 0) {
+//     Readings.insert({
+//         sensorId: /*id*/,
+//         type: /*humidity, temperature, co2*/,
+//         value: /*float*/
+//         created_at: /*time*/
+//     });
+// }

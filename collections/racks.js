@@ -1,0 +1,1 @@
+Racks = new Meteor.Collection('racks');

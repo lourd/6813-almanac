@@ -1,0 +1,7 @@
+@mixin hover-ease($ms) {
+    -webkit-transition: background-color $ms 0ms;
+    -webkit-transition-delay: ease-in;
+    -moz-transition: background-color $ms 0ms ease-in;
+    -o-transition: background-color $ms 0ms ease-in;
+    transition: background-color $ms 0ms ease-in;
+}

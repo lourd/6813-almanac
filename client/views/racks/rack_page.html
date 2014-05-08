@@ -1,0 +1,39 @@
+<template name="rackPage">
+
+    <ul class="breadcrumb">
+        <li>
+            <a href="{{pathFor 'areasPage'}}">Schrute Farms</a>
+        </li>
+        <li>
+            <a href="{{pathFor 'areaPage' _id=this.areaId }}">Shipping Container 1</a>
+        </li>
+        <li class="active">
+            {{name}}
+        </li>
+    </ul>
+    {{> carousel}}
+    <div>
+        <p class="editing-buttons">
+            <button id="add-plot" class="btn btn-success" type="button">
+                Add a plot
+            </button>
+            <button id="remove-plot" class="btn btn-danger" type="button">
+                Remove selected plot
+            </button>
+        </p>
+    </div>
+    {{> quickStats}}
+
+    <div id="add-plot-popup" title="Add a plot">
+        <p>Hello! You are adding a plot</p>
+
+        <form>
+        <fieldset>
+            <label for="name">Plot name:</label>
+            <input type="text" name="name" id="plotName" class="text ui-widget-content ui-corner-all">
+            
+        </fieldset>
+        </form>
+    </div>
+    
+</template>

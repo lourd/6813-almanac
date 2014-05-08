@@ -1,0 +1,53 @@
+<template name="areaPage">
+
+
+    <ul class="breadcrumb">
+        <li><a href="{{pathFor 'areasPage'}}">Schrute Farms</a></li>
+        <li class="active">{{name}}</li>
+    </ul>
+    <!-- <h1 class="page-header">{{name}} Layout Page</h1> -->
+    <div id="drawing-container">
+        <div class="drawing-actions">
+            <a href="#" title="Add..." class="dropdown-toggle drawing-action" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-plus"></span>
+                <b class="caret"></b>
+            </a> 
+            <ul class="dropdown-menu add-menu">
+                <li>
+                    <a href="#" id="add-plot">Add plot</a>
+                    <a href="#" id="add-sensor">Add sensor</a>
+                </li>
+            </ul>
+            <a href="#" title="Clear layout" id="clear" class="drawing-action glyphicon glyphicon-trash"></a>
+            <a href="#" title="Save layout" id="save" class="drawing-action glyphicon glyphicon-floppy-disk"></a>
+            <a href="#" title="Load layout" id="load" class="drawing-action glyphicon glyphicon-folder-open"></a>
+        </div>
+        {{#each racks}}
+            {{> rack}}
+        {{/each}}
+        <!-- {{#each sensors}}
+            {{> sensor}}
+        {{/each}} -->
+    </div>
+
+</template>
+
+
+<template name="rack">
+
+
+    <div class="shape plot" style="
+        position: {{attributes.position}};
+        left: {{attributes.left}};
+        top: {{attributes.top}};
+        width: {{attributes.width}};
+        height: {{attributes.height}};
+    ">
+        <h3 class="shape-text">
+            <a href="{{pathFor 'rackPage'}}">
+                {{name}}
+            </a>
+        </h3>
+    </div>
+
+</template>

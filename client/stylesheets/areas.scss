@@ -1,0 +1,229 @@
+@import 'mixins';
+
+//////////////////////////////////////////////////
+// Variables
+//////////////////////////////////////////////////
+/* graph paper lines*/
+$block: #fff;
+$line: steelblue;
+$gridSize: 100px;
+$subdivisions: 10;
+
+/* editing section size */
+$canvas-height: 500px;
+$canvas-width: 770px;
+// editor affordances size
+$handle-length: 16px;
+$handle-width: 4px;
+// plot colors
+$plot-text-color: green;
+$plot-handle-color: green;
+$plot-inactive-color: #B0D279;
+$plot-active-color: #96C757;
+$plot-hovered-color: #96C757;
+// sensor colors
+$sensor-handle-color: blue;
+$sensor-text-color: blue;
+//////////////////////////////////////////////////
+.area {
+    .area-content {
+        .area-name {
+            display: inline;
+            a {
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+        .area-stats {
+            .area-stat {
+                font-size: 1.3em;
+                padding: 0px 10px;
+            }
+        }
+    }
+}
+
+//////////////////////////////////////////////////
+// Graph paper styling background generator
+//////////////////////////////////////////////////
+$trans: transparent;
+
+
+.graph-paper {
+  background-color: $block;
+  background-image:
+    linear-gradient(rgba($line,.25) 1px, $trans 1px), /*sub horiz*/
+    linear-gradient(rgba($line,.25) 1px, $trans 1px), /*main horiz*/
+    linear-gradient(90deg, rgba($line,.25) 1px, $trans 1px), /*sub vert*/
+    linear-gradient(90deg, rgba($line,.5) 1px, $trans 1px) /*main vert*/
+    // linear-gradient($trans 3px, $block 3px, $block $gridSize - 2, $trans $gridSize - 2), /*nub horiz*/
+    // linear-gradient(90deg, $line 3px, $trans 3px, $trans $gridSize - 2, $line $gridSize - 2) /*nub vert*/
+    ;
+  background-size:
+    $gridSize / $subdivisions $gridSize / $subdivisions,
+    $gridSize $gridSize,
+    $gridSize / $subdivisions $gridSize / $subdivisions,
+    $gridSize $gridSize,
+    $gridSize $gridSize,
+    $gridSize $gridSize;
+}
+
+//////////////////////////////////////////////////
+// Drawing container styling
+//////////////////////////////////////////////////
+ul.racks {
+    max-height: 50px;
+    overflow-y: scroll;
+    border: solid black 1px;
+}
+
+#drawing-container {
+    @extend .graph-paper;
+    height: $canvas-height;
+    width: $canvas-width;
+    border: 1px solid rgba($line,.25);
+    position: relative;
+
+    .drawing-actions {
+        position: absolute;
+        z-index: 100;   // on top of all the shapes
+        top: 0;
+        left: 0;
+        background-color: rgba(0,0,0,0.3);
+        height: 30px;
+        line-height: 20px;
+        padding: 5px 10px;
+        cursor: default;
+        .drawing-action {
+            padding-left: 5px;
+            padding-right: 5px;
+            color: #444;
+            @include hover-ease(70ms);
+            text-decoration: none;
+            &:hover {
+                color: #000;
+            }
+            .caret {
+                padding-left: 0px;
+                padding-right: 0px;
+                margin-left: -2px;
+            }
+        }
+    }
+
+    .shape {
+        display: table;
+        text-align: center;
+        @include hover-ease(70ms);
+        box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.6);
+        .shape-text {
+            display: table-cell;
+            vertical-align: middle;
+            a {
+                font-size: 1.2em;
+            }
+        }
+
+        &.plot {
+            height: 100px;
+            width: 20px;
+            background-color: $plot-inactive-color;
+            &:hover, .plot-active {
+                background-color: $plot-active-color;
+            }
+            &.plot-hovered {
+                background-color: $plot-hovered-color;
+            }
+            .shape-text a{
+                color: $plot-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $plot-handle-color;
+            }
+        }
+        &.sensor {
+            height: 50px;
+            width: 50px;
+            border-radius: 50px;
+            background-color: #ABCFE3;
+            &:hover {
+                background-color: #88B7D7;
+            }
+            .shape-text a {
+                color: $sensor-text-color;
+            }
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                background-color: $sensor-handle-color;
+            }
+        }
+        &:hover {
+            .ui-resizable-n, 
+            .ui-resizable-s,
+            .ui-resizable-e,
+            .ui-resizable-w {
+                opacity: 1.0;
+            }
+        }
+    }
+    .add-menu {
+        border-radius: 0px;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        background-color: rgba(0,0,0,0.3);
+        min-width: 0px;
+        li a {
+            padding: 2px 5px;
+            @include hover-ease(70ms);
+            color: #444;
+            &:hover {
+                color: #000;
+                background-color: rgba(0,0,0,0.2);
+            }
+        }
+    }
+}
+
+.ui-resizable-n, 
+.ui-resizable-s,
+.ui-resizable-e,
+.ui-resizable-w {
+    // important because this is set by the
+    // resizable widget on the actual element style
+    border-radius: 3px;
+    z-index: inherit !important;
+    opacity: 0;     // only show on plot/sensor hover
+    &.ui-resizable-n, &.ui-resizable-s{
+        height: $handle-width;
+        width: $handle-length;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        cursor: ns-resize;
+    }
+    &.ui-resizable-n {
+        top: 5px;
+    }
+    &.ui-resizable-s {
+        bottom: 5px;
+    }
+    &.ui-resizable-e, &.ui-resizable-w {
+        height: $handle-length;
+        width: $handle-width;
+        top: calc(50% - #{$handle-length} / 2);
+        cursor: ew-resize;
+    }
+    &.ui-resizable-e {
+        right: 5px;
+    }
+    &.ui-resizable-w {
+        left: 5px;
+    }
+}
