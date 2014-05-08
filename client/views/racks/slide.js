@@ -51,7 +51,7 @@ Template.plotSlide.helpers({
 	}
 });
 Template.plotSlide.rendered = function() {
-
+	conosole.log("rendered");
 }
 
 Template.plotSlide.created = function() {

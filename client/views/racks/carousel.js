@@ -6,6 +6,8 @@ Template.carousel.helpers ({
 			returnable.push({plot:plot.name});
 		});
 
+		//Use fetch
+
 		return returnable;
 	}
 	// }, isGraph: function(name) {
@@ -18,6 +20,7 @@ Template.carousel.helpers ({
 
 
 Template.carousel.rendered = function() {
+	console.log("carousel rendered");
 
 	//Create the carousel
 	$("#plot-carousel").slick({

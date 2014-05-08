@@ -27,7 +27,7 @@ Meteor.methods({
 			areaId: areaId,
 			rackId: rack,
 			name: name
-		})
+		});
 
 		Plots.remove({_id: toBeDeletedId});
 	}
