@@ -972,7 +972,7 @@
     };
 
     Slick.prototype.removeSlide = function(index, removeBefore) {
-
+        console.log("remove slide");
         var _ = this;
 
         if (typeof(index) === 'boolean') {

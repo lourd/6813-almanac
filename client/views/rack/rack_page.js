@@ -1,49 +1,44 @@
-Template.rackPage.created = function() {
-
-	// don't need to give a rack id, filtered on subscribe
-
-	var plot = Plots.findOne();	
-
-	Session.set('currentPlot', plot.name);
-}
-
+Template.rackPage.helpers({
+	getCurrentPlotId: function () {
+		// Get the slick carousel
+		var carousel = $("#plot-carousel");
+		// Gets stack index from slick itself
+		var newStackIndex = carousel.slickCurrentSlide();
+		// Don't have to filter by area because the router takes care of it
+		var currentPlot = Plots.findOne({stackIndex: newStackIndex});
+		return currentPlot._id;
+	}
+});
 
 Template.rackPage.rendered = function() {
-	debugger
+	// Save the data context, a Rack
 	var rackData = this.data;
 
 	$("#add-plot").click(function () {
+		// Open the add plot modal
 		$("#add-plot-popup").dialog("open");
-		
 	});
 
+	/*
+	 *	Listener for the remove plot button
+	*/
 	$("#remove-plot").click(function () {
-		var slideObject = $(".slick-active").children()[0];
-		var plotName = $(slideObject).children()[0].innerHTML;
-		var plotCount = Plots.find().count();
+		var plotId = Template.rackPage.getCurrentPlotId();
+		var carousel = $("#plot-carousel");
+		// Get the current slide/plot index in the Stack
+		var stackIndex = carousel.slickCurrentSlide();
 
-		var plotInfo = {
-			data: rackData,
-			name: plotName,
-			stackIndex: plotCount
-		}
+		// Unslick the slide
+		carousel.slickRemove(carousel.slickCurrentSlide());
 
-		var currentSlide = $("#plot-carousel").slickCurrentSlide();
-		$('#plot-carousel').slickRemove(currentSlide);
-
-		Meteor.call('deletePlot', plotInfo, function(error, id) {
-			if (error) {
-				throwError(error.reason);
-			}
+		Meteor.call('deletePlot', plotId, rackData._id, stackIndex, function(error, id) {
+			// Error handling!
 		});
-
-
-		Racks.update({_id:rackId},{
-			$pull: {plots: {plot:plotName}}
-		});
-
 	});
 
+	/*
+	 *	Options and actions for the add plot modal
+	*/
 	$("#add-plot-popup").dialog({
 		autoOpen: false,
 		modal: true,

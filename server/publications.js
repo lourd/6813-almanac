@@ -17,16 +17,22 @@ Meteor.publish('singleRack', function(id) {
 });
 
 // All of the plots belonging to an area
-Meteor.publish('areaPlots', function(plot_area_id) {
-	return Plots.find({areaId: plot_area_id});
+Meteor.publish('areaPlots', function(areaId) {
+	return Plots.find({areaId: areaId});
 });
 
 // Plots belonging to a rack
-Meteor.publish('rackPlots', function(rack_plot_id) {
-    return Plots.find({rackId: rack_plot_id});
+Meteor.publish('rackPlots', function(rackId) {
+    return Plots.find({rackId: rackId});
 });
 
 // All of the sensors belonging to an area
-Meteor.publish('areaSensors', function(sensor_area_id) {
-    return Plots.find({areaId: sensor_area_id});
+Meteor.publish('areaSensors', function(areaId) {
+    return Sensors.find({areaId: areaId});
+})
+
+//
+Meteor.publish('readingsByArea', function(areaId) {
+    var sensors = Sensors.find({areaId: areaId});
+    
 })

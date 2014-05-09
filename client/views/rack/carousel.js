@@ -33,25 +33,3 @@ Template.carousel.rendered = function() {
 		// centerPadding: '40px'
 	});
 };
-
-Template.carousel.created = function() {
-
-}
-
-Template.carousel.destroy = function() {
-
-}
-
-
-Template.carousel.events({
-	'click .slick-prev' : function(event) {
-		var slideObject = $(".slick-active").children()[0];
-		var plotName = $(slideObject).children()[0].innerHTML;
-		Session.set('currentPlot', plotName);
-
-	}, 'click .slick-next' : function(event) {
-		var slideObject = $(".slick-active").children()[0];
-		var plotName = $(slideObject).children()[0].innerHTML;
-		Session.set('currentPlot', plotName);
-	}
-})
