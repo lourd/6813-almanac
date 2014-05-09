@@ -5,7 +5,7 @@ Meteor.publish('areas', function() {
 
 Meteor.publish('singleArea', function(id) {
     return id && Areas.find(id);
-})
+});
 
 // All of the racks belonging to an area
 Meteor.publish('areaRacks', function(rack_area_id) {
@@ -28,11 +28,11 @@ Meteor.publish('rackPlots', function(rackId) {
 
 // All of the sensors belonging to an area
 Meteor.publish('areaSensors', function(areaId) {
-    return Sensors.find({areaId: areaId});
-})
+    return Sensors.find({zoneId: areaId});
+});
 
 //
-Meteor.publish('readingsByArea', function(areaId) {
-    var sensors = Sensors.find({areaId: areaId});
+// Meteor.publish('readingsByArea', function(areaId) {
+//     var sensors = Sensors.find({areaId: areaId});
     
-})
+// })

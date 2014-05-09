@@ -179,11 +179,14 @@ Template.rackPage.rendered = function() {
 		var stackIndex = carousel.slickCurrentSlide();
 
 		// Unslick the slide
-		carousel.slickRemove(carousel.slickCurrentSlide());
+		// So many bugs...
+		console.log("unslick called");
+		carousel.unslick();
 
 		Meteor.call('deletePlot', plotId, rackData._id, stackIndex, function(error, id) {
 			// Error handling!
 		});
+		Template.carousel.slickify();
 	});
 
 	/*
@@ -200,12 +203,14 @@ Template.rackPage.rendered = function() {
 					rackId: rackData._id,
 					name: plotName.value
 				};
+				$("#plot-carousel").unslick()
 				// Add it with a Meteor.call
 				Meteor.call('addPlot', newPlot, function(error, result) {
 					if (error) {
 						throwError(error.reason);
 					} 
 				});
+				Template.carousel.slickify();
 
 				// Reset the modal text box and close
 				plotName.value = "";
