@@ -1,5 +1,13 @@
 Template.quickStats.rendered = function() {
 
+	testDB = function() {
+		var plots = Plots.find();
+		console.log(plots.count());
+		for (plot in plots) {
+			console.log(plot._id);
+		}
+	};
+
 	$(".stat-details").hide();
 
 	// this function toggles showing the details for area's sensor information

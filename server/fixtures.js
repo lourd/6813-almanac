@@ -97,7 +97,7 @@ if (Plots.find().count() === 0) {
         name: 'Plot 1',
         stats: [
             {name: 'Temperature', value: 71, units: 'F'},
-            {name: 'CO2 Level', value: 550, units: 'ppm'},
+            {name: 'CO2', value: 550, units: 'ppm'},
             {name: 'Humidity', value: 40, units: '%'}
         ]
     });
@@ -108,7 +108,7 @@ if (Plots.find().count() === 0) {
         name: 'Plot 2',
         stats: [
             {name: 'Temperature', value: 75, units: 'F'},
-            {name: 'CO2 Level', value: 500, units: 'ppm'},
+            {name: 'CO2', value: 500, units: 'ppm'},
             {name: 'Humidity', value: 35, units: '%'}
         ]       
     });
@@ -119,7 +119,7 @@ if (Plots.find().count() === 0) {
         name: 'Plot 3',
         stats: [
             {name: 'Temperature', value: 80, units: 'F'},
-            {name: 'CO2 Level', value: 600, units: 'ppm'},
+            {name: 'CO2', value: 600, units: 'ppm'},
             {name: 'Humidity', value: 25, units: '%'}
         ]       
     });
