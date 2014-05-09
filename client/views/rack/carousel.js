@@ -1,6 +1,6 @@
 Template.carousel.helpers ({
 	plots: function() {
-		return Plots.find().fetch();
+		return Plots.find();
 	},
 	slickify: function() {
 		//Create the carousel
@@ -21,3 +21,15 @@ Template.carousel.rendered = function() {
 	Template.carousel.slickify();
 	
 };
+
+Template.carousel.events({
+	'click .slick-prev' : function(e) {
+		var currentSlide = $("#plot-carousel").slickCurrentSlide();
+		console.log('current ' + currentSlide);
+		Session.set('currentPlot', currentSlide);
+	}, 'click .slick-next' : function(e) {
+		var currentSlide = $("#plot-carousel").slickCurrentSlide();
+		console.log('current ' + currentSlide);
+		Session.set('currentPlot', currentSlide);
+	}
+})
