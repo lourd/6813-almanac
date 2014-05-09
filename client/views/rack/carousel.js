@@ -27,9 +27,11 @@ Template.carousel.events({
 		var currentSlide = $("#plot-carousel").slickCurrentSlide();
 		console.log('current ' + currentSlide);
 		Session.set('currentPlot', currentSlide);
+		Session.set('graphPlot', -1);
 	}, 'click .slick-next' : function(e) {
 		var currentSlide = $("#plot-carousel").slickCurrentSlide();
 		console.log('current ' + currentSlide);
 		Session.set('currentPlot', currentSlide);
+		Session.set('graphPlot', -1);
 	}
 })
