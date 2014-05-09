@@ -145,7 +145,7 @@ if (Sensors.find().count() == 0) {
         attributes: {top: 200, left: 200}
     });
 
-    var coSensor = Sensors.insert({
+    var coSensor2 = Sensors.insert({
         zoneType: 'area',
         zoneId: coGrowId,
         name: 'Air Sensor 2',
@@ -159,7 +159,6 @@ if (Sensors.find().count() == 0) {
 ////////////////////////
 
 if (Readings.find().count() == 0) {
-
     Readings.insert({
         sensorId: coSensor1,
         type: 'humidity',
@@ -216,4 +215,62 @@ if (Readings.find().count() == 0) {
         value: 614.0,
         recorded_at: new Date(2014,4,8,13,51,23,0)
     });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'humidity',
+        value: 0.81,
+        recorded_at: new Date(2014,4,8,13,1,13,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'humidity',
+        value: 0.88,
+        recorded_at: new Date(2014,4,8,13,42,11,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'humidity',
+        value: 0.85,
+        recorded_at: new Date(2014,4,8,13,54,48,0)
+    });
+
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'temperature',
+        value: 70.2,
+        recorded_at: new Date(2014,4,8,13,3,13,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'temperature',
+        value: 74.9,
+        recorded_at: new Date(2014,4,8,13,35,33,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'temperature',
+        value: 85.2,
+        recorded_at: new Date(2014,4,8,13,48,53,0)
+    });
+
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'co2',
+        value: 754.0,
+        recorded_at: new Date(2014,4,8,13,5,1,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'co2',
+        value: 623.0,
+        recorded_at: new Date(2014,4,8,13,20,43,0)
+    });
+    Readings.insert({
+        sensorId: coSensor2,
+        type: 'co2',
+        value: 614.0,
+        recorded_at: new Date(2014,4,8,13,51,23,0)
+    });
+
+
 }

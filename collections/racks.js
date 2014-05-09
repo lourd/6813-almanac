@@ -27,6 +27,23 @@ Meteor.methods({
         });
         // Then remove the rack
         return Racks.remove({_id: rackId});
+    },
+    combine_racks: function(sourceRackId, destRackId) {
+        // Get the plots in order from top to bottom
+        var transferredPlots = Plots.find({rackId: sourceRackId}, {sort: {stackIndex: 1}});
+        var newPlotCount = transferredPlots.count();
+        // Augment the receiving plots indices by the amount of new plots
+        Plots.update({rackId: destRackId},
+                    {$inc: {stackIndex: newPlotCount}},
+                    { multi: true }
+                    );
+        
+        // Update moved plots rackId and stackIndices to start at the top of the new one
+        transferredPlots.forEach(function (plot, index) {
+            plot.rackId = destRackId;
+            plot.stackIndex = index;
+            Plots.update(plot._id, plot);
+        });
     }
 })
 // Racks.allow({

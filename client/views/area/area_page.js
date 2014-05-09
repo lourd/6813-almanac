@@ -19,16 +19,15 @@ Template.areaPage.events({
             areaId: areaId
         };
         Meteor.call('new_rack', newRack, function (error, result) {
+            // Error handling!
             // Make a plot
             var newPlot = {
                 areaId: areaId,
-                rackid: result.rackId,
-                name: result.rackName,
-                stackIndex: 0
+                rackId: result.rackId,
+                name: result.rackName
             };
-            Meteor.call('new_plot', newPlot, function( error, result) {
-                console.log("new plot created");
-                console.log(result);
+            Meteor.call('addPlot', newPlot, function(error, result) {
+                // Error handling!
             });
         });
     },

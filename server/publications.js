@@ -31,10 +31,10 @@ Meteor.publish('areaSensors', function(areaId) {
     return Sensors.find({zoneId: areaId});
 });
 
-// Publist all readings for now
+//Publish all readings for now
 Meteor.publish('areaReadings', function() {
 	return Readings.find();
-})
+});
 
 //
 // Meteor.publish('readingsByArea', function(areaId) {
