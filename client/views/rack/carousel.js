@@ -24,14 +24,9 @@ Template.carousel.rendered = function() {
 
 Template.carousel.events({
 	'click .slick-prev' : function(e) {
-		var currentSlide = $("#plot-carousel").slickCurrentSlide();
-		console.log('current ' + currentSlide);
-		Session.set('currentPlot', currentSlide);
 		Session.set('graphPlot', -1);
-	}, 'click .slick-next' : function(e) {
-		var currentSlide = $("#plot-carousel").slickCurrentSlide();
-		console.log('current ' + currentSlide);
-		Session.set('currentPlot', currentSlide);
+	}, 
+	'click .slick-next' : function(e) {
 		Session.set('graphPlot', -1);
 	}
 })

@@ -40,7 +40,7 @@ Template.quickStats.helpers({
 		var distinctValues = _.pluck(distinctArray, 'type');
 
 		//Put it into an array to pass to the template
-		var outPutArray = [];
+		var outputArray = [];
 		for (var i=0; i<distinctValues.length;i++) {
 			var latestAverage = 0;
 			Sensors.find().forEach(function(s) {
@@ -55,20 +55,21 @@ Template.quickStats.helpers({
 
 				latestAverage += latestReading/numOfSensors;
 			});
-			outPutArray.push({
+			outputArray.push({
 				name: distinctValues[i],
 				value: (latestAverage).toFixed(2)
 			});
 		}
 
-		return outPutArray;
+		return outputArray;
 	}
 });
 
 Template.quickStats.events({
 	'click .graph-toggle' : function(e) {
+		// 'this' is the variable button you click on
 		var type = this.name;
-		Session.set('graphPlot', Session.get('currentPlot'));
+		Session.set('graphPlot', Template.rackPage.getCurrentPlotIndex());
 		Session.set('graphType', type);
 	}
 })

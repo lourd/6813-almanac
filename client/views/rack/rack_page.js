@@ -9,10 +9,13 @@ Template.rackPage.helpers({
 		var currentPlot = Plots.findOne({stackIndex: newStackIndex});
 		
 		return currentPlot._id;
+	},
+	getCurrentPlotIndex: function() {
+		return $('#plot-carousel').slickCurrentSlide();
 	}
 });
 Template.rackPage.rendered = function() {
-	Session.set('currentPlot', 0);
+	Session.set('graphPlot', -1);
 
 	// Save the data context, a Rack
 	var rackData = this.data;

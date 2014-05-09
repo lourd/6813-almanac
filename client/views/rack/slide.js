@@ -6,7 +6,6 @@ var MIN_HEIGHT = 80;
 Template.slide.helpers({
 	isGraph: function(position) {
 		return Session.equals('graphPlot', position);
-
 	}
 });
 
@@ -61,27 +60,27 @@ Template.plotSlide.destroyed = function() {
 //////////////////////////////////////////////////
 Template.graphSlide.helpers({
 	graphType: function() {
+    // Make sure to render the graph slide
 		return Session.get('graphType');
 	}
 });
 
 Template.graphSlide.rendered = function() {
+    console.log("GENGRAPH");
+    var type = Session.get('graphType');
 
-	var type = Session.get('graphType');
-
-	console.log(type);
+    console.log(type);
 
     // this is where the graph will be drawn
-    var plotDisplay = $(".plot-display");
+    var plotDisplay = $(".graph-display");
 
     var w = MAX_WIDTH;
     var h = MAX_HEIGHT;
 
-    //var w = plotDisplay.width();
-    //var h = plotDisplay.height();
+    // margin used in the graph
     var padding = 35;
 
-    var readings = [];
+    var readings;
 
     if (type.indexOf("temperature") > -1) {
           readings = Readings.find({type: "temperature"}, {sort: {recorded_at: 1}});
@@ -127,7 +126,7 @@ Template.graphSlide.rendered = function() {
           .ticks(5);
 
     // add an svg (canvasesque) element to our div anchor
-    var svg = d3.select(".plot-display")
+    var svg = d3.select(".graph-display")
           .append("svg")
           .attr("width", w)
           .attr("height", h);
@@ -155,4 +154,3 @@ Template.graphSlide.rendered = function() {
           .attr("transform", "translate(" + padding + ",0)")
           .call(yAxis);
 }
-
