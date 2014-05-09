@@ -8,11 +8,11 @@ Template.slide.helpers({
 });
 
 Template.slide.rendered = function() {
-	var el = this.firstNode;
+	// var el = this.firstNode;
 	
-	if ($('#plot-carousel').hasClass('slick-initialized')) {
-		$('#plot-carousel').slickAdd(el);		
-	}
+	// if ($('#plot-carousel').hasClass('slick-initialized')) {
+	// 	$('#plot-carousel').slickAdd(el);		
+	// }
 
 }
 
