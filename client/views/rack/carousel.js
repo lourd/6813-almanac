@@ -1,6 +1,6 @@
 Template.carousel.helpers ({
 	plots: function() {
-		return Plots.find();
+		return Plots.find().fetch();
 	},
 	slickify: function() {
 		//Create the carousel
@@ -18,7 +18,6 @@ Template.carousel.helpers ({
 
 
 Template.carousel.rendered = function() {
-	console.log("carousel rendered");
 	Template.carousel.slickify();
 	
 };

@@ -4,15 +4,14 @@ var MAX_WIDTH = 600;
 var MIN_HEIGHT = 80;
 
 Template.slide.helpers({
-	
+	isGraph: function(position) {
+		return Session.equals('graphPlot', position);
+
+	}
 });
 
 Template.slide.rendered = function() {
-	// var el = this.firstNode;
-	
-	// if ($('#plot-carousel').hasClass('slick-initialized')) {
-	// 	$('#plot-carousel').slickAdd(el);		
-	// }
+
 
 }
 
@@ -21,7 +20,7 @@ Template.slide.created = function() {
 }
 
 Template.slide.destroyed = function () {
-	console.log("slide destroyed");
+
 };	
 
 //////////////////////////////////////////////////
@@ -50,7 +49,7 @@ Template.plotSlide.helpers({
 	}
 });
 Template.plotSlide.rendered = function() {
-	console.log("plot slide rendered");
+
 }
 
 Template.plotSlide.destroyed = function() {
@@ -66,7 +65,7 @@ Template.graphSlide.helpers({
 	}
 });
 
-Template.graphSlide.rendered = function() {
-
+Template.graphSlide.rendered = function(type) {
+	console.log(type);
 }
 
