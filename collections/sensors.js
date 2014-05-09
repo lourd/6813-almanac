@@ -14,6 +14,9 @@ Meteor.methods({
         doc.attributes = defaultAttrs;
         doc.name = defaultName;
         return Sensors.insert(doc);
+    },
+    remove_sensor: function(sensorId) {
+        return Sensors.remove(sensorId);
     }
 })
 // Sensors.allow({

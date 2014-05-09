@@ -56,6 +56,12 @@ Template.areaPage.events({
                 // Do something with an error
             });
         });
+        var sensors = Sensors.find();
+        sensors.forEach(function (sensor) {
+            Meteor.call('remove_sensor', sensor._id, function(error, result) {
+
+            });
+        });
     }
 });
 

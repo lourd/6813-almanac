@@ -25,7 +25,7 @@ Meteor.methods({
                 var newRead = {
                     sensorId: sensorId,
                     type: el,
-                    value: _.random(min, max),
+                    value: Math.random() * (max - min) + min,
                     recorded_at: new Date(2014,4,8,13,5*i,30)
                 };
                 Readings.insert(newRead);
