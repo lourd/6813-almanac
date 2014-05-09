@@ -15,13 +15,13 @@ Meteor.methods({
     // Delete plot by id and rack id, with stackIndex
     deletePlot: function(plotId, rackId, stackIndex) {
         console.log("delete plot called!");
-        // Plots.update({ $and : [
-        //                     {rackId: rackId} ,
-        //                     {stackIndex: {$gt: stackIndex}}
-        //                     ]},
-        //                 {$inc: {stackIndex: -1} },
-        //                 {multi: true}
-        //                 );
+        Plots.update({ $and : [
+                            {rackId: rackId} ,
+                            {stackIndex: {$gt: stackIndex}}
+                            ]},
+                        {$inc: {stackIndex: -1} },
+                        {multi: true}
+                        );
 
         // Update the indexes of all plots in the stack
         return Plots.remove({_id: plotId});
