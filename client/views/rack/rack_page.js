@@ -53,7 +53,7 @@ Template.rackPage.rendered = function() {
 				var newPlot = {
 					areaId: rackData.areaId,
 					rackId: rackData._id,
-					name = plotName.value
+					name: plotName.value
 				};
 				// Add it with a Meteor.call
 				Meteor.call('addPlot', newPlot, function(error, result) {
