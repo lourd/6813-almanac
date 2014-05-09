@@ -47,9 +47,37 @@ Template.quickStats.rendered = function() {
 
 Template.quickStats.helpers({
 	stats: function() {
-		var current = Session.get('currentPlot');
-		var plot = Plots.findOne({name: current});
+		//Finding out the number of different types of stats
+		//Meteor Collections does not have 'distinct' method yet
+		var array = Readings.find().fetch();
+		var distinctArray = _.uniq(array, false, function(d) {
+			return d.type
+		});
+		var distinctValues = _.pluck(distinctArray, 'type');
 
-		// return plot.stats;
+
+		//Put it into an array to pass to the template
+		var outPutArray = [];
+		for (var i=0; i<distinctValues.length;i++) {
+			var latestAverage = 0;
+			Sensors.find().forEach(function(s) {
+				var sId = s._id;
+				var numOfSensors = Sensors.find().count();
+
+				var latestReading = Readings.findOne({
+					$and: [
+						{sensorId:sId},
+						{type: distinctValues[i]}]
+					},{sort: {recorded_at:1}}).value;
+				console.log(latestReading);
+				latestAverage += latestReading/numOfSensors;
+			});
+			outPutArray.push({
+				name: distinctValues[i],
+				value: latestAverage
+			});
+		}
+
+		return outPutArray;
 	}
 });
