@@ -58,20 +58,36 @@ $plot-text-color: green;
 #stats-container {
     padding-top: 0px;
 
-    .stat {
-        border-style: solid;
-        padding: 4%;
-        width: 32%;
-        margin: 5px;
+    .hidden-row {
+        padding: 0;
     }
-
-    .ui-selected {
-        background: #f8931a;
+    .sub-reading {
+        // Some terrible absolute positioning
+        margin-left: 170px;
+        margin-top: 0px;
+    }
+    tr.accordion-toggle {
+        &:hover {
+            cursor: pointer;
+            .average-value {
+                font-weight: bold;
+            }
+        }
     }
 }
 
-.editing-buttons {
+.table > tbody > tr > td {
+    border-top: none;
+    padding-bottom: 0px;
     padding-top: 0px;
+    width: 150px;
+    overflow: hidden;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.table > tbody > tr > td.hidden-row {
+    width: 500px;
 }
 
 // these are for the d3 axises
@@ -88,4 +104,12 @@ $plot-text-color: green;
 }
 .hiddenRow {
     padding: 0;
+}
+
+.table > thead > tr > th {
+    width: 150px
+}
+
+.editing-buttons {
+    padding-top: 0px;
 }

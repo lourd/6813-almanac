@@ -23,10 +23,10 @@ Template.quickStats.helpers({
 					{type: givenType}]
 				},{sort: {recorded_at:1}}).value;
 
-			readings.push([
-				{reading: latestReading},
-				{sname: sensorName}
-			]);
+			readings.push({
+				reading: (latestReading).toFixed(2),
+				sname: sensorName
+			});
 		});
 		return readings;
 	},
@@ -57,7 +57,7 @@ Template.quickStats.helpers({
 			});
 			outPutArray.push({
 				name: distinctValues[i],
-				value: latestAverage
+				value: (latestAverage).toFixed(2)
 			});
 		}
 
