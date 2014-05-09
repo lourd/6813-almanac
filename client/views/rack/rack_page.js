@@ -27,6 +27,7 @@ Template.rackPage.rendered = function() {
 	 *	Listener for the remove plot button
 	*/
 	$("#remove-plot").click(function () {
+		Session.set('graphPlot', -1);
 		var plotId = Template.rackPage.getCurrentPlotId();
 		var carousel = $("#plot-carousel");
 		// Get the current slide/plot index in the Stack
