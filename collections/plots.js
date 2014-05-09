@@ -1,30 +1,32 @@
 Plots = new Meteor.Collection('plots');
 
 Meteor.methods({
-	addPlot: function(plotAttributes) {
-        debugger
-		var area = plotAttributes.data.areaId;
-		var rack = plotAttributes.data._id;
-		var name = plotAttributes.name;
-        var stackIndex = plotAttributes.stackIndex;
+    // Add plot and figure out the correct stack index
+    // Right now just adds plot to the end, or the bottom
+    // of the rack. 
 
-		return newPlotId = Plots.insert({
-			areaId: area,
-			rackId: rack,
-			name: name,
-            stackIndex: stackIndex
+	addPlot: function(doc) {
+        // Get the number of plots and add 1 for stack index
+        var plotCount = Plots.find({rackId: rackId}).count();
+        doc.stackIndex = plotCount + 1;
+		return newPlotId = Plots.insert(doc);
+	}, 
+    
+    // Delete plot by id
+    deletePlot: function(rackId) {
+        return Plots.remove({_id: rackId});
+    }, 
+
+    // Delete plot with rack id and rack name
+    // Used on rackPage
+    deleteWithRackAndName: function(rackId, rackName) {
+        // Find the plot
+		var plotId = Plots.findOne({
+			rackId: rackId,
+			name: rackName
 		});
-	}, deletePlot: function(plotAttributes) {
-		var areaId = plotAttributes.data.areaId;
-		var rack = plotAttributes.data._id;
-		var name = plotAttributes.name;
+		return Meteor.call('deletePlot', plotId, function(error, result) {
 
-		var toBeDeletedId = Plots.findOne({
-			areaId: areaId,
-			rackId: rack,
-			name: name
-		});
-
-		return Plots.remove({_id: toBeDeletedId});
+        });
 	}
 });

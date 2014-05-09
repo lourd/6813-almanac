@@ -49,38 +49,21 @@ Template.rackPage.rendered = function() {
 		modal: true,
 		buttons: {
 			"Add plot!": function () {
-
-				// var rack = Racks.findOne({name:'Rack 1'});
-				var named = plotName.value;
-
-				var plotInfo = {
-					data: rackData,
-					name: named
+				// Build the new plot object
+				var newPlot = {
+					areaId: rackData.areaId,
+					rackId: rackData._id,
+					name = plotName.value
 				};
-
-				Meteor.call('addPlot', plotInfo, function(error, id) {
+				// Add it with a Meteor.call
+				Meteor.call('addPlot', newPlot, function(error, result) {
 					if (error) {
 						throwError(error.reason);
 					} 
 				});
 
-				// Racks.update({_id: rack._id},{
-				// 	$push: {plots: {plot: named}}
-				// });
-
+				// Reset the modal text box and close
 				plotName.value = "";
-
-				// Plots.insert({
-				// 	areaId: rack.areaId,
-				// 	rackId: rack._id,
-				// 	name: named,
-				// 	stats: [
-				// 		{value: '--F'},
-				// 		{value: '---ppm'},
-				// 		{value: '--%'}
-				// 	]
-				// });
-
 				$(this).dialog("close");
 
 			}, "Cancel": function () {
