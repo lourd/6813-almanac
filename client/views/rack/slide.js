@@ -21,8 +21,7 @@ Template.slide.created = function() {
 }
 
 Template.slide.destroyed = function () {
-	console.log("slide removed");
-	// //$('#plot-carousel').slickGoTo(0);
+	console.log("slide destroyed");
 };	
 
 //////////////////////////////////////////////////
@@ -51,23 +50,12 @@ Template.plotSlide.helpers({
 	}
 });
 Template.plotSlide.rendered = function() {
-	console.log("rendered");
-}
-
-Template.plotSlide.created = function() {
+	console.log("plot slide rendered");
 }
 
 Template.plotSlide.destroyed = function() {
-	var el = this.firstNode;
-	// var currentSlide = $("#plot-carousel").slickCurrentSlide();
-	// $('#plot-carousel').slickRemove(currentSlide);
-	// //$('#plot-carousel').slickGoTo(0);
-
+	console.log("plot slide destroyed");
 }
-
-Template.plotSlide.helpers({
-
-});
 
 //////////////////////////////////////////////////
 // Graphs

@@ -58,6 +58,6 @@ Template.quickStats.helpers({
 		var current = Session.get('currentPlot');
 		var plot = Plots.findOne({name: current});
 
-		return plot.stats;
+		// return plot.stats;
 	}
 });

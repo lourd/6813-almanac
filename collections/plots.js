@@ -7,26 +7,23 @@ Meteor.methods({
 
 	addPlot: function(doc) {
         // Get the number of plots and add 1 for stack index
-        var plotCount = Plots.find({rackId: rackId}).count();
-        doc.stackIndex = plotCount + 1;
+        var plotCount = Plots.find({rackId: doc.rackId}).count();
+        doc.stackIndex = plotCount;
 		return newPlotId = Plots.insert(doc);
 	}, 
     
-    // Delete plot by id
-    deletePlot: function(rackId) {
-        return Plots.remove({_id: rackId});
-    }, 
+    // Delete plot by id and rack id, with stackIndex
+    deletePlot: function(plotId, rackId, stackIndex) {
+        console.log("delete plot called!");
+        // Plots.update({ $and : [
+        //                     {rackId: rackId} ,
+        //                     {stackIndex: {$gt: stackIndex}}
+        //                     ]},
+        //                 {$inc: {stackIndex: -1} },
+        //                 {multi: true}
+        //                 );
 
-    // Delete plot with rack id and rack name
-    // Used on rackPage
-    deleteWithRackAndName: function(rackId, rackName) {
-        // Find the plot
-		var plotId = Plots.findOne({
-			rackId: rackId,
-			name: rackName
-		});
-		return Meteor.call('deletePlot', plotId, function(error, result) {
-
-        });
-	}
+        // Update the indexes of all plots in the stack
+        return Plots.remove({_id: plotId});
+    }
 });
