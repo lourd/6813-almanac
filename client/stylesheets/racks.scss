@@ -66,10 +66,10 @@ $plot-text-color: green;
         margin-left: 170px;
         margin-top: 0px;
     }
-    tr.accordion-toggle {
+    .accordion-toggle {
         &:hover {
             cursor: pointer;
-            .average-value {
+            &.average-value {
                 font-weight: bold;
             }
         }

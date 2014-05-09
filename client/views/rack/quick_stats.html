@@ -8,10 +8,14 @@
     	</thead>
     	<tbody>
     	{{#each stats}}
-        	<tr data-toggle="collapse" data-target="#{{name}}" class="accordion-toggle">
- 				<td><h4>{{name}}</h4></td>
+        	<tr >
+ 				<td>
+                    <a href="#" class="graph-toggle">
+                        <h4>{{name}}</h4>
+                    </a>
+                </td>
 				<td>
-                    <h4 class="average-value">
+                    <h4 data-toggle="collapse" data-target="#{{name}}" class="accordion-toggle average-value">
                         <span class="caret"></span>
                         {{value}}
                         <small>average</small>

@@ -73,7 +73,7 @@ Template.quickStats.helpers({
 });
 
 Template.quickStats.events({
-	'click .accordion-toggle' : function(e) {
+	'click .graph-toggle' : function(e) {
 		var type = this.name;
 		Session.set('graphPlot', Session.get('currentPlot'));
 		Session.set('graphType', type);
