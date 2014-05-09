@@ -6,7 +6,6 @@ Meteor.methods({
     // of the rack. 
 
 	addPlot: function(doc) {
-        console.log("addPlot meteor method");
         // Get the number of plots and add 1 for stack index
         var plotCount = Plots.find({rackId: doc.rackId}).count();
         doc.stackIndex = plotCount;
