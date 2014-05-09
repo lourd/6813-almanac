@@ -163,113 +163,113 @@ if (Readings.find().count() == 0) {
         sensorId: coSensor1,
         type: 'humidity',
         value: 0.91,
-        recorded_at: new Date(2014,4,8,13,1,13)
+        recorded_at: new Date(2014,4,8,13,1,13,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'humidity',
         value: 0.88,
-        recorded_at: new Date(2014,4,8,13,42,11)
+        recorded_at: new Date(2014,4,8,13,42,11,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'humidity',
         value: 0.85,
-        recorded_at: new Date(2014,4,8,13,54,48)
+        recorded_at: new Date(2014,4,8,13,54,48,0)
     });
 
     Readings.insert({
         sensorId: coSensor1,
         type: 'temperature',
         value: 73.2,
-        recorded_at: new Date(2014,4,8,13,3,13)
+        recorded_at: new Date(2014,4,8,13,3,13,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'temperature',
         value: 74.9,
-        recorded_at: new Date(2014,4,8,13,35,33)
+        recorded_at: new Date(2014,4,8,13,35,33,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'temperature',
         value: 75.2,
-        recorded_at: new Date(2014,4,8,13,48,53)
+        recorded_at: new Date(2014,4,8,13,48,53,0)
     });
 
     Readings.insert({
         sensorId: coSensor1,
         type: 'co2',
         value: 654.0,
-        recorded_at: new Date(2014,4,8,13,5,1)
+        recorded_at: new Date(2014,4,8,13,5,1,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'co2',
         value: 623.0,
-        recorded_at: new Date(2014,4,8,13,20,43)
+        recorded_at: new Date(2014,4,8,13,20,43,0)
     });
     Readings.insert({
         sensorId: coSensor1,
         type: 'co2',
         value: 614.0,
-        recorded_at: new Date(2014,4,8,13,51,23)
+        recorded_at: new Date(2014,4,8,13,51,23,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'humidity',
         value: 0.81,
-        recorded_at: new Date(2014,4,8,13,1,13)
+        recorded_at: new Date(2014,4,8,13,1,13,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'humidity',
         value: 0.88,
-        recorded_at: new Date(2014,4,8,13,42,11)
+        recorded_at: new Date(2014,4,8,13,42,11,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'humidity',
         value: 0.85,
-        recorded_at: new Date(2014,4,8,13,54,48)
+        recorded_at: new Date(2014,4,8,13,54,48,0)
     });
 
     Readings.insert({
         sensorId: coSensor2,
         type: 'temperature',
         value: 70.2,
-        recorded_at: new Date(2014,4,8,13,3,13)
+        recorded_at: new Date(2014,4,8,13,3,13,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'temperature',
         value: 74.9,
-        recorded_at: new Date(2014,4,8,13,35,33)
+        recorded_at: new Date(2014,4,8,13,35,33,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'temperature',
         value: 85.2,
-        recorded_at: new Date(2014,4,8,13,48,53)
+        recorded_at: new Date(2014,4,8,13,48,53,0)
     });
 
     Readings.insert({
         sensorId: coSensor2,
         type: 'co2',
         value: 754.0,
-        recorded_at: new Date(2014,4,8,13,5,1)
+        recorded_at: new Date(2014,4,8,13,5,1,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'co2',
         value: 623.0,
-        recorded_at: new Date(2014,4,8,13,20,43)
+        recorded_at: new Date(2014,4,8,13,20,43,0)
     });
     Readings.insert({
         sensorId: coSensor2,
         type: 'co2',
         value: 614.0,
-        recorded_at: new Date(2014,4,8,13,51,23)
+        recorded_at: new Date(2014,4,8,13,51,23,0)
     });
 
 

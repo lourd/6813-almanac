@@ -11,7 +11,6 @@ Template.rackPage.helpers({
 		return currentPlot._id;
 	}
 });
-
 Template.rackPage.rendered = function() {
 	Session.set('currentPlot', 0);
 

@@ -1,18 +1,12 @@
 Template.quickStats.rendered = function() {
 
-	$(".stat-details").hide();
-
-	// this function toggles showing the details for area's sensor information
-	$(".stat-details-button").click(function() {
-		if ($(".stat-details-button").val() === '+') {
-			$(".stat-details").show();
-			$(".stat-details-button").val("-");
+	testDB = function() {
+		var plots = Plots.find();
+		console.log(plots.count());
+		for (plot in plots) {
+			console.log(plot._id);
 		}
-		else {
-			$(".stat-details").hide();
-			$(".stat-details-button").val('+');
-		}
-	});
+	};
 }
 
 
@@ -44,7 +38,6 @@ Template.quickStats.helpers({
 			return d.type
 		});
 		var distinctValues = _.pluck(distinctArray, 'type');
-
 
 		//Put it into an array to pass to the template
 		var outPutArray = [];
@@ -79,4 +72,3 @@ Template.quickStats.events({
 		Session.set('graphType', type);
 	}
 })
-

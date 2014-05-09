@@ -90,6 +90,22 @@ $plot-text-color: green;
     width: 500px;
 }
 
+// these are for the d3 axises
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+}
+
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+.hiddenRow {
+    padding: 0;
+}
+
 .table > thead > tr > th {
     width: 150px
 }
