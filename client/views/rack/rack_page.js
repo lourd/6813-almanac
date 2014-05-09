@@ -1,6 +1,8 @@
 Template.rackPage.created = function() {
 
-	var plot = Plots.findOne({rackId:this.data._id});
+	// don't need to give a rack id, filtered on subscribe
+
+	var plot = Plots.findOne();	
 
 	Session.set('currentPlot', plot.name);
 }

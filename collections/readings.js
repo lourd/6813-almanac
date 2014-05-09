@@ -1,11 +1,12 @@
-Plots = new Meteor.Collection('plots');
+Readings = new Meteor.Collection('readings');
 
 Meteor.methods({
-    new_plot: function(doc) {
-        return Plots.insert(doc);
+    new_reading: function(doc) {
+        doc.recorded_at = new Date;
+        return Readings.insert(doc);
     }
 })
-// Plots.allow({
+// Readings.allow({
 //     insert: function (userId, doc) {
 //         //...
 //     },
@@ -21,7 +22,7 @@ Meteor.methods({
 //     }
 // });
 
-// Plots.deny({
+// Readings.deny({
 //     insert: function (userId, doc) {
 //         //...
 //     },

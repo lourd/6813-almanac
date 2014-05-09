@@ -1,8 +1,7 @@
 <template name="rack">
 
 
-    <!-- number the plots -->
-    {{#each plotsWithIndex}}
+    {{#each plots}}
         <!-- Only make this for the first plot -->
         {{#if firstPlot}}
             <!-- Using rack position as anchor -->
@@ -14,7 +13,7 @@
                 z-index: {{stackItems}};
             ">
                 <h3 class="shape-text">
-                    <a href="{{pathFor 'rackPage' _id=../_id}}">
+                    <a href="{{pathFor 'rackPage' areaId=../areaId rackId=../_id}}">
                         {{../name}}
                     </a>
                 </h3>
@@ -23,8 +22,8 @@
             <!-- These are the divs that look stacked -->
             <!-- plot class hooks up the jquery stuff -->
             <div class="shape subplot" style="
-                left: {{offsetLeft}}px;
-                top: {{offsetTop}}px;
+                left: {{offsetLeft offset=7}}px;
+                top: {{offsetTop offset=7}}px;
                 width: {{../attributes.width}}px;
                 height: {{../attributes.height}}px;
                 z-index: {{stackItems}};

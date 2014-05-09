@@ -1,11 +1,11 @@
-Plots = new Meteor.Collection('plots');
+Sensors = new Meteor.Collection('sensors');
 
 Meteor.methods({
-    new_plot: function(doc) {
-        return Plots.insert(doc);
+    new_sensor: function(sensorArgs) {
+
     }
 })
-// Plots.allow({
+// Sensors.allow({
 //     insert: function (userId, doc) {
 //         //...
 //     },
@@ -21,7 +21,7 @@ Meteor.methods({
 //     }
 // });
 
-// Plots.deny({
+// Sensors.deny({
 //     insert: function (userId, doc) {
 //         //...
 //     },

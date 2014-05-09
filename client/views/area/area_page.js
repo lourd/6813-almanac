@@ -13,28 +13,24 @@ Template.areaPage.events({
      *      Sets attributes to default positions and adds it to the collection
     */
     'click #add-plot': function (e) {
-        var DEFAULT_PLOT_X = 170;
-        var DEFAULT_PLOT_Y = 190;
-        var DEFAULT_PLOT_WIDTH = 400;
-        var DEFAULT_PLOT_HEIGHT = 100;
-
-        // Just giving it a random name
-        var rackName = "Plot " + _.random(1000);
-
+        // Make a rack
+        var areaId = this._id;
         var newRack = {
-            areaId: this._id,
-            name: rackName,
-            attributes: {   top: DEFAULT_PLOT_Y, 
-                            left: DEFAULT_PLOT_X, 
-                            width: DEFAULT_PLOT_WIDTH, 
-                            height: DEFAULT_PLOT_HEIGHT
-                        },
-            plots: [
-                // Plots start out with the same rackname
-                {plot: rackName}
-            ]
+            areaId: areaId
         };
-        Racks.insert(newRack);
+        Meteor.call('new_rack', newRack, function (error, result) {
+            // Make a plot
+            var newPlot = {
+                areaId: areaId,
+                rackid: result.rackId,
+                name: result.rackName,
+                stackIndex: 0
+            };
+            Meteor.call('new_plot', newPlot, function( error, result) {
+                console.log("new plot created");
+                console.log(result);
+            });
+        });
     },
 
     'click #add-sensor': function(e) {
@@ -45,7 +41,9 @@ Template.areaPage.events({
         // too bad we have to use the document id
         var racks = Racks.find();   // prefiltered by the router
         racks.forEach(function (rack) {
-            Racks.remove({_id: rack._id});
+            Meteor.call('remove_rack', rack._id, function(error, result) {
+                // Do something with an error
+            })
         });
     }
 });
