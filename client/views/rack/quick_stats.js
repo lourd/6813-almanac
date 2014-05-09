@@ -34,7 +34,6 @@ Template.quickStats.helpers({
 				{sname: sensorName}
 			]);
 		});
-		console.log(readings);
 		return readings;
 	},
 	stats: function() {
@@ -74,8 +73,10 @@ Template.quickStats.helpers({
 });
 
 Template.quickStats.events({
-	'click .graph-selector' : function(e) {
-		console.log("clicked");
+	'click .accordion-toggle' : function(e) {
+		var type = this.name;
+		Session.set('graphPlot', Session.get('currentPlot'));
+		Session.set('graphType', type);
 	}
 })
 

@@ -1,7 +1,7 @@
 <template name="slide">
 
 	<div class="slide">
-		{{#if isGraph plot}}
+		{{#if isGraph this.stackIndex}}
 			{{> graphSlide}}
 		{{else}}
 			{{> plotSlide}}

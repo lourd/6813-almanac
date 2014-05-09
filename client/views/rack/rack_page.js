@@ -1,16 +1,23 @@
+Session.set('currentPlot', 0);
+Session.set('graphPlot', -1);
+
 Template.rackPage.helpers({
 	getCurrentPlotId: function () {
 		// Get the slick carousel
 		var carousel = $("#plot-carousel");
 		// Gets stack index from slick itself
 		var newStackIndex = carousel.slickCurrentSlide();
+
 		// Don't have to filter by area because the router takes care of it
 		var currentPlot = Plots.findOne({stackIndex: newStackIndex});
+		
 		return currentPlot._id;
 	}
 });
 
 Template.rackPage.rendered = function() {
+	Session.set('currentPlot', 0);
+
 	// Save the data context, a Rack
 	var rackData = this.data;
 
