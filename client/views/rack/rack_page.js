@@ -1,6 +1,3 @@
-Session.set('currentPlot', 0);
-Session.set('graphPlot', -1);
-
 Template.rackPage.helpers({
 	getCurrentPlotId: function () {
 		// Get the slick carousel
