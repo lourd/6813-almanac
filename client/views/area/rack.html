@@ -2,7 +2,14 @@
 
 
     {{#each plots}}
-        <!-- Only make this for the first plot -->
+        {{> plot}}
+    {{/each}}
+
+
+</template>
+
+<template name="plot">
+    <!-- Only make this for the first plot -->
         {{#if firstPlot}}
             <!-- Using rack position as anchor -->
             <div class="shape plot" style="
@@ -29,7 +36,5 @@
                 z-index: {{stackItems}};
             "></div>
         {{/if}}
-    {{/each}}
-
-
+    
 </template>
