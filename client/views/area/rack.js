@@ -4,7 +4,6 @@ var SUBPLOT_OFFSET_Y = SUBPLOT_OFFSET_X;
 Template.rack.helpers({
     // Data context here is still the rack
     plots: function () {
-        console.log("plots called");
         var plots = Plots.find({rackId: this._id});
         // Save the number of plots
         var numPlots = plots.count();
@@ -15,10 +14,11 @@ Template.rack.helpers({
             plot.numPlots = numPlots;
             return plot;
         });
-    },
+    }
+});
+Template.plot.helpers({
     // Date context for these 3 methods is the plot
     firstPlot: function() {
-        console.log("first plot called");
         return this.stackIndex === 0;
     },
     offsetLeft: function (args) {
@@ -37,17 +37,16 @@ Template.rack.helpers({
     }
 });
 
-Template.rack.rendered = function () {
-    console.log("rack rendered!");
+Template.plot.rendered = function () {
     // Get the div element from the template object
     // Only plots! Not subplots
-    var rackDiv = this.$('.plot');
+    var plotDiv = this.$('.plot');
     // Store the template data in the jquery data
-    rackDiv.data(this.data);
-    // Save the 'this' rackObj in a variable for access in callbacks
-    var rackObj = this.data;
+    plotDiv.data(this.data);
+    // Save the 'this' plotObj in a variable for access in callbacks
+    var plotObj = this.data;
 
-    rackDiv.resizable({
+    plotDiv.resizable({
             handles: "n, e, s, w", // only edges handles
             containment: "parent"
         }, {
@@ -59,7 +58,7 @@ Template.rack.rendered = function () {
                 // newAttrs.width = ui.size.width;
                 // newAttrs.height = ui.size.height;
                 // // Update the collection
-                // Racks.update({_id: rackObj._id},
+                // Racks.update({_id: plotObj.rackId},
                 //              {$set: {attributes: newAttrs}}
                 //             );
             },
@@ -76,11 +75,12 @@ Template.rack.rendered = function () {
                 newAttrs.width = ui.size.width;
                 newAttrs.height = ui.size.height;
                 // Update the collection
-                Racks.update({_id: rackObj._id},
+                Racks.update({_id: plotObj.rackId},
                              {$set: {attributes: newAttrs}}
                             );
             }
         })
+    // yay jquery chaining!
     .draggable({ 
         containment: "#drawing-container",
         stack: ".shape"
@@ -98,7 +98,7 @@ Template.rack.rendered = function () {
             newAttrs.width = $(this).width();
             newAttrs.height = $(this).height();
             // update in the collection
-            Racks.update({_id: rackObj._id}, 
+            Racks.update({_id: plotObj.rackId}, 
                          {$set: {attributes: newAttrs}}
                          );
         }
@@ -134,14 +134,7 @@ Template.rack.rendered = function () {
          *  @param ui: {draggable, helper, position, offset}
         */
         drop: function(evt, ui) {
-            var droppedRack = Racks.findOne({_id: ui.draggable.data('_id')});
-            // @bug This will delete duplicate plot names!!
-            // Combine the rack plot names
-            Racks.update({_id: rackObj._id},
-                        {$addToSet : { plots: {$each : droppedRack.plots} } }
-                        );
-            // Get rid of the old rack
-            Racks.remove({_id: droppedRack._id});
+            Meteor.call('combine_racks', ui.draggable.data('rackId'), plotObj.rackId);
         },
         /*
          *  draggable dragged out of the droppable
