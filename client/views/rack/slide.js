@@ -4,15 +4,14 @@ var MAX_WIDTH = 600;
 var MIN_HEIGHT = 80;
 
 Template.slide.helpers({
-	
+	isGraph: function(position) {
+		return Session.equals('graphPlot', position);
+
+	}
 });
 
 Template.slide.rendered = function() {
-	// var el = this.firstNode;
-	
-	// if ($('#plot-carousel').hasClass('slick-initialized')) {
-	// 	$('#plot-carousel').slickAdd(el);		
-	// }
+
 
 }
 
@@ -21,7 +20,7 @@ Template.slide.created = function() {
 }
 
 Template.slide.destroyed = function () {
-	console.log("slide destroyed");
+
 };	
 
 //////////////////////////////////////////////////
@@ -50,7 +49,7 @@ Template.plotSlide.helpers({
 	}
 });
 Template.plotSlide.rendered = function() {
-	console.log("plot slide rendered");
+
 }
 
 Template.plotSlide.destroyed = function() {
@@ -66,7 +65,11 @@ Template.graphSlide.helpers({
 	}
 });
 
-Template.graphSlide.rendered = function(category) {
+Template.graphSlide.rendered = function() {
+
+	var type = Session.get('graphType');
+
+	console.log(type);
 
     // this is where the graph will be drawn
     var plotDisplay = $(".plot-display");
@@ -80,13 +83,13 @@ Template.graphSlide.rendered = function(category) {
 
     var readings = [];
 
-    if (category.indexOf("temperature") > -1) {
+    if (type.indexOf("temperature") > -1) {
           readings = Readings.find({type: "temperature"}, {sort: {recorded_at: 1}});
     }
-    else if (category.indexOf("humidity") > -1) {
+    else if (type.indexOf("humidity") > -1) {
           readings = Readings.find({type: "humidity"}, {sort: {recorded_at: 1}});
     }
-    else if (category.indexOf("co2") > -1){
+    else if (type.indexOf("co2") > -1){
           readings = Readings.find({type: "co2"}, {sort: {recorded_at: 1}});
     }
     else {
@@ -151,6 +154,5 @@ Template.graphSlide.rendered = function(category) {
           .attr("class", "axis")
           .attr("transform", "translate(" + padding + ",0)")
           .call(yAxis);
-  	
 }
 

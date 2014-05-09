@@ -1,12 +1,29 @@
 <template name="quickStats">
-	<ul id="stats-container">
-		{{#each stats}}
-			<li class="list-group-item graph-selector btn btn-default dropdown-toggle">
-				<h4>{{name}}: {{value}}{{units}}</h4>
-				<div class="stat-details">
-					details
-				</div>
-			</li>
-		{{/each}}
-	</ul>
+	<table id="stats-container" class="table table-condensed" style="border-collapse:collapse;">
+    	<thead>
+        	<tr>
+				<th>Variable</th>
+				<th>Value</th>
+				<th>Units</th>
+        	</tr>
+    	</thead>
+    	<tbody>
+    	{{#each stats}}
+        	<tr data-toggle="collapse" data-target="#{{name}}" class="accordion-toggle">
+ 				<td><h4>{{name}}</h4></td>
+				<td><h4>{{value}}</h4></td>
+				<td><h4>{{units}}</h4></td>
+        	</tr>
+        	<tr >
+            	<td colspan="3" class="hiddenRow">
+            		<div class="accordian-body collapse" id="{{name}}">
+            		{{#each moreStats name}}
+            			<h4>{{sname}} : {{reading}}</h4>
+            		{{/each}}
+            		</div>
+            	</td>
+        	</tr>
+    	{{/each}}
+    	</tbody>
+	</table>
 </template>

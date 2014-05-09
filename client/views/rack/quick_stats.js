@@ -7,55 +7,29 @@ Template.quickStats.rendered = function() {
 			console.log(plot._id);
 		}
 	};
-
-	
-	$(".stat-details").hide();
-	/*
-	// this function toggles showing the details for area's sensor information
-	$(".stat-details-button").click(function() {
-		if ($(".stat-details-button").val() === '+') {
-			$(".stat-details").show();
-			$(".stat-details-button").val("-");
-		}
-		else {
-			$(".stat-details").hide();
-			$(".stat-details-button").val('+');
-		}
-	});
-
-	$("#stats-container").selectable({
-		selected: function(event, ui) {
-			var text = $(ui.selected).children()[0].innerHTML;
-
-			Session.set('graphPlot', Session.get('currentPlot'));
-			Session.set('graphType', text);
-		},
-
-		unselected: function(event, ui) {
-
-		}
-	});
-
-	$(".ui-selectee").mouseover(function() {
-		var child = $(this).children()[0];
-		if (child != undefined) {
-			//Add some color changing function so there is
-			//affordance (so we know buttons can be clicked)
-			var text = child.innerHTML;
-		}		
-	});
-
-	$(".ui-selectee").hover(
-		function() {
-			//$(this).css('background', 'red');
-		}, function() {
-			//$(this).css('background', 'white');
-	});
-*/
 }
 
 
 Template.quickStats.helpers({
+	moreStats: function(givenType) {
+		var readings = []
+		Sensors.find().forEach(function(s) {
+			var sId = s._id;
+			var sensorName = Sensors.findOne({_id:sId}).name;
+
+			var latestReading = Readings.findOne({
+				$and: [
+					{sensorId:sId},
+					{type: givenType}]
+				},{sort: {recorded_at:1}}).value;
+
+			readings.push([
+				{reading: latestReading},
+				{sname: sensorName}
+			]);
+		});
+		return readings;
+	},
 	stats: function() {
 		//Finding out the number of different types of stats
 		//Meteor Collections does not have 'distinct' method yet
@@ -78,7 +52,7 @@ Template.quickStats.helpers({
 						{sensorId:sId},
 						{type: distinctValues[i]}]
 					},{sort: {recorded_at:1}}).value;
-				console.log(latestReading);
+
 				latestAverage += latestReading/numOfSensors;
 			});
 			outPutArray.push({
@@ -92,10 +66,9 @@ Template.quickStats.helpers({
 });
 
 Template.quickStats.events({
-	"click .graph-selector": function (e) {
-		// isolates the category - either temperature, humidity, or co2
-		var text = e.target.textContent.split(":")[0];
-
-		Template.rackPage.createGraph(text);
+	'click .accordion-toggle' : function(e) {
+		var type = this.name;
+		Session.set('graphPlot', Session.get('currentPlot'));
+		Session.set('graphType', type);
 	}
-});
+})

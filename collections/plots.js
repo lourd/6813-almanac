@@ -14,7 +14,6 @@ Meteor.methods({
     
     // Delete plot by id and rack id, with stackIndex
     deletePlot: function(plotId, rackId, stackIndex) {
-        console.log("delete plot called!");
         Plots.update({ $and : [
                             {rackId: rackId} ,
                             {stackIndex: {$gt: stackIndex}}
