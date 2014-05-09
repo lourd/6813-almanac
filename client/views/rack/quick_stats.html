@@ -3,23 +3,29 @@
 	<table id="stats-container" class="table table-condensed" style="border-collapse:collapse;">
     	<thead>
         	<tr>
-				<th>Variable</th>
-				<th>Value</th>
-				<th>Units</th>
+				<th>Variables</th>
         	</tr>
     	</thead>
     	<tbody>
     	{{#each stats}}
         	<tr data-toggle="collapse" data-target="#{{name}}" class="accordion-toggle">
  				<td><h4>{{name}}</h4></td>
-				<td><h4>{{value}}</h4></td>
-				<td><h4>{{units}}</h4></td>
+				<td>
+                    <h4 class="average-value">
+                        <span class="caret"></span>
+                        {{value}}
+                        <small>average</small>
+                    </h4>
+                </td>
         	</tr>
-        	<tr >
-            	<td colspan="3" class="hiddenRow">
+        	<tr>
+            	<td colspan="3" class="hidden-row">
             		<div class="accordian-body collapse" id="{{name}}">
             		{{#each moreStats name}}
-            			<h4>{{sname}} : {{reading}}</h4>
+                        <h4 class="sub-reading">
+                            {{reading}}
+                            <small>{{sname}}</small>
+                        </h4>
             		{{/each}}
             		</div>
             	</td>
