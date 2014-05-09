@@ -9,9 +9,8 @@ Template.rackPage.created = function() {
 
 
 Template.rackPage.rendered = function() {
-
-	var rackId = this.data._id;
-	var pageData = this.data;
+	debugger
+	var rackData = this.data;
 
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
@@ -21,10 +20,12 @@ Template.rackPage.rendered = function() {
 	$("#remove-plot").click(function () {
 		var slideObject = $(".slick-active").children()[0];
 		var plotName = $(slideObject).children()[0].innerHTML;
+		var plotCount = Plots.find().count();
 
 		var plotInfo = {
-			data: pageData,
-			name: plotName
+			data: rackData,
+			name: plotName,
+			stackIndex: plotCount
 		}
 
 		var currentSlide = $("#plot-carousel").slickCurrentSlide();
@@ -53,7 +54,7 @@ Template.rackPage.rendered = function() {
 				var named = plotName.value;
 
 				var plotInfo = {
-					data: pageData,
+					data: rackData,
 					name: named
 				};
 

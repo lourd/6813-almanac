@@ -2,20 +2,17 @@ Plots = new Meteor.Collection('plots');
 
 Meteor.methods({
 	addPlot: function(plotAttributes) {
-
+        debugger
 		var area = plotAttributes.data.areaId;
 		var rack = plotAttributes.data._id;
 		var name = plotAttributes.name;
+        var stackIndex = plotAttributes.stackIndex;
 
-		var newPlotId = Plots.insert({
+		return newPlotId = Plots.insert({
 			areaId: area,
 			rackId: rack,
 			name: name,
-			stats: [
-            	{name: 'Temperature', value: 65, units: 'F'},
-            	{name: 'CO2 Level', value: 700, units: 'ppm'},
-            	{name: 'Humidity', value: 15, units: '%'}
-			]
+            stackIndex: stackIndex
 		});
 	}, deletePlot: function(plotAttributes) {
 		var areaId = plotAttributes.data.areaId;
@@ -28,6 +25,6 @@ Meteor.methods({
 			name: name
 		});
 
-		Plots.remove({_id: toBeDeletedId});
+		return Plots.remove({_id: toBeDeletedId});
 	}
 });
