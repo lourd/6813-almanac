@@ -6,6 +6,10 @@ var DEFAULT_PLOT_WIDTH = 400;
 var DEFAULT_PLOT_HEIGHT = 100;
 
 Meteor.methods({
+    /*
+     *  Make a new rack
+     *  Set the default name and position attributes
+    */
     new_rack : function(doc) {
         var defaultAttrs = {
             top: DEFAULT_PLOT_Y, 
@@ -17,8 +21,13 @@ Meteor.methods({
         var defaultName = "Plot " + _.random(1000);
         doc.attributes = defaultAttrs;
         doc.name = defaultName;
+        // Returning name and id for the related plots to be made off of
         return {rackId: Racks.insert(doc), rackName: defaultName};
     },
+    /*
+     *  Remove the rack with the passed in rackId
+     *  and remove all plots in this rack
+    */
     remove_rack: function(rackId) {
         // Remove all plots belonging to this rack as well
         var plots = Plots.find({rackId: rackId});
@@ -28,6 +37,11 @@ Meteor.methods({
         // Then remove the rack
         return Racks.remove({_id: rackId});
     },
+    /*
+     *  Combine two racks, given their IDs. Source rack is then removed
+     *  Put all of the plots in the source rack in the destination rack
+     *  The source plots go on top of the destination ones
+    */
     combine_racks: function(sourceRackId, destRackId) {
         // Get the plots in order from top to bottom
         var transferredPlots = Plots.find({rackId: sourceRackId}, {sort: {stackIndex: 1}});
@@ -44,6 +58,9 @@ Meteor.methods({
             plot.stackIndex = index;
             Plots.update(plot._id, plot);
         });
+
+        // Remove old rack
+        Racks.remove(sourceRackId);
     }
 })
 // Racks.allow({

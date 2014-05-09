@@ -2,6 +2,9 @@ Template.areaPage.helpers({
 
     racks: function() {
         return Racks.find(); // automatically matched to this id in the router
+    },
+    sensors: function() {
+        return Sensors.find();
     }
 
 });
@@ -33,7 +36,16 @@ Template.areaPage.events({
     },
 
     'click #add-sensor': function(e) {
-        console.log("add sensor clicked");
+        var areaId = this._id;
+        var newSensor = {
+            zoneType: 'area',
+            zoneId: areaId
+        };
+        Meteor.call('new_sensor', newSensor, function(error, result) {
+            Meteor.call('readings_dummy_data', result, function(error, result) {
+
+            });
+        });
     },
     'click #clear': function (e) {
         // Racks.remove({areaId: this._id}); 
@@ -42,7 +54,13 @@ Template.areaPage.events({
         racks.forEach(function (rack) {
             Meteor.call('remove_rack', rack._id, function(error, result) {
                 // Do something with an error
-            })
+            });
+        });
+        var sensors = Sensors.find();
+        sensors.forEach(function (sensor) {
+            Meteor.call('remove_sensor', sensor._id, function(error, result) {
+
+            });
         });
     }
 });

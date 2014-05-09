@@ -5,7 +5,6 @@
         <li><a href="{{pathFor 'areasPage'}}">Schrute Farms</a></li>
         <li class="active">{{name}}</li>
     </ul>
-    <!-- <h1 class="page-header">{{name}} Layout Page</h1> -->
     <div id="drawing-container">
         <div class="drawing-actions">
             <a href="#" title="Add..." class="dropdown-toggle drawing-action" data-toggle="dropdown">
@@ -18,14 +17,14 @@
                     <a href="#" id="add-sensor">Add sensor</a>
                 </li>
             </ul>
-            <a href="#" title="Clear layout" id="clear" class="drawing-action glyphicon glyphicon-trash"></a>
+            <a href="#" title="Clear layout" id="clear" class="drawing-action glyphicon glyphicon-remove"></a>
         </div>
         {{#each racks}}
             {{> rack}}
         {{/each}}
-        <!-- {{#each sensors}}
-            {{> sensor}}
-        {{/each}} -->
+        {{#each sensors}}
+            {{>sensor}}
+        {{/each}}
     </div>
 
 </template>
