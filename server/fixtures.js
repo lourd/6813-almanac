@@ -118,7 +118,7 @@ if (Plots.find().count() === 0) {
         areaId: shipContId,
         rackId: shipRack1,
         name: 'Plot 2',
-        stackIndex: 1  
+        stackIndex: 1
     });
 
     Plots.insert({
