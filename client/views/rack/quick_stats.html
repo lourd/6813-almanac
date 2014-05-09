@@ -1,0 +1,16 @@
+<template name="quickStats">
+<!-- 	<div id="stats-container" class="row placeholders"> -->		<ul id="stats-container">
+		{{#each stats}}
+			<!-- <div class="col-xs-6 col-sm-3 placeholder stat"> -->
+			<li class="list-group-item">
+				<h4>{{name}}: {{value}}{{units}}
+				<input type="button" class="stat-details-button" value="+"></h4>
+				<div class="stat-details">
+					details
+				</div>
+			</li>
+			<!-- </div> -->
+		{{/each}}
+		</ul>
+<!-- 	</div> -->
+</template>

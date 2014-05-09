@@ -2,22 +2,30 @@ var SUBPLOT_OFFSET_X = 7;
 var SUBPLOT_OFFSET_Y = SUBPLOT_OFFSET_X;
 
 Template.rack.helpers({
-    plotsWithIndex: function () {
-        var plots = this.plots;
-        for( var i = 0; i<plots.length; i++) {
-            plots[i].index = i;
-            plots[i].parent = this;
-        }
-        return plots
+    // Data context here is still the rack
+    plots: function () {
+        console.log("plots called");
+        var plots = Plots.find({rackId: this._id});
+        // Save the number of plots
+        var numPlots = plots.count();
+        // Save the 'this' context for below
+        var rackParent = this;
+        return plots.map( function(plot) {
+            plot.parent = rackParent;
+            plot.numPlots = numPlots;
+            return plot;
+        });
     },
+    // Date context for these 3 methods is the plot
     firstPlot: function() {
-        return this.index === 0;
+        console.log("first plot called");
+        return this.stackIndex === 0;
     },
-    offsetLeft: function (delta) {
-        return this.parent.attributes.left + SUBPLOT_OFFSET_X * this.index;
+    offsetLeft: function (args) {
+        return this.parent.attributes.left + args.hash.offset * this.stackIndex;
     },
-    offsetTop: function(delta) {
-        return this.parent.attributes.top + SUBPLOT_OFFSET_Y * this.index;
+    offsetTop: function(args) {
+        return this.parent.attributes.top + args.hash.offset * this.stackIndex;
     },
 
     /*
@@ -25,11 +33,12 @@ Template.rack.helpers({
      *  stacked
     */
     stackItems: function() {
-        return this.parent.plots.length - this.index;
+        return this.numPlots - this.stackIndex;
     }
 });
 
 Template.rack.rendered = function () {
+    console.log("rack rendered!");
     // Get the div element from the template object
     // Only plots! Not subplots
     var rackDiv = this.$('.plot');
@@ -43,7 +52,16 @@ Template.rack.rendered = function () {
             containment: "parent"
         }, {
             resize: function(evt, ui) {
-
+                // Provdes live data when resizing but very resource intensive!!
+                // var newAttrs = {};
+                // newAttrs.top = ui.position.top;
+                // newAttrs.left = ui.position.left;
+                // newAttrs.width = ui.size.width;
+                // newAttrs.height = ui.size.height;
+                // // Update the collection
+                // Racks.update({_id: rackObj._id},
+                //              {$set: {attributes: newAttrs}}
+                //             );
             },
             start: function(evt, ui) {
 
@@ -116,18 +134,12 @@ Template.rack.rendered = function () {
          *  @param ui: {draggable, helper, position, offset}
         */
         drop: function(evt, ui) {
-            console.log("dropped rack");
             var droppedRack = Racks.findOne({_id: ui.draggable.data('_id')});
-            console.log(droppedRack);
-            console.log("dropped on rack");
-            console.log(rackObj);
             // @bug This will delete duplicate plot names!!
             // Combine the rack plot names
             Racks.update({_id: rackObj._id},
                         {$addToSet : { plots: {$each : droppedRack.plots} } }
                         );
-            console.log("dropped on rack updated");
-            console.log(Racks.findOne({_id: rackObj._id}));
             // Get rid of the old rack
             Racks.remove({_id: droppedRack._id});
         },

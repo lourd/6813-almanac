@@ -1,6 +1,8 @@
 Template.rackPage.created = function() {
 
-	var plot = Plots.findOne({rackId:this.data._id});
+	// don't need to give a rack id, filtered on subscribe
+
+	var plot = Plots.findOne();	
 
 	Session.set('currentPlot', plot.name);
 }
@@ -79,6 +81,8 @@ Template.rackPage.rendered = function() {
 	// TODO: trigger this call when a particular trait is selected
 	createGraph();
 
+	var rackData = this.data;
+
 	$("#add-plot").click(function () {
 		$("#add-plot-popup").dialog("open");
 		
@@ -87,10 +91,12 @@ Template.rackPage.rendered = function() {
 	$("#remove-plot").click(function () {
 		var slideObject = $(".slick-active").children()[0];
 		var plotName = $(slideObject).children()[0].innerHTML;
+		var plotCount = Plots.find().count();
 
 		var plotInfo = {
-			data: pageData,
-			name: plotName
+			data: rackData,
+			name: plotName,
+			stackIndex: plotCount
 		}
 
 		var currentSlide = $("#plot-carousel").slickCurrentSlide();
@@ -114,38 +120,21 @@ Template.rackPage.rendered = function() {
 		modal: true,
 		buttons: {
 			"Add plot!": function () {
-
-				// var rack = Racks.findOne({name:'Rack 1'});
-				var named = plotName.value;
-
-				var plotInfo = {
-					data: pageData,
-					name: named
+				// Build the new plot object
+				var newPlot = {
+					areaId: rackData.areaId,
+					rackId: rackData._id,
+					name: plotName.value
 				};
-
-				Meteor.call('addPlot', plotInfo, function(error, id) {
+				// Add it with a Meteor.call
+				Meteor.call('addPlot', newPlot, function(error, result) {
 					if (error) {
 						throwError(error.reason);
 					} 
 				});
 
-				// Racks.update({_id: rack._id},{
-				// 	$push: {plots: {plot: named}}
-				// });
-
+				// Reset the modal text box and close
 				plotName.value = "";
-
-				// Plots.insert({
-				// 	areaId: rack.areaId,
-				// 	rackId: rack._id,
-				// 	name: named,
-				// 	stats: [
-				// 		{value: '--F'},
-				// 		{value: '---ppm'},
-				// 		{value: '--%'}
-				// 	]
-				// });
-
 				$(this).dialog("close");
 
 			}, "Cancel": function () {

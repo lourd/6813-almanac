@@ -113,6 +113,9 @@ ul.racks {
         }
     }
 
+    .rack-container {
+        position: absolute;
+    }
     .shape {
         display: table;
         position: absolute; // needed for draggable/resizable to work correctly
