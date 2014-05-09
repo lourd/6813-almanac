@@ -17,6 +17,7 @@ Meteor.methods({
         var defaultName = "Plot " + _.random(1000);
         doc.attributes = defaultAttrs;
         doc.name = defaultName;
+        // Returning name and id for the related plots to be made off of
         return {rackId: Racks.insert(doc), rackName: defaultName};
     },
     remove_rack: function(rackId) {

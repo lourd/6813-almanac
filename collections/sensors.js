@@ -1,8 +1,19 @@
 Sensors = new Meteor.Collection('sensors');
 
-Meteor.methods({
-    new_sensor: function(sensorArgs) {
+var DEFAULT_SENSOR_X = 250;
+var DEFAULT_SENSOR_Y = 250;
+var DEFAULT_SENSOR_TYPE = 'air';
 
+Meteor.methods({
+    new_sensor: function(doc) {
+        var defaultAttrs = {
+            top: DEFAULT_SENSOR_Y,
+            left: DEFAULT_SENSOR_X
+        };
+        var defaultName = "Air Sensor " + _.random(1000);
+        doc.attributes = defaultAttrs;
+        doc.name = defaultName;
+        return Sensors.insert(doc);
     }
 })
 // Sensors.allow({
