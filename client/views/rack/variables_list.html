@@ -14,7 +14,7 @@
                     </a>
                 </td>
 				<td>
-                    <h4 data-toggle="collapse" data-target="#{{name}}" class="accordion-toggle average-value">
+                    <h4 data-toggle="collapse" data-target="#{{type}}" class="accordion-toggle average-value">
                         <span class="caret"></span>
                         {{value}}
                         <small>average</small>
@@ -23,7 +23,7 @@
         	</tr>
         	<tr>
             	<td colspan="3" class="hidden-row">
-            		<div class="accordian-body collapse" id="{{name}}">
+            		<div class="accordion-body collapse" id="{{type}}">
             		{{#each moreStats type}}
                         <h4 class="sub-reading">
                             {{reading}}
