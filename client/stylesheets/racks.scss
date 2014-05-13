@@ -9,7 +9,7 @@ $slick-next-character: '\2192'; // default
 $plot-inactive-color: #B0D279;
 $plot-active-color: #96C757;
 $plot-hovered-color: #96C757;
-$plot-text-color: green;
+$plot-text-color: black;
 //////////////////////////////////////////////////
 
 .slick-prev:before, .slick-next:before {
@@ -37,10 +37,13 @@ $plot-text-color: green;
 
 #plot-carousel {
     margin: 20px 30px;
+    .slide {
+        height: 315px;
+    }
     .plot-display {
         background-color: $plot-inactive-color;
         display: table;
-        margin: 20px auto;
+        position: absolute;
         box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.6);
         // size is set in the rendered method
         h3 {

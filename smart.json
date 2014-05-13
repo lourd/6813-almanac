@@ -5,6 +5,7 @@
     "iron-router": {},
     "spin": {},
     "jqueryui": {},
-    "jquery-ui": {}
+    "jquery-ui": {},
+    "nvd3js": {}
   }
 }

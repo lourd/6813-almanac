@@ -12,10 +12,12 @@
 
 
 <template name="plotSlide">
-
+    {{debug}}
     <div class="plot-display"  style="
         width: {{scaledWidth}}px;
         height: {{scaledHeight}}px;
+        top: calc(50% - {{halfHeight}}px);
+        left: calc(50% - {{halfWidth}}px);
     ">
         <h3 class="plot-name">{{name}}</h3>
     </div>

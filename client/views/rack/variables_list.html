@@ -1,4 +1,4 @@
-<template name="quickStats">
+<template name="variablesList">
 	<table id="stats-container" class="table table-condensed" style="border-collapse:collapse;">
     	<thead>
         	<tr>
@@ -10,7 +10,7 @@
         	<tr >
  				<td>
                     <a href="#" class="graph-toggle">
-                        <h4>{{name}}</h4>
+                        <h4>{{type}}</h4>
                     </a>
                 </td>
 				<td>
@@ -24,7 +24,7 @@
         	<tr>
             	<td colspan="3" class="hidden-row">
             		<div class="accordian-body collapse" id="{{name}}">
-            		{{#each moreStats name}}
+            		{{#each moreStats type}}
                         <h4 class="sub-reading">
                             {{reading}}
                             <small>{{sname}}</small>

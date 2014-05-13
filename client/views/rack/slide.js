@@ -31,21 +31,45 @@ Template.plotSlide.helpers({
 		var rack = Racks.findOne(); // works cause we're only subscribed to the one current rack
 		var aspect = rack.attributes.height / rack.attributes.width;
 		// scale the div correctly
-		if (aspect > 0.5) {	// if it's a tall rectangle
+		if (aspect > 0.5) {	// if it's a taller narrow rectangle
 			return Math.max(MAX_HEIGHT/aspect, MIN_WIDTH);
 		} else { // if it's a fat rectangle
-			return MAX_WIDTH;
+			return Math.min(MAX_HEIGHT/aspect, MAX_WIDTH);
 		}
 	},
 	scaledHeight: function() {
 		var rack = Racks.findOne();
 		var aspect = rack.attributes.height / rack.attributes.width;
-		if (aspect > 0.5) {
-			return MAX_HEIGHT;
+		if (aspect > 0.5) { // if it's a squat rectangle
+			return Math.min(aspect*MAX_WIDTH, MAX_HEIGHT);
 		} else {
 			return Math.max(aspect*MAX_WIDTH, MIN_HEIGHT);
 		}
-	}
+	},
+  halfWidth: function() {
+    // Get the height & width of the rack
+    var rack = Racks.findOne(); // works cause we're only subscribed to the one current rack
+    var aspect = rack.attributes.height / rack.attributes.width;
+    var width;
+    // scale the div correctly
+    if (aspect > 0.5) { // if it's a taller narrow rectangle
+      width = Math.max(MAX_HEIGHT/aspect, MIN_WIDTH);
+    } else { // if it's a fat rectangle
+      width = Math.min(MAX_HEIGHT/aspect, MAX_WIDTH);
+    }
+    return width/2;
+  },
+  halfHeight: function() {
+    var rack = Racks.findOne();
+    var aspect = rack.attributes.height / rack.attributes.width;
+    var height;
+    if (aspect > 0.5) { // if it's a squat rectangle
+      height = Math.min(aspect*MAX_WIDTH, MAX_HEIGHT);
+    } else {
+      height = Math.max(aspect*MAX_WIDTH, MIN_HEIGHT);
+    }
+    return height/2;
+  }
 });
 Template.plotSlide.rendered = function() {
 

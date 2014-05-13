@@ -1,22 +1,13 @@
-Template.quickStats.rendered = function() {
-
-	testDB = function() {
-		var plots = Plots.find();
-		console.log(plots.count());
-		for (plot in plots) {
-			console.log(plot._id);
-		}
-	};
-}
-
-
-Template.quickStats.helpers({
+Template.variablesList.helpers({
+	/*
+	 *	Return an array of [<latest reading>, <sensor name>]
+	*/
 	moreStats: function(givenType) {
 		var readings = []
 		Sensors.find().forEach(function(s) {
 			var sId = s._id;
-			var sensorName = Sensors.findOne({_id:sId}).name;
-
+			var sensorName = s.name;
+			// Get the most recent value for givenType of the sensor
 			var latestReading = Readings.findOne({
 				$and: [
 					{sensorId:sId},
@@ -30,19 +21,24 @@ Template.quickStats.helpers({
 		});
 		return readings;
 	},
+	/*
+	 *	Return an array of [<variable type>, <average of last values>]
+	*/
 	stats: function() {
-		//Finding out the number of different types of stats
-		//Meteor Collections does not have 'distinct' method yet
+		// Finding out the number of different types of stats
+		// Meteor Collections does not have 'distinct' method yet
 		var array = Readings.find().fetch();
 		var distinctArray = _.uniq(array, false, function(d) {
 			return d.type
 		});
 		var distinctValues = _.pluck(distinctArray, 'type');
 
-		//Put it into an array to pass to the template
+		// Put it into an array to pass to the template
 		var outputArray = [];
+		// Get the most recent values of each type
 		for (var i=0; i<distinctValues.length;i++) {
 			var latestAverage = 0;
+			// From each sensor
 			Sensors.find().forEach(function(s) {
 				var sId = s._id;
 				var numOfSensors = Sensors.find().count();
@@ -55,8 +51,9 @@ Template.quickStats.helpers({
 
 				latestAverage += latestReading/numOfSensors;
 			});
+			// Save the averages
 			outputArray.push({
-				name: distinctValues[i],
+				type: distinctValues[i],
 				value: (latestAverage).toFixed(2)
 			});
 		}
@@ -65,7 +62,7 @@ Template.quickStats.helpers({
 	}
 });
 
-Template.quickStats.events({
+Template.variablesList.events({
 	'click .graph-toggle' : function(e) {
 		// 'this' is the variable button you click on
 		var type = this.name;
