@@ -64,9 +64,9 @@ Template.variablesList.helpers({
 
 Template.variablesList.events({
 	'click .graph-toggle' : function(e) {
-		// 'this' is the variable button you click on
-		var type = this.name;
-		Session.set('graphPlot', Template.rackPage.getCurrentPlotIndex());
-		Session.set('graphType', type);
+		// 'this' is each stat returned in the stats helper
+		// Set the session variable to the current plot index
+		Session.set('slideIsGraph', Template.rackPage.getCurrentPlotIndex());
+		Session.set('graphType', this.type);
 	}
 })

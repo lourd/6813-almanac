@@ -1,21 +1,21 @@
 Template.rackPage.helpers({
+	// Gets the id of the plot currently shown on the carousel
 	getCurrentPlotId: function () {
-		// Get the slick carousel
-		var carousel = $("#plot-carousel");
 		// Gets stack index from slick itself
-		var newStackIndex = carousel.slickCurrentSlide();
-
+		var newStackIndex = $("#plot-carousel").slickCurrentSlide();
 		// Don't have to filter by area because the router takes care of it
-		var currentPlot = Plots.findOne({stackIndex: newStackIndex});
-		
-		return currentPlot._id;
+		return Plots.findOne({stackIndex: newStackIndex})._id;
 	},
+	// Returns the index of the current plot with jquery
+	// Matches the plot's stackIndex
 	getCurrentPlotIndex: function() {
 		return $('#plot-carousel').slickCurrentSlide();
 	}
 });
 Template.rackPage.rendered = function() {
-	Session.set('graphPlot', -1);
+	// slideIsGraph == -1 : no graphs are shown
+	// slideIsGraph == <slide_index> : slide at <slide_index> is a graph
+	Session.set('slideIsGraph', -1);	
 
 	// Save the data context, a Rack
 	var rackData = this.data;
@@ -64,7 +64,8 @@ Template.rackPage.events({
 	},
 
 	'click #remove-plot': function() {
-		Session.set('graphPlot', -1);
+		// Make sure all slides are plots
+		Session.set('slideIsGraph', -1);
 		var rackData = this;
 		var plotId = Template.rackPage.getCurrentPlotId();
 		var carousel = $("#plot-carousel");

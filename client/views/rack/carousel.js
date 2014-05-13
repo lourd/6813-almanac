@@ -24,9 +24,9 @@ Template.carousel.rendered = function() {
 
 Template.carousel.events({
 	'click .slick-prev' : function(e) {
-		Session.set('graphPlot', -1);
+		Session.set('slideIsGraph', -1);
 	}, 
 	'click .slick-next' : function(e) {
-		Session.set('graphPlot', -1);
+		Session.set('slideIsGraph', -1);
 	}
 })

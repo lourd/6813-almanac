@@ -40,6 +40,9 @@ $plot-text-color: black;
     .slide {
         height: 315px;
     }
+    svg {
+        height: 290px;
+    }
     .plot-display {
         background-color: $plot-inactive-color;
         display: table;
