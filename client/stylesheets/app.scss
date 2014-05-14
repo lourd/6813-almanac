@@ -31,11 +31,7 @@ body {
     margin-left: -20px;
 
     .active {
-        a {
-            color: #fff;
-            background-color: #f8931a;
-        }
-        a:hover {
+        a, a:hover, a:focus {
             color: #fff;
             background-color: #f8931a;
         }
