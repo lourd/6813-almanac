@@ -1,6 +1,6 @@
 Template.carousel.helpers ({
 	plots: function() {
-		return Plots.find();
+		return Plots.find({}, {sort: {stackIndex: 1}});
 	},
 	slickify: function() {
 		//Create the carousel

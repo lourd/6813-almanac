@@ -53,7 +53,7 @@ Template.plotSlide.rendered = function() {
 }
 
 Template.plotSlide.destroyed = function() {
-	console.log("plot slide destroyed");
+	// console.log("plot slide destroyed");
 }
 
 //////////////////////////////////////////////////
@@ -70,6 +70,7 @@ Template.graphSlide.rendered = function() {
     nv.addGraph(function() {
         // Make this bitch reactive
         Deps.autorun(function () {
+            // debugger
             var varType = Session.get('graphType');
             var chart = nv.models.lineChart()
                           //Adjust chart margins to give the x-axis some breathing room.
@@ -86,7 +87,7 @@ Template.graphSlide.rendered = function() {
                           .showXAxis(true);        
 
             chart.xAxis     //Chart x-axis settings
-                .axisLabel('Time (h:m:s')
+                .axisLabel('Time (h:m:s)')
                 .tickFormat(function(d) {
                       return d3.time.format('%X')(new Date(d))
                     });
