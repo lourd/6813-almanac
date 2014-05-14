@@ -10,7 +10,7 @@ Meteor.methods({
         _.each(['humidity', 'co2', 'temperature'], function(el, i, list) {
             var min, max;
             // Make 10 test values for each 
-            for (var i = 3; i > 0; i--) {
+            for (var i = 10; i > 0; i--) {
                 switch (el) {
                     case 'humidity':
                         min = 0.7, max = 1.0;

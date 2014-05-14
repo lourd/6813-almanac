@@ -68,5 +68,7 @@ Template.variablesList.events({
 		// Set the session variable to the current plot index
 		Session.set('slideIsGraph', Template.rackPage.getCurrentPlotIndex());
 		Session.set('graphType', this.type);
+		Deps.flush();
+		console.log("flush...");
 	}
 })
