@@ -12,7 +12,7 @@ Template.variablesList.helpers({
 				$and: [
 					{sensorId:sId},
 					{type: givenType}]
-				},{sort: {recorded_at:1}}).value;
+				},{sort: {recorded_at:-1}}).value;
 
 			readings.push({
 				reading: (latestReading).toFixed(2),
