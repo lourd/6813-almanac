@@ -44,6 +44,20 @@ $sensor-text-color: black;
         }
     }
 }
+.new-area {
+    background-color: #ddd;
+    form {
+        .form-group:first-child {
+            margin-right: 10px;
+            input {
+                width: 230px;
+            }
+        }
+        button {
+            float: right;
+        }
+    }
+}
 
 //////////////////////////////////////////////////
 // Graph paper styling background generator
