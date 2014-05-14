@@ -10,6 +10,9 @@ Template.rackPage.helpers({
 	// Matches the plot's stackIndex
 	getCurrentPlotIndex: function() {
 		return $('#plot-carousel').slickCurrentSlide();
+	},
+	areaName: function() {
+		return Areas.findOne().name;
 	}
 });
 Template.rackPage.rendered = function() {

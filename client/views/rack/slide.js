@@ -109,13 +109,11 @@ Template.graphSlide.rendered = function() {
                     y: reading.value
                   });
                 });
-                // debugger
                 myData.push({
                   values: sensorData,
                   key: sensor.name
                 });
             });
-            // debugger
             d3.select('#chart svg')    //Select the <svg> element you want to render the chart in.   
                 .datum(myData)         //Populate the <svg> element with chart data...
                 .call(chart);          //Finally, render the chart!
@@ -125,5 +123,4 @@ Template.graphSlide.rendered = function() {
             return chart;
         });
     });
-debugger
 }
