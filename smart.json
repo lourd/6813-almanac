@@ -6,6 +6,7 @@
     "spin": {},
     "jqueryui": {},
     "jquery-ui": {},
-    "nvd3js": {}
+    "nvd3js": {},
+    "slick": {}
   }
 }

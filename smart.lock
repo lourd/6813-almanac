@@ -8,7 +8,8 @@
       "spin": {},
       "jqueryui": {},
       "jquery-ui": {},
-      "nvd3js": {}
+      "nvd3js": {},
+      "slick": {}
     },
     "packages": {
       "scss": {
@@ -45,6 +46,11 @@
         "git": "https://github.com/ouuyeah/nvd3js.git",
         "tag": "v0.1.0",
         "commit": "89a8c66bb3b35d25900d31195ae0b318e4176ddb"
+      },
+      "slick": {
+        "git": "https://github.com/lourd/slick.git",
+        "tag": "v0.1.4",
+        "commit": "3acaac6271d6828f365a65a8cb2a13f47220e929"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",
